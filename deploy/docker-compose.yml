@@ -1,0 +1,108 @@
+services:
+  caddy:
+    image: docker.io/library/caddy:2.9-alpine
+    restart: unless-stopped
+    depends_on:
+      - server
+      - web
+    ports:
+      - "127.0.0.1:${STEVIE_LISTEN_PORT:-28413}:${STEVIE_LISTEN_PORT:-28413}"
+      - "${STEVIE_HTTPS_PORT:-8443}:${STEVIE_HTTPS_PORT:-8443}"
+    environment:
+      # Empty / localhost → http://127.0.0.1:$STEVIE_LISTEN_PORT (see caddy-entrypoint.sh)
+      STEVIE_DOMAIN: ${STEVIE_DOMAIN:-}
+      STEVIE_HTTPS_PORT: ${STEVIE_HTTPS_PORT:-8443}
+      TLS_MODE: ${TLS_MODE:-internal}
+      STEVIE_LISTEN_PORT: ${STEVIE_LISTEN_PORT:-28413}
+      STEVIE_HTTP_PORT: ${STEVIE_HTTP_PORT:-28413}
+    volumes:
+      - ./caddy-entrypoint.sh:/entrypoint.sh:ro
+      - caddy-data:/data
+      - caddy-config:/config
+      - ${TLS_CERTS_DIR:-./certs}:/certs:ro
+    entrypoint: ["/bin/sh", "/entrypoint.sh"]
+
+  web:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.web
+    restart: unless-stopped
+
+  streamed:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.streamed
+    restart: unless-stopped
+    environment:
+      PORT: "8091"
+      STEVIE_STREAMED_EMBED_URL: ${STEVIE_STREAMED_EMBED_URL:-https://embed.st}
+
+  server:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.server
+    init: true
+    stop_grace_period: 15s
+    restart: unless-stopped
+    depends_on:
+      - postgres
+      - redis
+      - streamed
+    environment:
+      DATABASE_URL: postgres://stevie:${POSTGRES_PASSWORD:-stevie}@postgres:5432/stevie?sslmode=disable
+      REDIS_URL: redis://redis:6379/0
+      STEVIE_DATA_DIR: /data
+      STEVIE_DOMAIN: ${STEVIE_DOMAIN:-}
+      STEVIE_HTTPS_PORT: ${STEVIE_HTTPS_PORT:-8443}
+      STEVIE_LISTEN_PORT: ${STEVIE_LISTEN_PORT:-28413}
+      STEVIE_ADMIN_USER: ${STEVIE_ADMIN_USER:-admin}
+      STEVIE_ADMIN_PASSWORD: ${STEVIE_ADMIN_PASSWORD:-changeme}
+      # Leave unset for local mode (auto non-Secure). Set true behind HTTPS.
+      STEVIE_SECURE_COOKIES: ${STEVIE_SECURE_COOKIES:-}
+      TMDB_API_KEY: ${TMDB_API_KEY:-}
+      TMDB_RPS: ${TMDB_RPS:-20}
+      MEDIA_LIBRARY_PATH: ${MEDIA_LIBRARY_PATH:-/data/stevie/media}
+      STEVIE_MEDIA_MOUNT: /media/library
+      LIVE_SOURCES_PATH: ${LIVE_SOURCES_PATH:-/data/stevie/live-sources}
+      STEVIE_LIVE_MOUNT: /live-sources
+      STEVIE_RECORDINGS_PATH: ${STEVIE_RECORDINGS_PATH:-/data/stevie/recordings}
+      STEVIE_RECORDINGS_MOUNT: /recordings
+      STEVIE_STREAMED_RELAY_URL: ${STEVIE_STREAMED_RELAY_URL:-http://streamed:8091}
+      STEVIE_STREAMED_BASE_URL: ${STEVIE_STREAMED_BASE_URL:-https://streamed.pk}
+      STEVIE_STREAMED_EMBED_URL: ${STEVIE_STREAMED_EMBED_URL:-https://embed.st}
+      XTREAM_URL: ${XTREAM_URL:-}
+      XTREAM_USER: ${XTREAM_USER:-}
+      XTREAM_PASSWORD: ${XTREAM_PASSWORD:-}
+      THESPORTSDB_API_KEY: ${THESPORTSDB_API_KEY:-123}
+      THESPORTSDB_COUNTRIES: ${THESPORTSDB_COUNTRIES:-Canada,United_States}
+    volumes:
+      - stevie-data:/data
+      - ${MEDIA_LIBRARY_PATH:-/data/stevie/media}:/media/library:ro
+      - ${LIVE_SOURCES_PATH:-/data/stevie/live-sources}:/live-sources:ro
+      - ${STEVIE_RECORDINGS_PATH:-/data/stevie/recordings}:/recordings
+
+  postgres:
+    image: docker.io/library/postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: stevie
+      POSTGRES_USER: stevie
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-stevie}
+    volumes:
+      - stevie-pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U stevie -d stevie"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: docker.io/library/redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+
+volumes:
+  stevie-data:
+  stevie-pg:
+  caddy-data:
+  caddy-config:

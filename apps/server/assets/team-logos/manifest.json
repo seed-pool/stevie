@@ -1,0 +1,4411 @@
+{
+  "version": 1,
+  "generated_at": "2026-10-08T03:08:30.428609+00:00",
+  "teams": [
+    {
+      "key": "cfl/bcl",
+      "file": "cfl/bcl.png",
+      "sport": "American Football",
+      "league": "CFL",
+      "name": "BC Lions",
+      "abbr": "BCL",
+      "aliases": [
+        "BC Lions",
+        "B.C. Lions",
+        "BCL",
+        "Lions"
+      ],
+      "external_id": "espn:cfl:79"
+    },
+    {
+      "key": "cfl/csp",
+      "file": "cfl/csp.png",
+      "sport": "American Football",
+      "league": "CFL",
+      "name": "Calgary Stampeders",
+      "abbr": "CSP",
+      "aliases": [
+        "Calgary Stampeders",
+        "Stampeders",
+        "CSP"
+      ],
+      "external_id": "espn:cfl:csp"
+    },
+    {
+      "key": "cfl/ees",
+      "file": "cfl/ees.png",
+      "sport": "American Football",
+      "league": "CFL",
+      "name": "Edmonton Elks",
+      "abbr": "EES",
+      "aliases": [
+        "Edmonton Elks",
+        "Elks",
+        "EES",
+        "Edmonton Eskimos"
+      ],
+      "external_id": "espn:cfl:ees"
+    },
+    {
+      "key": "cfl/htc",
+      "file": "cfl/htc.png",
+      "sport": "American Football",
+      "league": "CFL",
+      "name": "Hamilton Tiger-Cats",
+      "abbr": "HTC",
+      "aliases": [
+        "Hamilton Tiger-Cats",
+        "Tiger-Cats",
+        "Tiger Cats",
+        "Ticats",
+        "HTC"
+      ],
+      "external_id": "espn:cfl:htc"
+    },
+    {
+      "key": "cfl/mta",
+      "file": "cfl/mta.png",
+      "sport": "American Football",
+      "league": "CFL",
+      "name": "Montreal Alouettes",
+      "abbr": "MTA",
+      "aliases": [
+        "Montreal Alouettes",
+        "Alouettes",
+        "MTA"
+      ],
+      "external_id": "espn:cfl:mta"
+    },
+    {
+      "key": "cfl/orb",
+      "file": "cfl/orb.png",
+      "sport": "American Football",
+      "league": "CFL",
+      "name": "Ottawa Redblacks",
+      "abbr": "ORB",
+      "aliases": [
+        "Ottawa Redblacks",
+        "Ottawa RedBlacks",
+        "Ottawa Red Blacks",
+        "Redblacks",
+        "RedBlacks",
+        "ORB"
+      ],
+      "external_id": "espn:cfl:orb"
+    },
+    {
+      "key": "cfl/srr",
+      "file": "cfl/srr.png",
+      "sport": "American Football",
+      "league": "CFL",
+      "name": "Saskatchewan Roughriders",
+      "abbr": "SRR",
+      "aliases": [
+        "Saskatchewan Roughriders",
+        "Roughriders",
+        "Riders",
+        "SRR"
+      ],
+      "external_id": "espn:cfl:srr"
+    },
+    {
+      "key": "cfl/tat",
+      "file": "cfl/tat.png",
+      "sport": "American Football",
+      "league": "CFL",
+      "name": "Toronto Argonauts",
+      "abbr": "TAT",
+      "aliases": [
+        "Toronto Argonauts",
+        "Argonauts",
+        "Argos",
+        "TAT"
+      ],
+      "external_id": "espn:cfl:tat"
+    },
+    {
+      "key": "cfl/wbb",
+      "file": "cfl/wbb.png",
+      "sport": "American Football",
+      "league": "CFL",
+      "name": "Winnipeg Blue Bombers",
+      "abbr": "WBB",
+      "aliases": [
+        "Winnipeg Blue Bombers",
+        "Blue Bombers",
+        "Bombers",
+        "WBB"
+      ],
+      "external_id": "espn:cfl:wbb"
+    },
+    {
+      "key": "eng.1/ars",
+      "file": "eng.1/ars.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Arsenal",
+      "abbr": "ARS",
+      "aliases": [
+        "Arsenal",
+        "ARS"
+      ],
+      "external_id": "espn:eng.1:359"
+    },
+    {
+      "key": "eng.1/avl",
+      "file": "eng.1/avl.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Aston Villa",
+      "abbr": "AVL",
+      "aliases": [
+        "Aston Villa",
+        "AVL",
+        "Villa"
+      ],
+      "external_id": "espn:eng.1:362"
+    },
+    {
+      "key": "eng.1/bha",
+      "file": "eng.1/bha.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Brighton & Hove Albion",
+      "abbr": "BHA",
+      "aliases": [
+        "Brighton & Hove Albion",
+        "Brighton",
+        "BHA",
+        "& Hove Albion",
+        "Albion"
+      ],
+      "external_id": "espn:eng.1:331"
+    },
+    {
+      "key": "eng.1/bou",
+      "file": "eng.1/bou.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "AFC Bournemouth",
+      "abbr": "BOU",
+      "aliases": [
+        "AFC Bournemouth",
+        "Bournemouth",
+        "BOU"
+      ],
+      "external_id": "espn:eng.1:349"
+    },
+    {
+      "key": "eng.1/bre",
+      "file": "eng.1/bre.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Brentford",
+      "abbr": "BRE",
+      "aliases": [
+        "Brentford",
+        "BRE"
+      ],
+      "external_id": "espn:eng.1:337"
+    },
+    {
+      "key": "eng.1/che",
+      "file": "eng.1/che.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Chelsea",
+      "abbr": "CHE",
+      "aliases": [
+        "Chelsea",
+        "CHE"
+      ],
+      "external_id": "espn:eng.1:363"
+    },
+    {
+      "key": "eng.1/cov",
+      "file": "eng.1/cov.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Coventry City",
+      "abbr": "COV",
+      "aliases": [
+        "Coventry City",
+        "Coventry",
+        "COV",
+        "City"
+      ],
+      "external_id": "espn:eng.1:388"
+    },
+    {
+      "key": "eng.1/cry",
+      "file": "eng.1/cry.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Crystal Palace",
+      "abbr": "CRY",
+      "aliases": [
+        "Crystal Palace",
+        "C Palace",
+        "CRY",
+        "Palace"
+      ],
+      "external_id": "espn:eng.1:384"
+    },
+    {
+      "key": "eng.1/eve",
+      "file": "eng.1/eve.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Everton",
+      "abbr": "EVE",
+      "aliases": [
+        "Everton",
+        "EVE"
+      ],
+      "external_id": "espn:eng.1:368"
+    },
+    {
+      "key": "eng.1/ful",
+      "file": "eng.1/ful.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Fulham",
+      "abbr": "FUL",
+      "aliases": [
+        "Fulham",
+        "FUL"
+      ],
+      "external_id": "espn:eng.1:370"
+    },
+    {
+      "key": "eng.1/hul",
+      "file": "eng.1/hul.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Hull City",
+      "abbr": "HUL",
+      "aliases": [
+        "Hull City",
+        "Hull",
+        "HUL",
+        "City"
+      ],
+      "external_id": "espn:eng.1:306"
+    },
+    {
+      "key": "eng.1/ips",
+      "file": "eng.1/ips.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Ipswich Town",
+      "abbr": "IPS",
+      "aliases": [
+        "Ipswich Town",
+        "Ipswich",
+        "IPS",
+        "Town"
+      ],
+      "external_id": "espn:eng.1:373"
+    },
+    {
+      "key": "eng.1/lee",
+      "file": "eng.1/lee.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Leeds United",
+      "abbr": "LEE",
+      "aliases": [
+        "Leeds United",
+        "Leeds",
+        "LEE",
+        "United"
+      ],
+      "external_id": "espn:eng.1:357"
+    },
+    {
+      "key": "eng.1/liv",
+      "file": "eng.1/liv.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Liverpool",
+      "abbr": "LIV",
+      "aliases": [
+        "Liverpool",
+        "LIV"
+      ],
+      "external_id": "espn:eng.1:364"
+    },
+    {
+      "key": "eng.1/man",
+      "file": "eng.1/man.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Manchester United",
+      "abbr": "MAN",
+      "aliases": [
+        "Manchester United",
+        "Man United",
+        "MAN",
+        "United"
+      ],
+      "external_id": "espn:eng.1:360"
+    },
+    {
+      "key": "eng.1/mnc",
+      "file": "eng.1/mnc.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Manchester City",
+      "abbr": "MNC",
+      "aliases": [
+        "Manchester City",
+        "Man City",
+        "MNC",
+        "City"
+      ],
+      "external_id": "espn:eng.1:382"
+    },
+    {
+      "key": "eng.1/new",
+      "file": "eng.1/new.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Newcastle United",
+      "abbr": "NEW",
+      "aliases": [
+        "Newcastle United",
+        "Newcastle",
+        "NEW",
+        "United"
+      ],
+      "external_id": "espn:eng.1:361"
+    },
+    {
+      "key": "eng.1/nfo",
+      "file": "eng.1/nfo.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Nottingham Forest",
+      "abbr": "NFO",
+      "aliases": [
+        "Nottingham Forest",
+        "Nottm Forest",
+        "NFO",
+        "Forest"
+      ],
+      "external_id": "espn:eng.1:393"
+    },
+    {
+      "key": "eng.1/sun",
+      "file": "eng.1/sun.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Sunderland",
+      "abbr": "SUN",
+      "aliases": [
+        "Sunderland",
+        "SUN"
+      ],
+      "external_id": "espn:eng.1:366"
+    },
+    {
+      "key": "eng.1/tot",
+      "file": "eng.1/tot.png",
+      "sport": "Football",
+      "league": "English Premier League",
+      "name": "Tottenham Hotspur",
+      "abbr": "TOT",
+      "aliases": [
+        "Tottenham Hotspur",
+        "Spurs",
+        "TOT",
+        "Hotspur"
+      ],
+      "external_id": "espn:eng.1:367"
+    },
+    {
+      "key": "esp.1/ala",
+      "file": "esp.1/ala.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Alav\u00e9s",
+      "abbr": "ALA",
+      "aliases": [
+        "Alav\u00e9s",
+        "ALA"
+      ],
+      "external_id": "espn:esp.1:96"
+    },
+    {
+      "key": "esp.1/ath",
+      "file": "esp.1/ath.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Athletic Club",
+      "abbr": "ATH",
+      "aliases": [
+        "Athletic Club",
+        "Athletic",
+        "ATH",
+        "Club"
+      ],
+      "external_id": "espn:esp.1:93"
+    },
+    {
+      "key": "esp.1/atm",
+      "file": "esp.1/atm.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Atl\u00e9tico Madrid",
+      "abbr": "ATM",
+      "aliases": [
+        "Atl\u00e9tico Madrid",
+        "Atl\u00e9tico",
+        "ATM",
+        "Madrid"
+      ],
+      "external_id": "espn:esp.1:1068"
+    },
+    {
+      "key": "esp.1/bar",
+      "file": "esp.1/bar.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Barcelona",
+      "abbr": "BAR",
+      "aliases": [
+        "Barcelona",
+        "BAR"
+      ],
+      "external_id": "espn:esp.1:83"
+    },
+    {
+      "key": "esp.1/bet",
+      "file": "esp.1/bet.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Real Betis",
+      "abbr": "BET",
+      "aliases": [
+        "Real Betis",
+        "Betis",
+        "BET"
+      ],
+      "external_id": "espn:esp.1:244"
+    },
+    {
+      "key": "esp.1/cel",
+      "file": "esp.1/cel.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Celta Vigo",
+      "abbr": "CEL",
+      "aliases": [
+        "Celta Vigo",
+        "CEL",
+        "Vigo"
+      ],
+      "external_id": "espn:esp.1:85"
+    },
+    {
+      "key": "esp.1/dep",
+      "file": "esp.1/dep.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Deportivo",
+      "abbr": "DEP",
+      "aliases": [
+        "Deportivo",
+        "DEP"
+      ],
+      "external_id": "espn:esp.1:90"
+    },
+    {
+      "key": "esp.1/elc",
+      "file": "esp.1/elc.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Elche",
+      "abbr": "ELC",
+      "aliases": [
+        "Elche",
+        "ELC"
+      ],
+      "external_id": "espn:esp.1:3751"
+    },
+    {
+      "key": "esp.1/esp",
+      "file": "esp.1/esp.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Espanyol",
+      "abbr": "ESP",
+      "aliases": [
+        "Espanyol",
+        "ESP"
+      ],
+      "external_id": "espn:esp.1:88"
+    },
+    {
+      "key": "esp.1/get",
+      "file": "esp.1/get.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Getafe",
+      "abbr": "GET",
+      "aliases": [
+        "Getafe",
+        "GET"
+      ],
+      "external_id": "espn:esp.1:2922"
+    },
+    {
+      "key": "esp.1/lev",
+      "file": "esp.1/lev.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Levante",
+      "abbr": "LEV",
+      "aliases": [
+        "Levante",
+        "LEV"
+      ],
+      "external_id": "espn:esp.1:1538"
+    },
+    {
+      "key": "esp.1/mcf",
+      "file": "esp.1/mcf.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "M\u00e1laga",
+      "abbr": "MCF",
+      "aliases": [
+        "M\u00e1laga",
+        "MCF"
+      ],
+      "external_id": "espn:esp.1:99"
+    },
+    {
+      "key": "esp.1/osa",
+      "file": "esp.1/osa.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Osasuna",
+      "abbr": "OSA",
+      "aliases": [
+        "Osasuna",
+        "OSA"
+      ],
+      "external_id": "espn:esp.1:97"
+    },
+    {
+      "key": "esp.1/rac",
+      "file": "esp.1/rac.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Racing Santander",
+      "abbr": "RAC",
+      "aliases": [
+        "Racing Santander",
+        "Racing",
+        "RAC",
+        "Santander"
+      ],
+      "external_id": "espn:esp.1:87"
+    },
+    {
+      "key": "esp.1/ray",
+      "file": "esp.1/ray.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Rayo Vallecano",
+      "abbr": "RAY",
+      "aliases": [
+        "Rayo Vallecano",
+        "Rayo",
+        "RAY",
+        "Vallecano"
+      ],
+      "external_id": "espn:esp.1:101"
+    },
+    {
+      "key": "esp.1/rma",
+      "file": "esp.1/rma.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Real Madrid",
+      "abbr": "RMA",
+      "aliases": [
+        "Real Madrid",
+        "RMA",
+        "Madrid"
+      ],
+      "external_id": "espn:esp.1:86"
+    },
+    {
+      "key": "esp.1/rso",
+      "file": "esp.1/rso.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Real Sociedad",
+      "abbr": "RSO",
+      "aliases": [
+        "Real Sociedad",
+        "RSO",
+        "Sociedad"
+      ],
+      "external_id": "espn:esp.1:89"
+    },
+    {
+      "key": "esp.1/sev",
+      "file": "esp.1/sev.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Sevilla",
+      "abbr": "SEV",
+      "aliases": [
+        "Sevilla",
+        "SEV"
+      ],
+      "external_id": "espn:esp.1:243"
+    },
+    {
+      "key": "esp.1/val",
+      "file": "esp.1/val.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Valencia",
+      "abbr": "VAL",
+      "aliases": [
+        "Valencia",
+        "VAL"
+      ],
+      "external_id": "espn:esp.1:94"
+    },
+    {
+      "key": "esp.1/vil",
+      "file": "esp.1/vil.png",
+      "sport": "Football",
+      "league": "Spanish La Liga",
+      "name": "Villarreal",
+      "abbr": "VIL",
+      "aliases": [
+        "Villarreal",
+        "VIL"
+      ],
+      "external_id": "espn:esp.1:102"
+    },
+    {
+      "key": "fra.1/ang",
+      "file": "fra.1/ang.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Angers",
+      "abbr": "ANG",
+      "aliases": [
+        "Angers",
+        "ANG"
+      ],
+      "external_id": "espn:fra.1:7868"
+    },
+    {
+      "key": "fra.1/aux",
+      "file": "fra.1/aux.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "AJ Auxerre",
+      "abbr": "AUX",
+      "aliases": [
+        "AJ Auxerre",
+        "Auxerre",
+        "AUX"
+      ],
+      "external_id": "espn:fra.1:172"
+    },
+    {
+      "key": "fra.1/bre",
+      "file": "fra.1/bre.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Brest",
+      "abbr": "BRE",
+      "aliases": [
+        "Brest",
+        "BRE"
+      ],
+      "external_id": "espn:fra.1:6997"
+    },
+    {
+      "key": "fra.1/hac",
+      "file": "fra.1/hac.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Le Havre AC",
+      "abbr": "HAC",
+      "aliases": [
+        "Le Havre AC",
+        "HAC",
+        "Havre AC",
+        "AC"
+      ],
+      "external_id": "espn:fra.1:3236"
+    },
+    {
+      "key": "fra.1/lill",
+      "file": "fra.1/lill.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Lille",
+      "abbr": "LILL",
+      "aliases": [
+        "Lille",
+        "LILL"
+      ],
+      "external_id": "espn:fra.1:166"
+    },
+    {
+      "key": "fra.1/lor",
+      "file": "fra.1/lor.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Lorient",
+      "abbr": "LOR",
+      "aliases": [
+        "Lorient",
+        "LOR"
+      ],
+      "external_id": "espn:fra.1:273"
+    },
+    {
+      "key": "fra.1/lyon",
+      "file": "fra.1/lyon.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Lyon",
+      "abbr": "LYON",
+      "aliases": [
+        "Lyon",
+        "LYON"
+      ],
+      "external_id": "espn:fra.1:167"
+    },
+    {
+      "key": "fra.1/mns",
+      "file": "fra.1/mns.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Le Mans",
+      "abbr": "MNS",
+      "aliases": [
+        "Le Mans",
+        "MNS",
+        "Mans"
+      ],
+      "external_id": "espn:fra.1:2697"
+    },
+    {
+      "key": "fra.1/mon",
+      "file": "fra.1/mon.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "AS Monaco",
+      "abbr": "MON",
+      "aliases": [
+        "AS Monaco",
+        "Monaco",
+        "MON"
+      ],
+      "external_id": "espn:fra.1:174"
+    },
+    {
+      "key": "fra.1/nice",
+      "file": "fra.1/nice.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Nice",
+      "abbr": "NICE",
+      "aliases": [
+        "Nice",
+        "NICE"
+      ],
+      "external_id": "espn:fra.1:2502"
+    },
+    {
+      "key": "fra.1/olm",
+      "file": "fra.1/olm.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Marseille",
+      "abbr": "OLM",
+      "aliases": [
+        "Marseille",
+        "OLM"
+      ],
+      "external_id": "espn:fra.1:176"
+    },
+    {
+      "key": "fra.1/par",
+      "file": "fra.1/par.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Paris FC",
+      "abbr": "PAR",
+      "aliases": [
+        "Paris FC",
+        "PAR",
+        "FC"
+      ],
+      "external_id": "espn:fra.1:6851"
+    },
+    {
+      "key": "fra.1/psg",
+      "file": "fra.1/psg.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Paris Saint-Germain",
+      "abbr": "PSG",
+      "aliases": [
+        "Paris Saint-Germain",
+        "PSG",
+        "Saint-Germain"
+      ],
+      "external_id": "espn:fra.1:160"
+    },
+    {
+      "key": "fra.1/rcl",
+      "file": "fra.1/rcl.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Lens",
+      "abbr": "RCL",
+      "aliases": [
+        "Lens",
+        "RCL"
+      ],
+      "external_id": "espn:fra.1:175"
+    },
+    {
+      "key": "fra.1/ren",
+      "file": "fra.1/ren.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Stade Rennais",
+      "abbr": "REN",
+      "aliases": [
+        "Stade Rennais",
+        "Rennes",
+        "REN",
+        "Rennais"
+      ],
+      "external_id": "espn:fra.1:169"
+    },
+    {
+      "key": "fra.1/str",
+      "file": "fra.1/str.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Strasbourg",
+      "abbr": "STR",
+      "aliases": [
+        "Strasbourg",
+        "STR"
+      ],
+      "external_id": "espn:fra.1:180"
+    },
+    {
+      "key": "fra.1/tou",
+      "file": "fra.1/tou.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Toulouse",
+      "abbr": "TOU",
+      "aliases": [
+        "Toulouse",
+        "TOU"
+      ],
+      "external_id": "espn:fra.1:179"
+    },
+    {
+      "key": "fra.1/try",
+      "file": "fra.1/try.png",
+      "sport": "Football",
+      "league": "French Ligue 1",
+      "name": "Troyes",
+      "abbr": "TRY",
+      "aliases": [
+        "Troyes",
+        "TRY"
+      ],
+      "external_id": "espn:fra.1:170"
+    },
+    {
+      "key": "ger.1/b04",
+      "file": "ger.1/b04.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "Bayer Leverkusen",
+      "abbr": "B04",
+      "aliases": [
+        "Bayer Leverkusen",
+        "Leverkusen",
+        "B04"
+      ],
+      "external_id": "espn:ger.1:131"
+    },
+    {
+      "key": "ger.1/bmg",
+      "file": "ger.1/bmg.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "Borussia M\u00f6nchengladbach",
+      "abbr": "BMG",
+      "aliases": [
+        "Borussia M\u00f6nchengladbach",
+        "Gladbach",
+        "BMG",
+        "M\u00f6nchengladbach"
+      ],
+      "external_id": "espn:ger.1:268"
+    },
+    {
+      "key": "ger.1/dor",
+      "file": "ger.1/dor.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "Borussia Dortmund",
+      "abbr": "DOR",
+      "aliases": [
+        "Borussia Dortmund",
+        "Dortmund",
+        "DOR"
+      ],
+      "external_id": "espn:ger.1:124"
+    },
+    {
+      "key": "ger.1/elv",
+      "file": "ger.1/elv.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "SV Elversberg",
+      "abbr": "ELV",
+      "aliases": [
+        "SV Elversberg",
+        "Elversberg",
+        "ELV"
+      ],
+      "external_id": "espn:ger.1:10388"
+    },
+    {
+      "key": "ger.1/fca",
+      "file": "ger.1/fca.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "FC Augsburg",
+      "abbr": "FCA",
+      "aliases": [
+        "FC Augsburg",
+        "Augsburg",
+        "FCA"
+      ],
+      "external_id": "espn:ger.1:3841"
+    },
+    {
+      "key": "ger.1/fcu",
+      "file": "ger.1/fcu.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "1. FC Union Berlin",
+      "abbr": "FCU",
+      "aliases": [
+        "1. FC Union Berlin",
+        "Union Berlin",
+        "FCU",
+        "FC Union Berlin",
+        "Berlin"
+      ],
+      "external_id": "espn:ger.1:598"
+    },
+    {
+      "key": "ger.1/hsv",
+      "file": "ger.1/hsv.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "Hamburg SV",
+      "abbr": "HSV",
+      "aliases": [
+        "Hamburg SV",
+        "Hamburg",
+        "HSV",
+        "SV"
+      ],
+      "external_id": "espn:ger.1:127"
+    },
+    {
+      "key": "ger.1/koe",
+      "file": "ger.1/koe.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "FC Cologne",
+      "abbr": "KOE",
+      "aliases": [
+        "FC Cologne",
+        "Cologne",
+        "KOE"
+      ],
+      "external_id": "espn:ger.1:122"
+    },
+    {
+      "key": "ger.1/m05",
+      "file": "ger.1/m05.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "Mainz",
+      "abbr": "M05",
+      "aliases": [
+        "Mainz",
+        "M05"
+      ],
+      "external_id": "espn:ger.1:2950"
+    },
+    {
+      "key": "ger.1/mun",
+      "file": "ger.1/mun.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "Bayern Munich",
+      "abbr": "MUN",
+      "aliases": [
+        "Bayern Munich",
+        "Bayern",
+        "MUN",
+        "Munich"
+      ],
+      "external_id": "espn:ger.1:132"
+    },
+    {
+      "key": "ger.1/rbl",
+      "file": "ger.1/rbl.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "RB Leipzig",
+      "abbr": "RBL",
+      "aliases": [
+        "RB Leipzig",
+        "RBL",
+        "Leipzig"
+      ],
+      "external_id": "espn:ger.1:11420"
+    },
+    {
+      "key": "ger.1/s04",
+      "file": "ger.1/s04.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "Schalke 04",
+      "abbr": "S04",
+      "aliases": [
+        "Schalke 04",
+        "Schalke",
+        "S04",
+        "04"
+      ],
+      "external_id": "espn:ger.1:133"
+    },
+    {
+      "key": "ger.1/scf",
+      "file": "ger.1/scf.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "SC Freiburg",
+      "abbr": "SCF",
+      "aliases": [
+        "SC Freiburg",
+        "Freiburg",
+        "SCF"
+      ],
+      "external_id": "espn:ger.1:126"
+    },
+    {
+      "key": "ger.1/scp",
+      "file": "ger.1/scp.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "SC Paderborn 07",
+      "abbr": "SCP",
+      "aliases": [
+        "SC Paderborn 07",
+        "Paderborn",
+        "SCP",
+        "Paderborn 07",
+        "07"
+      ],
+      "external_id": "espn:ger.1:3307"
+    },
+    {
+      "key": "ger.1/sge",
+      "file": "ger.1/sge.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "Eintracht Frankfurt",
+      "abbr": "SGE",
+      "aliases": [
+        "Eintracht Frankfurt",
+        "Frankfurt",
+        "SGE"
+      ],
+      "external_id": "espn:ger.1:125"
+    },
+    {
+      "key": "ger.1/svw",
+      "file": "ger.1/svw.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "Werder Bremen",
+      "abbr": "SVW",
+      "aliases": [
+        "Werder Bremen",
+        "Bremen",
+        "SVW"
+      ],
+      "external_id": "espn:ger.1:137"
+    },
+    {
+      "key": "ger.1/tsg",
+      "file": "ger.1/tsg.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "TSG Hoffenheim",
+      "abbr": "TSG",
+      "aliases": [
+        "TSG Hoffenheim",
+        "Hoffenheim",
+        "TSG"
+      ],
+      "external_id": "espn:ger.1:7911"
+    },
+    {
+      "key": "ger.1/vfb",
+      "file": "ger.1/vfb.png",
+      "sport": "Football",
+      "league": "German Bundesliga",
+      "name": "VfB Stuttgart",
+      "abbr": "VFB",
+      "aliases": [
+        "VfB Stuttgart",
+        "Stuttgart",
+        "VFB"
+      ],
+      "external_id": "espn:ger.1:134"
+    },
+    {
+      "key": "ita.1/ata",
+      "file": "ita.1/ata.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Atalanta",
+      "abbr": "ATA",
+      "aliases": [
+        "Atalanta",
+        "ATA"
+      ],
+      "external_id": "espn:ita.1:105"
+    },
+    {
+      "key": "ita.1/bol",
+      "file": "ita.1/bol.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Bologna",
+      "abbr": "BOL",
+      "aliases": [
+        "Bologna",
+        "BOL"
+      ],
+      "external_id": "espn:ita.1:107"
+    },
+    {
+      "key": "ita.1/cag",
+      "file": "ita.1/cag.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Cagliari",
+      "abbr": "CAG",
+      "aliases": [
+        "Cagliari",
+        "CAG"
+      ],
+      "external_id": "espn:ita.1:2925"
+    },
+    {
+      "key": "ita.1/como",
+      "file": "ita.1/como.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Como",
+      "abbr": "COMO",
+      "aliases": [
+        "Como",
+        "COMO"
+      ],
+      "external_id": "espn:ita.1:2572"
+    },
+    {
+      "key": "ita.1/fio",
+      "file": "ita.1/fio.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Fiorentina",
+      "abbr": "FIO",
+      "aliases": [
+        "Fiorentina",
+        "FIO"
+      ],
+      "external_id": "espn:ita.1:109"
+    },
+    {
+      "key": "ita.1/fro",
+      "file": "ita.1/fro.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Frosinone",
+      "abbr": "FRO",
+      "aliases": [
+        "Frosinone",
+        "FRO"
+      ],
+      "external_id": "espn:ita.1:4057"
+    },
+    {
+      "key": "ita.1/gen",
+      "file": "ita.1/gen.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Genoa",
+      "abbr": "GEN",
+      "aliases": [
+        "Genoa",
+        "GEN"
+      ],
+      "external_id": "espn:ita.1:3263"
+    },
+    {
+      "key": "ita.1/int",
+      "file": "ita.1/int.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Internazionale",
+      "abbr": "INT",
+      "aliases": [
+        "Internazionale",
+        "Inter Milan",
+        "INT"
+      ],
+      "external_id": "espn:ita.1:110"
+    },
+    {
+      "key": "ita.1/juv",
+      "file": "ita.1/juv.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Juventus",
+      "abbr": "JUV",
+      "aliases": [
+        "Juventus",
+        "JUV"
+      ],
+      "external_id": "espn:ita.1:111"
+    },
+    {
+      "key": "ita.1/laz",
+      "file": "ita.1/laz.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Lazio",
+      "abbr": "LAZ",
+      "aliases": [
+        "Lazio",
+        "LAZ"
+      ],
+      "external_id": "espn:ita.1:112"
+    },
+    {
+      "key": "ita.1/lec",
+      "file": "ita.1/lec.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Lecce",
+      "abbr": "LEC",
+      "aliases": [
+        "Lecce",
+        "LEC"
+      ],
+      "external_id": "espn:ita.1:113"
+    },
+    {
+      "key": "ita.1/mil",
+      "file": "ita.1/mil.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "AC Milan",
+      "abbr": "MIL",
+      "aliases": [
+        "AC Milan",
+        "Milan",
+        "MIL"
+      ],
+      "external_id": "espn:ita.1:103"
+    },
+    {
+      "key": "ita.1/mon",
+      "file": "ita.1/mon.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Monza",
+      "abbr": "MON",
+      "aliases": [
+        "Monza",
+        "MON"
+      ],
+      "external_id": "espn:ita.1:4007"
+    },
+    {
+      "key": "ita.1/nap",
+      "file": "ita.1/nap.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Napoli",
+      "abbr": "NAP",
+      "aliases": [
+        "Napoli",
+        "NAP"
+      ],
+      "external_id": "espn:ita.1:114"
+    },
+    {
+      "key": "ita.1/par",
+      "file": "ita.1/par.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Parma",
+      "abbr": "PAR",
+      "aliases": [
+        "Parma",
+        "PAR"
+      ],
+      "external_id": "espn:ita.1:115"
+    },
+    {
+      "key": "ita.1/roma",
+      "file": "ita.1/roma.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "AS Roma",
+      "abbr": "ROMA",
+      "aliases": [
+        "AS Roma",
+        "ROMA",
+        "Roma"
+      ],
+      "external_id": "espn:ita.1:104"
+    },
+    {
+      "key": "ita.1/sas",
+      "file": "ita.1/sas.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Sassuolo",
+      "abbr": "SAS",
+      "aliases": [
+        "Sassuolo",
+        "SAS"
+      ],
+      "external_id": "espn:ita.1:3997"
+    },
+    {
+      "key": "ita.1/tor",
+      "file": "ita.1/tor.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Torino",
+      "abbr": "TOR",
+      "aliases": [
+        "Torino",
+        "TOR"
+      ],
+      "external_id": "espn:ita.1:239"
+    },
+    {
+      "key": "ita.1/udi",
+      "file": "ita.1/udi.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Udinese",
+      "abbr": "UDI",
+      "aliases": [
+        "Udinese",
+        "UDI"
+      ],
+      "external_id": "espn:ita.1:118"
+    },
+    {
+      "key": "ita.1/ven",
+      "file": "ita.1/ven.png",
+      "sport": "Football",
+      "league": "Italian Serie A",
+      "name": "Venezia",
+      "abbr": "VEN",
+      "aliases": [
+        "Venezia",
+        "VEN"
+      ],
+      "external_id": "espn:ita.1:17530"
+    },
+    {
+      "key": "mlb/ari",
+      "file": "mlb/ari.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Arizona Diamondbacks",
+      "abbr": "ARI",
+      "aliases": [
+        "Arizona Diamondbacks",
+        "Diamondbacks",
+        "ARI"
+      ],
+      "external_id": "espn:mlb:29"
+    },
+    {
+      "key": "mlb/ath",
+      "file": "mlb/ath.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Athletics",
+      "abbr": "ATH",
+      "aliases": [
+        "Athletics",
+        "ATH"
+      ],
+      "external_id": "espn:mlb:11"
+    },
+    {
+      "key": "mlb/atl",
+      "file": "mlb/atl.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Atlanta Braves",
+      "abbr": "ATL",
+      "aliases": [
+        "Atlanta Braves",
+        "Braves",
+        "ATL"
+      ],
+      "external_id": "espn:mlb:15"
+    },
+    {
+      "key": "mlb/bal",
+      "file": "mlb/bal.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Baltimore Orioles",
+      "abbr": "BAL",
+      "aliases": [
+        "Baltimore Orioles",
+        "Orioles",
+        "BAL"
+      ],
+      "external_id": "espn:mlb:1"
+    },
+    {
+      "key": "mlb/bos",
+      "file": "mlb/bos.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Boston Red Sox",
+      "abbr": "BOS",
+      "aliases": [
+        "Boston Red Sox",
+        "Red Sox",
+        "BOS",
+        "Sox"
+      ],
+      "external_id": "espn:mlb:2"
+    },
+    {
+      "key": "mlb/chc",
+      "file": "mlb/chc.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Chicago Cubs",
+      "abbr": "CHC",
+      "aliases": [
+        "Chicago Cubs",
+        "Cubs",
+        "CHC"
+      ],
+      "external_id": "espn:mlb:16"
+    },
+    {
+      "key": "mlb/chw",
+      "file": "mlb/chw.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Chicago White Sox",
+      "abbr": "CHW",
+      "aliases": [
+        "Chicago White Sox",
+        "White Sox",
+        "CHW",
+        "Sox"
+      ],
+      "external_id": "espn:mlb:4"
+    },
+    {
+      "key": "mlb/cin",
+      "file": "mlb/cin.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Cincinnati Reds",
+      "abbr": "CIN",
+      "aliases": [
+        "Cincinnati Reds",
+        "Reds",
+        "CIN"
+      ],
+      "external_id": "espn:mlb:17"
+    },
+    {
+      "key": "mlb/cle",
+      "file": "mlb/cle.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Cleveland Guardians",
+      "abbr": "CLE",
+      "aliases": [
+        "Cleveland Guardians",
+        "Guardians",
+        "CLE"
+      ],
+      "external_id": "espn:mlb:5"
+    },
+    {
+      "key": "mlb/col",
+      "file": "mlb/col.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Colorado Rockies",
+      "abbr": "COL",
+      "aliases": [
+        "Colorado Rockies",
+        "Rockies",
+        "COL"
+      ],
+      "external_id": "espn:mlb:27"
+    },
+    {
+      "key": "mlb/det",
+      "file": "mlb/det.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Detroit Tigers",
+      "abbr": "DET",
+      "aliases": [
+        "Detroit Tigers",
+        "Tigers",
+        "DET"
+      ],
+      "external_id": "espn:mlb:6"
+    },
+    {
+      "key": "mlb/hou",
+      "file": "mlb/hou.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Houston Astros",
+      "abbr": "HOU",
+      "aliases": [
+        "Houston Astros",
+        "Astros",
+        "HOU"
+      ],
+      "external_id": "espn:mlb:18"
+    },
+    {
+      "key": "mlb/kc",
+      "file": "mlb/kc.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Kansas City Royals",
+      "abbr": "KC",
+      "aliases": [
+        "Kansas City Royals",
+        "Royals",
+        "KC",
+        "City Royals"
+      ],
+      "external_id": "espn:mlb:7"
+    },
+    {
+      "key": "mlb/laa",
+      "file": "mlb/laa.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Los Angeles Angels",
+      "abbr": "LAA",
+      "aliases": [
+        "Los Angeles Angels",
+        "Angels",
+        "LAA",
+        "Angeles Angels"
+      ],
+      "external_id": "espn:mlb:3"
+    },
+    {
+      "key": "mlb/lad",
+      "file": "mlb/lad.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Los Angeles Dodgers",
+      "abbr": "LAD",
+      "aliases": [
+        "Los Angeles Dodgers",
+        "Dodgers",
+        "LAD",
+        "Angeles Dodgers"
+      ],
+      "external_id": "espn:mlb:19"
+    },
+    {
+      "key": "mlb/mia",
+      "file": "mlb/mia.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Miami Marlins",
+      "abbr": "MIA",
+      "aliases": [
+        "Miami Marlins",
+        "Marlins",
+        "MIA"
+      ],
+      "external_id": "espn:mlb:28"
+    },
+    {
+      "key": "mlb/mil",
+      "file": "mlb/mil.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Milwaukee Brewers",
+      "abbr": "MIL",
+      "aliases": [
+        "Milwaukee Brewers",
+        "Brewers",
+        "MIL"
+      ],
+      "external_id": "espn:mlb:8"
+    },
+    {
+      "key": "mlb/min",
+      "file": "mlb/min.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Minnesota Twins",
+      "abbr": "MIN",
+      "aliases": [
+        "Minnesota Twins",
+        "Twins",
+        "MIN"
+      ],
+      "external_id": "espn:mlb:9"
+    },
+    {
+      "key": "mlb/nym",
+      "file": "mlb/nym.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "New York Mets",
+      "abbr": "NYM",
+      "aliases": [
+        "New York Mets",
+        "Mets",
+        "NYM",
+        "York Mets"
+      ],
+      "external_id": "espn:mlb:21"
+    },
+    {
+      "key": "mlb/nyy",
+      "file": "mlb/nyy.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "New York Yankees",
+      "abbr": "NYY",
+      "aliases": [
+        "New York Yankees",
+        "Yankees",
+        "NYY",
+        "York Yankees"
+      ],
+      "external_id": "espn:mlb:10"
+    },
+    {
+      "key": "mlb/phi",
+      "file": "mlb/phi.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Philadelphia Phillies",
+      "abbr": "PHI",
+      "aliases": [
+        "Philadelphia Phillies",
+        "Phillies",
+        "PHI"
+      ],
+      "external_id": "espn:mlb:22"
+    },
+    {
+      "key": "mlb/pit",
+      "file": "mlb/pit.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Pittsburgh Pirates",
+      "abbr": "PIT",
+      "aliases": [
+        "Pittsburgh Pirates",
+        "Pirates",
+        "PIT"
+      ],
+      "external_id": "espn:mlb:23"
+    },
+    {
+      "key": "mlb/sd",
+      "file": "mlb/sd.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "San Diego Padres",
+      "abbr": "SD",
+      "aliases": [
+        "San Diego Padres",
+        "Padres",
+        "SD",
+        "Diego Padres"
+      ],
+      "external_id": "espn:mlb:25"
+    },
+    {
+      "key": "mlb/sea",
+      "file": "mlb/sea.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Seattle Mariners",
+      "abbr": "SEA",
+      "aliases": [
+        "Seattle Mariners",
+        "Mariners",
+        "SEA"
+      ],
+      "external_id": "espn:mlb:12"
+    },
+    {
+      "key": "mlb/sf",
+      "file": "mlb/sf.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "San Francisco Giants",
+      "abbr": "SF",
+      "aliases": [
+        "San Francisco Giants",
+        "Giants",
+        "SF",
+        "Francisco Giants"
+      ],
+      "external_id": "espn:mlb:26"
+    },
+    {
+      "key": "mlb/stl",
+      "file": "mlb/stl.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "St. Louis Cardinals",
+      "abbr": "STL",
+      "aliases": [
+        "St. Louis Cardinals",
+        "Cardinals",
+        "STL",
+        "Louis Cardinals"
+      ],
+      "external_id": "espn:mlb:24"
+    },
+    {
+      "key": "mlb/tb",
+      "file": "mlb/tb.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Tampa Bay Rays",
+      "abbr": "TB",
+      "aliases": [
+        "Tampa Bay Rays",
+        "Rays",
+        "TB",
+        "Bay Rays"
+      ],
+      "external_id": "espn:mlb:30"
+    },
+    {
+      "key": "mlb/tex",
+      "file": "mlb/tex.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Texas Rangers",
+      "abbr": "TEX",
+      "aliases": [
+        "Texas Rangers",
+        "Rangers",
+        "TEX"
+      ],
+      "external_id": "espn:mlb:13"
+    },
+    {
+      "key": "mlb/tor",
+      "file": "mlb/tor.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Toronto Blue Jays",
+      "abbr": "TOR",
+      "aliases": [
+        "Toronto Blue Jays",
+        "Blue Jays",
+        "TOR",
+        "Jays"
+      ],
+      "external_id": "espn:mlb:14"
+    },
+    {
+      "key": "mlb/wsh",
+      "file": "mlb/wsh.png",
+      "sport": "Baseball",
+      "league": "MLB",
+      "name": "Washington Nationals",
+      "abbr": "WSH",
+      "aliases": [
+        "Washington Nationals",
+        "Nationals",
+        "WSH"
+      ],
+      "external_id": "espn:mlb:20"
+    },
+    {
+      "key": "nba/atl",
+      "file": "nba/atl.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Atlanta Hawks",
+      "abbr": "ATL",
+      "aliases": [
+        "Atlanta Hawks",
+        "Hawks",
+        "ATL"
+      ],
+      "external_id": "espn:nba:1"
+    },
+    {
+      "key": "nba/bkn",
+      "file": "nba/bkn.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Brooklyn Nets",
+      "abbr": "BKN",
+      "aliases": [
+        "Brooklyn Nets",
+        "Nets",
+        "BKN"
+      ],
+      "external_id": "espn:nba:17"
+    },
+    {
+      "key": "nba/bos",
+      "file": "nba/bos.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Boston Celtics",
+      "abbr": "BOS",
+      "aliases": [
+        "Boston Celtics",
+        "Celtics",
+        "BOS"
+      ],
+      "external_id": "espn:nba:2"
+    },
+    {
+      "key": "nba/cha",
+      "file": "nba/cha.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Charlotte Hornets",
+      "abbr": "CHA",
+      "aliases": [
+        "Charlotte Hornets",
+        "Hornets",
+        "CHA"
+      ],
+      "external_id": "espn:nba:30"
+    },
+    {
+      "key": "nba/chi",
+      "file": "nba/chi.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Chicago Bulls",
+      "abbr": "CHI",
+      "aliases": [
+        "Chicago Bulls",
+        "Bulls",
+        "CHI"
+      ],
+      "external_id": "espn:nba:4"
+    },
+    {
+      "key": "nba/cle",
+      "file": "nba/cle.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Cleveland Cavaliers",
+      "abbr": "CLE",
+      "aliases": [
+        "Cleveland Cavaliers",
+        "Cavaliers",
+        "CLE"
+      ],
+      "external_id": "espn:nba:5"
+    },
+    {
+      "key": "nba/dal",
+      "file": "nba/dal.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Dallas Mavericks",
+      "abbr": "DAL",
+      "aliases": [
+        "Dallas Mavericks",
+        "Mavericks",
+        "DAL"
+      ],
+      "external_id": "espn:nba:6"
+    },
+    {
+      "key": "nba/den",
+      "file": "nba/den.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Denver Nuggets",
+      "abbr": "DEN",
+      "aliases": [
+        "Denver Nuggets",
+        "Nuggets",
+        "DEN"
+      ],
+      "external_id": "espn:nba:7"
+    },
+    {
+      "key": "nba/det",
+      "file": "nba/det.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Detroit Pistons",
+      "abbr": "DET",
+      "aliases": [
+        "Detroit Pistons",
+        "Pistons",
+        "DET"
+      ],
+      "external_id": "espn:nba:8"
+    },
+    {
+      "key": "nba/gs",
+      "file": "nba/gs.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Golden State Warriors",
+      "abbr": "GS",
+      "aliases": [
+        "Golden State Warriors",
+        "Warriors",
+        "GS",
+        "State Warriors"
+      ],
+      "external_id": "espn:nba:9"
+    },
+    {
+      "key": "nba/hou",
+      "file": "nba/hou.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Houston Rockets",
+      "abbr": "HOU",
+      "aliases": [
+        "Houston Rockets",
+        "Rockets",
+        "HOU"
+      ],
+      "external_id": "espn:nba:10"
+    },
+    {
+      "key": "nba/ind",
+      "file": "nba/ind.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Indiana Pacers",
+      "abbr": "IND",
+      "aliases": [
+        "Indiana Pacers",
+        "Pacers",
+        "IND"
+      ],
+      "external_id": "espn:nba:11"
+    },
+    {
+      "key": "nba/lac",
+      "file": "nba/lac.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "LA Clippers",
+      "abbr": "LAC",
+      "aliases": [
+        "LA Clippers",
+        "Clippers",
+        "LAC"
+      ],
+      "external_id": "espn:nba:12"
+    },
+    {
+      "key": "nba/lal",
+      "file": "nba/lal.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Los Angeles Lakers",
+      "abbr": "LAL",
+      "aliases": [
+        "Los Angeles Lakers",
+        "Lakers",
+        "LAL",
+        "Angeles Lakers"
+      ],
+      "external_id": "espn:nba:13"
+    },
+    {
+      "key": "nba/mem",
+      "file": "nba/mem.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Memphis Grizzlies",
+      "abbr": "MEM",
+      "aliases": [
+        "Memphis Grizzlies",
+        "Grizzlies",
+        "MEM"
+      ],
+      "external_id": "espn:nba:29"
+    },
+    {
+      "key": "nba/mia",
+      "file": "nba/mia.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Miami Heat",
+      "abbr": "MIA",
+      "aliases": [
+        "Miami Heat",
+        "Heat",
+        "MIA"
+      ],
+      "external_id": "espn:nba:14"
+    },
+    {
+      "key": "nba/mil",
+      "file": "nba/mil.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Milwaukee Bucks",
+      "abbr": "MIL",
+      "aliases": [
+        "Milwaukee Bucks",
+        "Bucks",
+        "MIL"
+      ],
+      "external_id": "espn:nba:15"
+    },
+    {
+      "key": "nba/min",
+      "file": "nba/min.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Minnesota Timberwolves",
+      "abbr": "MIN",
+      "aliases": [
+        "Minnesota Timberwolves",
+        "Timberwolves",
+        "MIN"
+      ],
+      "external_id": "espn:nba:16"
+    },
+    {
+      "key": "nba/no",
+      "file": "nba/no.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "New Orleans Pelicans",
+      "abbr": "NO",
+      "aliases": [
+        "New Orleans Pelicans",
+        "Pelicans",
+        "NO",
+        "Orleans Pelicans"
+      ],
+      "external_id": "espn:nba:3"
+    },
+    {
+      "key": "nba/ny",
+      "file": "nba/ny.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "New York Knicks",
+      "abbr": "NY",
+      "aliases": [
+        "New York Knicks",
+        "Knicks",
+        "NY",
+        "York Knicks"
+      ],
+      "external_id": "espn:nba:18"
+    },
+    {
+      "key": "nba/okc",
+      "file": "nba/okc.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Oklahoma City Thunder",
+      "abbr": "OKC",
+      "aliases": [
+        "Oklahoma City Thunder",
+        "Thunder",
+        "OKC",
+        "City Thunder"
+      ],
+      "external_id": "espn:nba:25"
+    },
+    {
+      "key": "nba/orl",
+      "file": "nba/orl.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Orlando Magic",
+      "abbr": "ORL",
+      "aliases": [
+        "Orlando Magic",
+        "Magic",
+        "ORL"
+      ],
+      "external_id": "espn:nba:19"
+    },
+    {
+      "key": "nba/phi",
+      "file": "nba/phi.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Philadelphia 76ers",
+      "abbr": "PHI",
+      "aliases": [
+        "Philadelphia 76ers",
+        "76ers",
+        "PHI"
+      ],
+      "external_id": "espn:nba:20"
+    },
+    {
+      "key": "nba/phx",
+      "file": "nba/phx.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Phoenix Suns",
+      "abbr": "PHX",
+      "aliases": [
+        "Phoenix Suns",
+        "Suns",
+        "PHX"
+      ],
+      "external_id": "espn:nba:21"
+    },
+    {
+      "key": "nba/por",
+      "file": "nba/por.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Portland Trail Blazers",
+      "abbr": "POR",
+      "aliases": [
+        "Portland Trail Blazers",
+        "Trail Blazers",
+        "POR",
+        "Blazers"
+      ],
+      "external_id": "espn:nba:22"
+    },
+    {
+      "key": "nba/sa",
+      "file": "nba/sa.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "San Antonio Spurs",
+      "abbr": "SA",
+      "aliases": [
+        "San Antonio Spurs",
+        "Spurs",
+        "SA",
+        "Antonio Spurs"
+      ],
+      "external_id": "espn:nba:24"
+    },
+    {
+      "key": "nba/sac",
+      "file": "nba/sac.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Sacramento Kings",
+      "abbr": "SAC",
+      "aliases": [
+        "Sacramento Kings",
+        "Kings",
+        "SAC"
+      ],
+      "external_id": "espn:nba:23"
+    },
+    {
+      "key": "nba/tor",
+      "file": "nba/tor.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Toronto Raptors",
+      "abbr": "TOR",
+      "aliases": [
+        "Toronto Raptors",
+        "Raptors",
+        "TOR"
+      ],
+      "external_id": "espn:nba:28"
+    },
+    {
+      "key": "nba/utah",
+      "file": "nba/utah.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Utah Jazz",
+      "abbr": "UTAH",
+      "aliases": [
+        "Utah Jazz",
+        "Jazz",
+        "UTAH"
+      ],
+      "external_id": "espn:nba:26"
+    },
+    {
+      "key": "nba/wsh",
+      "file": "nba/wsh.png",
+      "sport": "Basketball",
+      "league": "NBA",
+      "name": "Washington Wizards",
+      "abbr": "WSH",
+      "aliases": [
+        "Washington Wizards",
+        "Wizards",
+        "WSH"
+      ],
+      "external_id": "espn:nba:27"
+    },
+    {
+      "key": "nfl/ari",
+      "file": "nfl/ari.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Arizona Cardinals",
+      "abbr": "ARI",
+      "aliases": [
+        "Arizona Cardinals",
+        "Cardinals",
+        "ARI"
+      ],
+      "external_id": "espn:nfl:22"
+    },
+    {
+      "key": "nfl/atl",
+      "file": "nfl/atl.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Atlanta Falcons",
+      "abbr": "ATL",
+      "aliases": [
+        "Atlanta Falcons",
+        "Falcons",
+        "ATL"
+      ],
+      "external_id": "espn:nfl:1"
+    },
+    {
+      "key": "nfl/bal",
+      "file": "nfl/bal.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Baltimore Ravens",
+      "abbr": "BAL",
+      "aliases": [
+        "Baltimore Ravens",
+        "Ravens",
+        "BAL"
+      ],
+      "external_id": "espn:nfl:33"
+    },
+    {
+      "key": "nfl/buf",
+      "file": "nfl/buf.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Buffalo Bills",
+      "abbr": "BUF",
+      "aliases": [
+        "Buffalo Bills",
+        "Bills",
+        "BUF"
+      ],
+      "external_id": "espn:nfl:2"
+    },
+    {
+      "key": "nfl/car",
+      "file": "nfl/car.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Carolina Panthers",
+      "abbr": "CAR",
+      "aliases": [
+        "Carolina Panthers",
+        "Panthers",
+        "CAR"
+      ],
+      "external_id": "espn:nfl:29"
+    },
+    {
+      "key": "nfl/chi",
+      "file": "nfl/chi.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Chicago Bears",
+      "abbr": "CHI",
+      "aliases": [
+        "Chicago Bears",
+        "Bears",
+        "CHI"
+      ],
+      "external_id": "espn:nfl:3"
+    },
+    {
+      "key": "nfl/cin",
+      "file": "nfl/cin.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Cincinnati Bengals",
+      "abbr": "CIN",
+      "aliases": [
+        "Cincinnati Bengals",
+        "Bengals",
+        "CIN"
+      ],
+      "external_id": "espn:nfl:4"
+    },
+    {
+      "key": "nfl/cle",
+      "file": "nfl/cle.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Cleveland Browns",
+      "abbr": "CLE",
+      "aliases": [
+        "Cleveland Browns",
+        "Browns",
+        "CLE"
+      ],
+      "external_id": "espn:nfl:5"
+    },
+    {
+      "key": "nfl/dal",
+      "file": "nfl/dal.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Dallas Cowboys",
+      "abbr": "DAL",
+      "aliases": [
+        "Dallas Cowboys",
+        "Cowboys",
+        "DAL"
+      ],
+      "external_id": "espn:nfl:6"
+    },
+    {
+      "key": "nfl/den",
+      "file": "nfl/den.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Denver Broncos",
+      "abbr": "DEN",
+      "aliases": [
+        "Denver Broncos",
+        "Broncos",
+        "DEN"
+      ],
+      "external_id": "espn:nfl:7"
+    },
+    {
+      "key": "nfl/det",
+      "file": "nfl/det.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Detroit Lions",
+      "abbr": "DET",
+      "aliases": [
+        "Detroit Lions",
+        "Lions",
+        "DET"
+      ],
+      "external_id": "espn:nfl:8"
+    },
+    {
+      "key": "nfl/gb",
+      "file": "nfl/gb.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Green Bay Packers",
+      "abbr": "GB",
+      "aliases": [
+        "Green Bay Packers",
+        "Packers",
+        "GB",
+        "Bay Packers"
+      ],
+      "external_id": "espn:nfl:9"
+    },
+    {
+      "key": "nfl/hou",
+      "file": "nfl/hou.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Houston Texans",
+      "abbr": "HOU",
+      "aliases": [
+        "Houston Texans",
+        "Texans",
+        "HOU"
+      ],
+      "external_id": "espn:nfl:34"
+    },
+    {
+      "key": "nfl/ind",
+      "file": "nfl/ind.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Indianapolis Colts",
+      "abbr": "IND",
+      "aliases": [
+        "Indianapolis Colts",
+        "Colts",
+        "IND"
+      ],
+      "external_id": "espn:nfl:11"
+    },
+    {
+      "key": "nfl/jax",
+      "file": "nfl/jax.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Jacksonville Jaguars",
+      "abbr": "JAX",
+      "aliases": [
+        "Jacksonville Jaguars",
+        "Jaguars",
+        "JAX"
+      ],
+      "external_id": "espn:nfl:30"
+    },
+    {
+      "key": "nfl/kc",
+      "file": "nfl/kc.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Kansas City Chiefs",
+      "abbr": "KC",
+      "aliases": [
+        "Kansas City Chiefs",
+        "Chiefs",
+        "KC",
+        "City Chiefs"
+      ],
+      "external_id": "espn:nfl:12"
+    },
+    {
+      "key": "nfl/lac",
+      "file": "nfl/lac.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Los Angeles Chargers",
+      "abbr": "LAC",
+      "aliases": [
+        "Los Angeles Chargers",
+        "Chargers",
+        "LAC",
+        "Angeles Chargers"
+      ],
+      "external_id": "espn:nfl:24"
+    },
+    {
+      "key": "nfl/lar",
+      "file": "nfl/lar.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Los Angeles Rams",
+      "abbr": "LAR",
+      "aliases": [
+        "Los Angeles Rams",
+        "Rams",
+        "LAR",
+        "Angeles Rams"
+      ],
+      "external_id": "espn:nfl:14"
+    },
+    {
+      "key": "nfl/lv",
+      "file": "nfl/lv.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Las Vegas Raiders",
+      "abbr": "LV",
+      "aliases": [
+        "Las Vegas Raiders",
+        "Raiders",
+        "LV",
+        "Vegas Raiders"
+      ],
+      "external_id": "espn:nfl:13"
+    },
+    {
+      "key": "nfl/mia",
+      "file": "nfl/mia.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Miami Dolphins",
+      "abbr": "MIA",
+      "aliases": [
+        "Miami Dolphins",
+        "Dolphins",
+        "MIA"
+      ],
+      "external_id": "espn:nfl:15"
+    },
+    {
+      "key": "nfl/min",
+      "file": "nfl/min.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Minnesota Vikings",
+      "abbr": "MIN",
+      "aliases": [
+        "Minnesota Vikings",
+        "Vikings",
+        "MIN"
+      ],
+      "external_id": "espn:nfl:16"
+    },
+    {
+      "key": "nfl/ne",
+      "file": "nfl/ne.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "New England Patriots",
+      "abbr": "NE",
+      "aliases": [
+        "New England Patriots",
+        "Patriots",
+        "NE",
+        "England Patriots"
+      ],
+      "external_id": "espn:nfl:17"
+    },
+    {
+      "key": "nfl/no",
+      "file": "nfl/no.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "New Orleans Saints",
+      "abbr": "NO",
+      "aliases": [
+        "New Orleans Saints",
+        "Saints",
+        "NO",
+        "Orleans Saints"
+      ],
+      "external_id": "espn:nfl:18"
+    },
+    {
+      "key": "nfl/nyg",
+      "file": "nfl/nyg.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "New York Giants",
+      "abbr": "NYG",
+      "aliases": [
+        "New York Giants",
+        "Giants",
+        "NYG",
+        "York Giants"
+      ],
+      "external_id": "espn:nfl:19"
+    },
+    {
+      "key": "nfl/nyj",
+      "file": "nfl/nyj.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "New York Jets",
+      "abbr": "NYJ",
+      "aliases": [
+        "New York Jets",
+        "Jets",
+        "NYJ",
+        "York Jets"
+      ],
+      "external_id": "espn:nfl:20"
+    },
+    {
+      "key": "nfl/phi",
+      "file": "nfl/phi.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Philadelphia Eagles",
+      "abbr": "PHI",
+      "aliases": [
+        "Philadelphia Eagles",
+        "Eagles",
+        "PHI"
+      ],
+      "external_id": "espn:nfl:21"
+    },
+    {
+      "key": "nfl/pit",
+      "file": "nfl/pit.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Pittsburgh Steelers",
+      "abbr": "PIT",
+      "aliases": [
+        "Pittsburgh Steelers",
+        "Steelers",
+        "PIT"
+      ],
+      "external_id": "espn:nfl:23"
+    },
+    {
+      "key": "nfl/sea",
+      "file": "nfl/sea.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Seattle Seahawks",
+      "abbr": "SEA",
+      "aliases": [
+        "Seattle Seahawks",
+        "Seahawks",
+        "SEA"
+      ],
+      "external_id": "espn:nfl:26"
+    },
+    {
+      "key": "nfl/sf",
+      "file": "nfl/sf.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "San Francisco 49ers",
+      "abbr": "SF",
+      "aliases": [
+        "San Francisco 49ers",
+        "49ers",
+        "SF",
+        "Francisco 49ers"
+      ],
+      "external_id": "espn:nfl:25"
+    },
+    {
+      "key": "nfl/tb",
+      "file": "nfl/tb.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Tampa Bay Buccaneers",
+      "abbr": "TB",
+      "aliases": [
+        "Tampa Bay Buccaneers",
+        "Buccaneers",
+        "TB",
+        "Bay Buccaneers"
+      ],
+      "external_id": "espn:nfl:27"
+    },
+    {
+      "key": "nfl/ten",
+      "file": "nfl/ten.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Tennessee Titans",
+      "abbr": "TEN",
+      "aliases": [
+        "Tennessee Titans",
+        "Titans",
+        "TEN"
+      ],
+      "external_id": "espn:nfl:10"
+    },
+    {
+      "key": "nfl/wsh",
+      "file": "nfl/wsh.png",
+      "sport": "American Football",
+      "league": "NFL",
+      "name": "Washington Commanders",
+      "abbr": "WSH",
+      "aliases": [
+        "Washington Commanders",
+        "Commanders",
+        "WSH"
+      ],
+      "external_id": "espn:nfl:28"
+    },
+    {
+      "key": "nhl/ana",
+      "file": "nhl/ana.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Anaheim Ducks",
+      "abbr": "ANA",
+      "aliases": [
+        "Anaheim Ducks",
+        "Ducks",
+        "ANA"
+      ],
+      "external_id": "espn:nhl:25"
+    },
+    {
+      "key": "nhl/bos",
+      "file": "nhl/bos.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Boston Bruins",
+      "abbr": "BOS",
+      "aliases": [
+        "Boston Bruins",
+        "Bruins",
+        "BOS"
+      ],
+      "external_id": "espn:nhl:1"
+    },
+    {
+      "key": "nhl/buf",
+      "file": "nhl/buf.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Buffalo Sabres",
+      "abbr": "BUF",
+      "aliases": [
+        "Buffalo Sabres",
+        "Sabres",
+        "BUF"
+      ],
+      "external_id": "espn:nhl:2"
+    },
+    {
+      "key": "nhl/car",
+      "file": "nhl/car.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Carolina Hurricanes",
+      "abbr": "CAR",
+      "aliases": [
+        "Carolina Hurricanes",
+        "Hurricanes",
+        "CAR"
+      ],
+      "external_id": "espn:nhl:7"
+    },
+    {
+      "key": "nhl/cbj",
+      "file": "nhl/cbj.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Columbus Blue Jackets",
+      "abbr": "CBJ",
+      "aliases": [
+        "Columbus Blue Jackets",
+        "Blue Jackets",
+        "CBJ",
+        "Jackets"
+      ],
+      "external_id": "espn:nhl:29"
+    },
+    {
+      "key": "nhl/cgy",
+      "file": "nhl/cgy.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Calgary Flames",
+      "abbr": "CGY",
+      "aliases": [
+        "Calgary Flames",
+        "Flames",
+        "CGY"
+      ],
+      "external_id": "espn:nhl:3"
+    },
+    {
+      "key": "nhl/chi",
+      "file": "nhl/chi.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Chicago Blackhawks",
+      "abbr": "CHI",
+      "aliases": [
+        "Chicago Blackhawks",
+        "Blackhawks",
+        "CHI"
+      ],
+      "external_id": "espn:nhl:4"
+    },
+    {
+      "key": "nhl/col",
+      "file": "nhl/col.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Colorado Avalanche",
+      "abbr": "COL",
+      "aliases": [
+        "Colorado Avalanche",
+        "Avalanche",
+        "COL"
+      ],
+      "external_id": "espn:nhl:17"
+    },
+    {
+      "key": "nhl/dal",
+      "file": "nhl/dal.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Dallas Stars",
+      "abbr": "DAL",
+      "aliases": [
+        "Dallas Stars",
+        "Stars",
+        "DAL"
+      ],
+      "external_id": "espn:nhl:9"
+    },
+    {
+      "key": "nhl/det",
+      "file": "nhl/det.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Detroit Red Wings",
+      "abbr": "DET",
+      "aliases": [
+        "Detroit Red Wings",
+        "Red Wings",
+        "DET",
+        "Wings"
+      ],
+      "external_id": "espn:nhl:5"
+    },
+    {
+      "key": "nhl/edm",
+      "file": "nhl/edm.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Edmonton Oilers",
+      "abbr": "EDM",
+      "aliases": [
+        "Edmonton Oilers",
+        "Oilers",
+        "EDM"
+      ],
+      "external_id": "espn:nhl:6"
+    },
+    {
+      "key": "nhl/fla",
+      "file": "nhl/fla.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Florida Panthers",
+      "abbr": "FLA",
+      "aliases": [
+        "Florida Panthers",
+        "Panthers",
+        "FLA"
+      ],
+      "external_id": "espn:nhl:26"
+    },
+    {
+      "key": "nhl/la",
+      "file": "nhl/la.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Los Angeles Kings",
+      "abbr": "LA",
+      "aliases": [
+        "Los Angeles Kings",
+        "Kings",
+        "LA",
+        "Angeles Kings"
+      ],
+      "external_id": "espn:nhl:8"
+    },
+    {
+      "key": "nhl/min",
+      "file": "nhl/min.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Minnesota Wild",
+      "abbr": "MIN",
+      "aliases": [
+        "Minnesota Wild",
+        "Wild",
+        "MIN"
+      ],
+      "external_id": "espn:nhl:30"
+    },
+    {
+      "key": "nhl/mtl",
+      "file": "nhl/mtl.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Montreal Canadiens",
+      "abbr": "MTL",
+      "aliases": [
+        "Montreal Canadiens",
+        "Canadiens",
+        "MTL"
+      ],
+      "external_id": "espn:nhl:10"
+    },
+    {
+      "key": "nhl/nj",
+      "file": "nhl/nj.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "New Jersey Devils",
+      "abbr": "NJ",
+      "aliases": [
+        "New Jersey Devils",
+        "Devils",
+        "NJ",
+        "Jersey Devils"
+      ],
+      "external_id": "espn:nhl:11"
+    },
+    {
+      "key": "nhl/nsh",
+      "file": "nhl/nsh.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Nashville Predators",
+      "abbr": "NSH",
+      "aliases": [
+        "Nashville Predators",
+        "Predators",
+        "NSH"
+      ],
+      "external_id": "espn:nhl:27"
+    },
+    {
+      "key": "nhl/nyi",
+      "file": "nhl/nyi.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "New York Islanders",
+      "abbr": "NYI",
+      "aliases": [
+        "New York Islanders",
+        "Islanders",
+        "NYI",
+        "York Islanders"
+      ],
+      "external_id": "espn:nhl:12"
+    },
+    {
+      "key": "nhl/nyr",
+      "file": "nhl/nyr.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "New York Rangers",
+      "abbr": "NYR",
+      "aliases": [
+        "New York Rangers",
+        "Rangers",
+        "NYR",
+        "York Rangers"
+      ],
+      "external_id": "espn:nhl:13"
+    },
+    {
+      "key": "nhl/ott",
+      "file": "nhl/ott.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Ottawa Senators",
+      "abbr": "OTT",
+      "aliases": [
+        "Ottawa Senators",
+        "Senators",
+        "OTT"
+      ],
+      "external_id": "espn:nhl:14"
+    },
+    {
+      "key": "nhl/phi",
+      "file": "nhl/phi.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Philadelphia Flyers",
+      "abbr": "PHI",
+      "aliases": [
+        "Philadelphia Flyers",
+        "Flyers",
+        "PHI"
+      ],
+      "external_id": "espn:nhl:15"
+    },
+    {
+      "key": "nhl/pit",
+      "file": "nhl/pit.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Pittsburgh Penguins",
+      "abbr": "PIT",
+      "aliases": [
+        "Pittsburgh Penguins",
+        "Penguins",
+        "PIT"
+      ],
+      "external_id": "espn:nhl:16"
+    },
+    {
+      "key": "nhl/sea",
+      "file": "nhl/sea.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Seattle Kraken",
+      "abbr": "SEA",
+      "aliases": [
+        "Seattle Kraken",
+        "Kraken",
+        "SEA"
+      ],
+      "external_id": "espn:nhl:124292"
+    },
+    {
+      "key": "nhl/sj",
+      "file": "nhl/sj.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "San Jose Sharks",
+      "abbr": "SJ",
+      "aliases": [
+        "San Jose Sharks",
+        "Sharks",
+        "SJ",
+        "Jose Sharks"
+      ],
+      "external_id": "espn:nhl:18"
+    },
+    {
+      "key": "nhl/stl",
+      "file": "nhl/stl.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "St. Louis Blues",
+      "abbr": "STL",
+      "aliases": [
+        "St. Louis Blues",
+        "Blues",
+        "STL",
+        "Louis Blues"
+      ],
+      "external_id": "espn:nhl:19"
+    },
+    {
+      "key": "nhl/tb",
+      "file": "nhl/tb.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Tampa Bay Lightning",
+      "abbr": "TB",
+      "aliases": [
+        "Tampa Bay Lightning",
+        "Lightning",
+        "TB",
+        "Bay Lightning"
+      ],
+      "external_id": "espn:nhl:20"
+    },
+    {
+      "key": "nhl/tor",
+      "file": "nhl/tor.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Toronto Maple Leafs",
+      "abbr": "TOR",
+      "aliases": [
+        "Toronto Maple Leafs",
+        "Maple Leafs",
+        "TOR",
+        "Leafs"
+      ],
+      "external_id": "espn:nhl:21"
+    },
+    {
+      "key": "nhl/utah",
+      "file": "nhl/utah.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Utah Mammoth",
+      "abbr": "UTAH",
+      "aliases": [
+        "Utah Mammoth",
+        "Mammoth",
+        "UTAH"
+      ],
+      "external_id": "espn:nhl:129764"
+    },
+    {
+      "key": "nhl/van",
+      "file": "nhl/van.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Vancouver Canucks",
+      "abbr": "VAN",
+      "aliases": [
+        "Vancouver Canucks",
+        "Canucks",
+        "VAN"
+      ],
+      "external_id": "espn:nhl:22"
+    },
+    {
+      "key": "nhl/vgk",
+      "file": "nhl/vgk.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Vegas Golden Knights",
+      "abbr": "VGK",
+      "aliases": [
+        "Vegas Golden Knights",
+        "Golden Knights",
+        "VGK",
+        "Knights"
+      ],
+      "external_id": "espn:nhl:37"
+    },
+    {
+      "key": "nhl/wpg",
+      "file": "nhl/wpg.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Winnipeg Jets",
+      "abbr": "WPG",
+      "aliases": [
+        "Winnipeg Jets",
+        "Jets",
+        "WPG"
+      ],
+      "external_id": "espn:nhl:28"
+    },
+    {
+      "key": "nhl/wsh",
+      "file": "nhl/wsh.png",
+      "sport": "Ice Hockey",
+      "league": "NHL",
+      "name": "Washington Capitals",
+      "abbr": "WSH",
+      "aliases": [
+        "Washington Capitals",
+        "Capitals",
+        "WSH"
+      ],
+      "external_id": "espn:nhl:23"
+    },
+    {
+      "key": "uefa.champions/aek",
+      "file": "uefa.champions/aek.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "AEK Athens",
+      "abbr": "AEK",
+      "aliases": [
+        "AEK Athens",
+        "AEK",
+        "Athens"
+      ],
+      "external_id": "espn:uefa.champions:887"
+    },
+    {
+      "key": "uefa.champions/ars",
+      "file": "uefa.champions/ars.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Arsenal",
+      "abbr": "ARS",
+      "aliases": [
+        "Arsenal",
+        "ARS"
+      ],
+      "external_id": "espn:uefa.champions:359"
+    },
+    {
+      "key": "uefa.champions/atm",
+      "file": "uefa.champions/atm.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Atl\u00e9tico Madrid",
+      "abbr": "ATM",
+      "aliases": [
+        "Atl\u00e9tico Madrid",
+        "Atl\u00e9tico",
+        "ATM",
+        "Madrid"
+      ],
+      "external_id": "espn:uefa.champions:1068"
+    },
+    {
+      "key": "uefa.champions/avl",
+      "file": "uefa.champions/avl.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Aston Villa",
+      "abbr": "AVL",
+      "aliases": [
+        "Aston Villa",
+        "AVL",
+        "Villa"
+      ],
+      "external_id": "espn:uefa.champions:362"
+    },
+    {
+      "key": "uefa.champions/bar",
+      "file": "uefa.champions/bar.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Barcelona",
+      "abbr": "BAR",
+      "aliases": [
+        "Barcelona",
+        "BAR"
+      ],
+      "external_id": "espn:uefa.champions:83"
+    },
+    {
+      "key": "uefa.champions/bet",
+      "file": "uefa.champions/bet.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Real Betis",
+      "abbr": "BET",
+      "aliases": [
+        "Real Betis",
+        "Betis",
+        "BET"
+      ],
+      "external_id": "espn:uefa.champions:244"
+    },
+    {
+      "key": "uefa.champions/bodo",
+      "file": "uefa.champions/bodo.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Bodo/Glimt",
+      "abbr": "BODO",
+      "aliases": [
+        "Bodo/Glimt",
+        "BODO"
+      ],
+      "external_id": "espn:uefa.champions:2980"
+    },
+    {
+      "key": "uefa.champions/bru",
+      "file": "uefa.champions/bru.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Club Brugge",
+      "abbr": "BRU",
+      "aliases": [
+        "Club Brugge",
+        "BRU",
+        "Brugge"
+      ],
+      "external_id": "espn:uefa.champions:570"
+    },
+    {
+      "key": "uefa.champions/como",
+      "file": "uefa.champions/como.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Como",
+      "abbr": "COMO",
+      "aliases": [
+        "Como",
+        "COMO"
+      ],
+      "external_id": "espn:uefa.champions:2572"
+    },
+    {
+      "key": "uefa.champions/dor",
+      "file": "uefa.champions/dor.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Borussia Dortmund",
+      "abbr": "DOR",
+      "aliases": [
+        "Borussia Dortmund",
+        "Dortmund",
+        "DOR"
+      ],
+      "external_id": "espn:uefa.champions:124"
+    },
+    {
+      "key": "uefa.champions/fcp",
+      "file": "uefa.champions/fcp.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "FC Porto",
+      "abbr": "FCP",
+      "aliases": [
+        "FC Porto",
+        "FCP",
+        "Porto"
+      ],
+      "external_id": "espn:uefa.champions:437"
+    },
+    {
+      "key": "uefa.champions/fen",
+      "file": "uefa.champions/fen.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Fenerbahce",
+      "abbr": "FEN",
+      "aliases": [
+        "Fenerbahce",
+        "FEN"
+      ],
+      "external_id": "espn:uefa.champions:436"
+    },
+    {
+      "key": "uefa.champions/fey",
+      "file": "uefa.champions/fey.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Feyenoord Rotterdam",
+      "abbr": "FEY",
+      "aliases": [
+        "Feyenoord Rotterdam",
+        "Feyenoord",
+        "FEY",
+        "Rotterdam"
+      ],
+      "external_id": "espn:uefa.champions:142"
+    },
+    {
+      "key": "uefa.champions/gal",
+      "file": "uefa.champions/gal.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Galatasaray",
+      "abbr": "GAL",
+      "aliases": [
+        "Galatasaray",
+        "GAL"
+      ],
+      "external_id": "espn:uefa.champions:432"
+    },
+    {
+      "key": "uefa.champions/int",
+      "file": "uefa.champions/int.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Internazionale",
+      "abbr": "INT",
+      "aliases": [
+        "Internazionale",
+        "Inter Milan",
+        "INT"
+      ],
+      "external_id": "espn:uefa.champions:110"
+    },
+    {
+      "key": "uefa.champions/las",
+      "file": "uefa.champions/las.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "LASK Linz",
+      "abbr": "LAS",
+      "aliases": [
+        "LASK Linz",
+        "LAS",
+        "Linz"
+      ],
+      "external_id": "espn:uefa.champions:4411"
+    },
+    {
+      "key": "uefa.champions/lill",
+      "file": "uefa.champions/lill.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Lille",
+      "abbr": "LILL",
+      "aliases": [
+        "Lille",
+        "LILL"
+      ],
+      "external_id": "espn:uefa.champions:166"
+    },
+    {
+      "key": "uefa.champions/liv",
+      "file": "uefa.champions/liv.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Liverpool",
+      "abbr": "LIV",
+      "aliases": [
+        "Liverpool",
+        "LIV"
+      ],
+      "external_id": "espn:uefa.champions:364"
+    },
+    {
+      "key": "uefa.champions/man",
+      "file": "uefa.champions/man.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Manchester United",
+      "abbr": "MAN",
+      "aliases": [
+        "Manchester United",
+        "Man United",
+        "MAN",
+        "United"
+      ],
+      "external_id": "espn:uefa.champions:360"
+    },
+    {
+      "key": "uefa.champions/mnc",
+      "file": "uefa.champions/mnc.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Manchester City",
+      "abbr": "MNC",
+      "aliases": [
+        "Manchester City",
+        "Man City",
+        "MNC",
+        "City"
+      ],
+      "external_id": "espn:uefa.champions:382"
+    },
+    {
+      "key": "uefa.champions/mun",
+      "file": "uefa.champions/mun.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Bayern Munich",
+      "abbr": "MUN",
+      "aliases": [
+        "Bayern Munich",
+        "Bayern",
+        "MUN",
+        "Munich"
+      ],
+      "external_id": "espn:uefa.champions:132"
+    },
+    {
+      "key": "uefa.champions/nap",
+      "file": "uefa.champions/nap.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Napoli",
+      "abbr": "NAP",
+      "aliases": [
+        "Napoli",
+        "NAP"
+      ],
+      "external_id": "espn:uefa.champions:114"
+    },
+    {
+      "key": "uefa.champions/psg",
+      "file": "uefa.champions/psg.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Paris Saint-Germain",
+      "abbr": "PSG",
+      "aliases": [
+        "Paris Saint-Germain",
+        "PSG",
+        "Saint-Germain"
+      ],
+      "external_id": "espn:uefa.champions:160"
+    },
+    {
+      "key": "uefa.champions/psv",
+      "file": "uefa.champions/psv.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "PSV Eindhoven",
+      "abbr": "PSV",
+      "aliases": [
+        "PSV Eindhoven",
+        "PSV",
+        "Eindhoven"
+      ],
+      "external_id": "espn:uefa.champions:148"
+    },
+    {
+      "key": "uefa.champions/rbl",
+      "file": "uefa.champions/rbl.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "RB Leipzig",
+      "abbr": "RBL",
+      "aliases": [
+        "RB Leipzig",
+        "RBL",
+        "Leipzig"
+      ],
+      "external_id": "espn:uefa.champions:11420"
+    },
+    {
+      "key": "uefa.champions/rcl",
+      "file": "uefa.champions/rcl.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Lens",
+      "abbr": "RCL",
+      "aliases": [
+        "Lens",
+        "RCL"
+      ],
+      "external_id": "espn:uefa.champions:175"
+    },
+    {
+      "key": "uefa.champions/rma",
+      "file": "uefa.champions/rma.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Real Madrid",
+      "abbr": "RMA",
+      "aliases": [
+        "Real Madrid",
+        "RMA",
+        "Madrid"
+      ],
+      "external_id": "espn:uefa.champions:86"
+    },
+    {
+      "key": "uefa.champions/roma",
+      "file": "uefa.champions/roma.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "AS Roma",
+      "abbr": "ROMA",
+      "aliases": [
+        "AS Roma",
+        "ROMA",
+        "Roma"
+      ],
+      "external_id": "espn:uefa.champions:104"
+    },
+    {
+      "key": "uefa.champions/sab",
+      "file": "uefa.champions/sab.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Sabah FK",
+      "abbr": "SAB",
+      "aliases": [
+        "Sabah FK",
+        "Sabah",
+        "SAB",
+        "FK"
+      ],
+      "external_id": "espn:uefa.champions:21922"
+    },
+    {
+      "key": "uefa.champions/scp",
+      "file": "uefa.champions/scp.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Sporting CP",
+      "abbr": "SCP",
+      "aliases": [
+        "Sporting CP",
+        "Sporting",
+        "SCP",
+        "CP"
+      ],
+      "external_id": "espn:uefa.champions:2250"
+    },
+    {
+      "key": "uefa.champions/shk",
+      "file": "uefa.champions/shk.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Shakhtar Donetsk",
+      "abbr": "SHK",
+      "aliases": [
+        "Shakhtar Donetsk",
+        "Shakhtar",
+        "SHK",
+        "Donetsk"
+      ],
+      "external_id": "espn:uefa.champions:493"
+    },
+    {
+      "key": "uefa.champions/slb",
+      "file": "uefa.champions/slb.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Slovan Bratislava",
+      "abbr": "SLB",
+      "aliases": [
+        "Slovan Bratislava",
+        "S Bratislava",
+        "SLB",
+        "Bratislava"
+      ],
+      "external_id": "espn:uefa.champions:521"
+    },
+    {
+      "key": "uefa.champions/slp",
+      "file": "uefa.champions/slp.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Slavia Prague",
+      "abbr": "SLP",
+      "aliases": [
+        "Slavia Prague",
+        "SLP",
+        "Prague"
+      ],
+      "external_id": "espn:uefa.champions:494"
+    },
+    {
+      "key": "uefa.champions/vfb",
+      "file": "uefa.champions/vfb.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "VfB Stuttgart",
+      "abbr": "VFB",
+      "aliases": [
+        "VfB Stuttgart",
+        "Stuttgart",
+        "VFB"
+      ],
+      "external_id": "espn:uefa.champions:134"
+    },
+    {
+      "key": "uefa.champions/vik",
+      "file": "uefa.champions/vik.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Viking FK",
+      "abbr": "VIK",
+      "aliases": [
+        "Viking FK",
+        "VIK",
+        "FK"
+      ],
+      "external_id": "espn:uefa.champions:510"
+    },
+    {
+      "key": "uefa.champions/vil",
+      "file": "uefa.champions/vil.png",
+      "sport": "Football",
+      "league": "UEFA Champions League",
+      "name": "Villarreal",
+      "abbr": "VIL",
+      "aliases": [
+        "Villarreal",
+        "VIL"
+      ],
+      "external_id": "espn:uefa.champions:102"
+    },
+    {
+      "key": "usa.1/atl",
+      "file": "usa.1/atl.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Atlanta United FC",
+      "abbr": "ATL",
+      "aliases": [
+        "Atlanta United FC",
+        "Atlanta",
+        "ATL",
+        "United FC",
+        "FC"
+      ],
+      "external_id": "espn:usa.1:18418"
+    },
+    {
+      "key": "usa.1/atx",
+      "file": "usa.1/atx.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Austin FC",
+      "abbr": "ATX",
+      "aliases": [
+        "Austin FC",
+        "Austin",
+        "ATX",
+        "FC"
+      ],
+      "external_id": "espn:usa.1:20906"
+    },
+    {
+      "key": "usa.1/chi",
+      "file": "usa.1/chi.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Chicago Fire FC",
+      "abbr": "CHI",
+      "aliases": [
+        "Chicago Fire FC",
+        "Chicago",
+        "CHI",
+        "Fire FC",
+        "FC"
+      ],
+      "external_id": "espn:usa.1:182"
+    },
+    {
+      "key": "usa.1/cin",
+      "file": "usa.1/cin.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "FC Cincinnati",
+      "abbr": "CIN",
+      "aliases": [
+        "FC Cincinnati",
+        "Cincinnati",
+        "CIN"
+      ],
+      "external_id": "espn:usa.1:18267"
+    },
+    {
+      "key": "usa.1/clb",
+      "file": "usa.1/clb.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Columbus Crew",
+      "abbr": "CLB",
+      "aliases": [
+        "Columbus Crew",
+        "Columbus",
+        "CLB",
+        "Crew"
+      ],
+      "external_id": "espn:usa.1:183"
+    },
+    {
+      "key": "usa.1/clt",
+      "file": "usa.1/clt.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Charlotte FC",
+      "abbr": "CLT",
+      "aliases": [
+        "Charlotte FC",
+        "Charlotte",
+        "CLT",
+        "FC"
+      ],
+      "external_id": "espn:usa.1:21300"
+    },
+    {
+      "key": "usa.1/col",
+      "file": "usa.1/col.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Colorado Rapids",
+      "abbr": "COL",
+      "aliases": [
+        "Colorado Rapids",
+        "Colorado",
+        "COL",
+        "Rapids"
+      ],
+      "external_id": "espn:usa.1:184"
+    },
+    {
+      "key": "usa.1/dal",
+      "file": "usa.1/dal.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "FC Dallas",
+      "abbr": "DAL",
+      "aliases": [
+        "FC Dallas",
+        "Dallas",
+        "DAL"
+      ],
+      "external_id": "espn:usa.1:185"
+    },
+    {
+      "key": "usa.1/dc",
+      "file": "usa.1/dc.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "D.C. United",
+      "abbr": "DC",
+      "aliases": [
+        "D.C. United",
+        "DC",
+        "United"
+      ],
+      "external_id": "espn:usa.1:193"
+    },
+    {
+      "key": "usa.1/hou",
+      "file": "usa.1/hou.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Houston Dynamo FC",
+      "abbr": "HOU",
+      "aliases": [
+        "Houston Dynamo FC",
+        "Houston",
+        "HOU",
+        "Dynamo FC",
+        "FC"
+      ],
+      "external_id": "espn:usa.1:6077"
+    },
+    {
+      "key": "usa.1/la",
+      "file": "usa.1/la.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "LA Galaxy",
+      "abbr": "LA",
+      "aliases": [
+        "LA Galaxy",
+        "LA",
+        "Galaxy"
+      ],
+      "external_id": "espn:usa.1:187"
+    },
+    {
+      "key": "usa.1/lafc",
+      "file": "usa.1/lafc.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "LAFC",
+      "abbr": "LAFC",
+      "aliases": [
+        "LAFC"
+      ],
+      "external_id": "espn:usa.1:18966"
+    },
+    {
+      "key": "usa.1/mia",
+      "file": "usa.1/mia.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Inter Miami CF",
+      "abbr": "MIA",
+      "aliases": [
+        "Inter Miami CF",
+        "Miami",
+        "MIA",
+        "Miami CF",
+        "CF"
+      ],
+      "external_id": "espn:usa.1:20232"
+    },
+    {
+      "key": "usa.1/min",
+      "file": "usa.1/min.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Minnesota United FC",
+      "abbr": "MIN",
+      "aliases": [
+        "Minnesota United FC",
+        "Minnesota",
+        "MIN",
+        "United FC",
+        "FC"
+      ],
+      "external_id": "espn:usa.1:17362"
+    },
+    {
+      "key": "usa.1/mtl",
+      "file": "usa.1/mtl.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "CF Montr\u00e9al",
+      "abbr": "MTL",
+      "aliases": [
+        "CF Montr\u00e9al",
+        "MTL",
+        "Montr\u00e9al"
+      ],
+      "external_id": "espn:usa.1:9720"
+    },
+    {
+      "key": "usa.1/ne",
+      "file": "usa.1/ne.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "New England Revolution",
+      "abbr": "NE",
+      "aliases": [
+        "New England Revolution",
+        "New England",
+        "NE",
+        "England Revolution",
+        "Revolution"
+      ],
+      "external_id": "espn:usa.1:189"
+    },
+    {
+      "key": "usa.1/nsh",
+      "file": "usa.1/nsh.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Nashville SC",
+      "abbr": "NSH",
+      "aliases": [
+        "Nashville SC",
+        "Nashville",
+        "NSH",
+        "SC"
+      ],
+      "external_id": "espn:usa.1:18986"
+    },
+    {
+      "key": "usa.1/nyc",
+      "file": "usa.1/nyc.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "New York City FC",
+      "abbr": "NYC",
+      "aliases": [
+        "New York City FC",
+        "NYCFC",
+        "NYC",
+        "York City FC",
+        "FC"
+      ],
+      "external_id": "espn:usa.1:17606"
+    },
+    {
+      "key": "usa.1/orl",
+      "file": "usa.1/orl.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Orlando City SC",
+      "abbr": "ORL",
+      "aliases": [
+        "Orlando City SC",
+        "Orlando",
+        "ORL",
+        "City SC",
+        "SC"
+      ],
+      "external_id": "espn:usa.1:12011"
+    },
+    {
+      "key": "usa.1/phi",
+      "file": "usa.1/phi.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Philadelphia Union",
+      "abbr": "PHI",
+      "aliases": [
+        "Philadelphia Union",
+        "Philadelphia",
+        "PHI",
+        "Union"
+      ],
+      "external_id": "espn:usa.1:10739"
+    },
+    {
+      "key": "usa.1/por",
+      "file": "usa.1/por.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Portland Timbers",
+      "abbr": "POR",
+      "aliases": [
+        "Portland Timbers",
+        "Portland",
+        "POR",
+        "Timbers"
+      ],
+      "external_id": "espn:usa.1:9723"
+    },
+    {
+      "key": "usa.1/rbny",
+      "file": "usa.1/rbny.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Red Bull New York",
+      "abbr": "RBNY",
+      "aliases": [
+        "Red Bull New York",
+        "Red Bull NY",
+        "RBNY",
+        "Bull New York",
+        "York"
+      ],
+      "external_id": "espn:usa.1:190"
+    },
+    {
+      "key": "usa.1/rsl",
+      "file": "usa.1/rsl.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Real Salt Lake",
+      "abbr": "RSL",
+      "aliases": [
+        "Real Salt Lake",
+        "Salt Lake",
+        "RSL",
+        "Lake"
+      ],
+      "external_id": "espn:usa.1:4771"
+    },
+    {
+      "key": "usa.1/sd",
+      "file": "usa.1/sd.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "San Diego FC",
+      "abbr": "SD",
+      "aliases": [
+        "San Diego FC",
+        "San Diego",
+        "SD",
+        "Diego FC",
+        "FC"
+      ],
+      "external_id": "espn:usa.1:22529"
+    },
+    {
+      "key": "usa.1/sea",
+      "file": "usa.1/sea.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Seattle Sounders FC",
+      "abbr": "SEA",
+      "aliases": [
+        "Seattle Sounders FC",
+        "Seattle",
+        "SEA",
+        "Sounders FC",
+        "FC"
+      ],
+      "external_id": "espn:usa.1:9726"
+    },
+    {
+      "key": "usa.1/sj",
+      "file": "usa.1/sj.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "San Jose Earthquakes",
+      "abbr": "SJ",
+      "aliases": [
+        "San Jose Earthquakes",
+        "San Jose",
+        "SJ",
+        "Jose Earthquakes",
+        "Earthquakes"
+      ],
+      "external_id": "espn:usa.1:191"
+    },
+    {
+      "key": "usa.1/skc",
+      "file": "usa.1/skc.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Sporting Kansas City",
+      "abbr": "SKC",
+      "aliases": [
+        "Sporting Kansas City",
+        "Kansas City",
+        "SKC",
+        "City"
+      ],
+      "external_id": "espn:usa.1:186"
+    },
+    {
+      "key": "usa.1/stl",
+      "file": "usa.1/stl.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "St. Louis CITY SC",
+      "abbr": "STL",
+      "aliases": [
+        "St. Louis CITY SC",
+        "St. Louis",
+        "STL",
+        "Louis CITY SC",
+        "SC"
+      ],
+      "external_id": "espn:usa.1:21812"
+    },
+    {
+      "key": "usa.1/tor",
+      "file": "usa.1/tor.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Toronto FC",
+      "abbr": "TOR",
+      "aliases": [
+        "Toronto FC",
+        "Toronto",
+        "TOR",
+        "FC"
+      ],
+      "external_id": "espn:usa.1:7318"
+    },
+    {
+      "key": "usa.1/van",
+      "file": "usa.1/van.png",
+      "sport": "Football",
+      "league": "MLS",
+      "name": "Vancouver Whitecaps",
+      "abbr": "VAN",
+      "aliases": [
+        "Vancouver Whitecaps",
+        "Vancouver",
+        "VAN",
+        "Whitecaps"
+      ],
+      "external_id": "espn:usa.1:9727"
+    },
+    {
+      "key": "wnba/atl",
+      "file": "wnba/atl.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "Atlanta Dream",
+      "abbr": "ATL",
+      "aliases": [
+        "Atlanta Dream",
+        "Dream",
+        "ATL"
+      ],
+      "external_id": "espn:wnba:20"
+    },
+    {
+      "key": "wnba/chi",
+      "file": "wnba/chi.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "Chicago Sky",
+      "abbr": "CHI",
+      "aliases": [
+        "Chicago Sky",
+        "Sky",
+        "CHI"
+      ],
+      "external_id": "espn:wnba:19"
+    },
+    {
+      "key": "wnba/con",
+      "file": "wnba/con.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "Connecticut Sun",
+      "abbr": "CON",
+      "aliases": [
+        "Connecticut Sun",
+        "Sun",
+        "CON"
+      ],
+      "external_id": "espn:wnba:18"
+    },
+    {
+      "key": "wnba/dal",
+      "file": "wnba/dal.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "Dallas Wings",
+      "abbr": "DAL",
+      "aliases": [
+        "Dallas Wings",
+        "Wings",
+        "DAL"
+      ],
+      "external_id": "espn:wnba:3"
+    },
+    {
+      "key": "wnba/gs",
+      "file": "wnba/gs.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "Golden State Valkyries",
+      "abbr": "GS",
+      "aliases": [
+        "Golden State Valkyries",
+        "Valkyries",
+        "GS",
+        "State Valkyries"
+      ],
+      "external_id": "espn:wnba:129689"
+    },
+    {
+      "key": "wnba/ind",
+      "file": "wnba/ind.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "Indiana Fever",
+      "abbr": "IND",
+      "aliases": [
+        "Indiana Fever",
+        "Fever",
+        "IND"
+      ],
+      "external_id": "espn:wnba:5"
+    },
+    {
+      "key": "wnba/la",
+      "file": "wnba/la.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "Los Angeles Sparks",
+      "abbr": "LA",
+      "aliases": [
+        "Los Angeles Sparks",
+        "Sparks",
+        "LA",
+        "Angeles Sparks"
+      ],
+      "external_id": "espn:wnba:6"
+    },
+    {
+      "key": "wnba/lv",
+      "file": "wnba/lv.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "Las Vegas Aces",
+      "abbr": "LV",
+      "aliases": [
+        "Las Vegas Aces",
+        "Aces",
+        "LV",
+        "Vegas Aces"
+      ],
+      "external_id": "espn:wnba:17"
+    },
+    {
+      "key": "wnba/min",
+      "file": "wnba/min.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "Minnesota Lynx",
+      "abbr": "MIN",
+      "aliases": [
+        "Minnesota Lynx",
+        "Lynx",
+        "MIN"
+      ],
+      "external_id": "espn:wnba:8"
+    },
+    {
+      "key": "wnba/ny",
+      "file": "wnba/ny.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "New York Liberty",
+      "abbr": "NY",
+      "aliases": [
+        "New York Liberty",
+        "Liberty",
+        "NY",
+        "York Liberty"
+      ],
+      "external_id": "espn:wnba:9"
+    },
+    {
+      "key": "wnba/phx",
+      "file": "wnba/phx.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "Phoenix Mercury",
+      "abbr": "PHX",
+      "aliases": [
+        "Phoenix Mercury",
+        "Mercury",
+        "PHX"
+      ],
+      "external_id": "espn:wnba:11"
+    },
+    {
+      "key": "wnba/por",
+      "file": "wnba/por.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "Portland Fire",
+      "abbr": "POR",
+      "aliases": [
+        "Portland Fire",
+        "Fire",
+        "POR"
+      ],
+      "external_id": "espn:wnba:132052"
+    },
+    {
+      "key": "wnba/sea",
+      "file": "wnba/sea.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "Seattle Storm",
+      "abbr": "SEA",
+      "aliases": [
+        "Seattle Storm",
+        "Storm",
+        "SEA"
+      ],
+      "external_id": "espn:wnba:14"
+    },
+    {
+      "key": "wnba/tor",
+      "file": "wnba/tor.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "Toronto Tempo",
+      "abbr": "TOR",
+      "aliases": [
+        "Toronto Tempo",
+        "Tempo",
+        "TOR"
+      ],
+      "external_id": "espn:wnba:131935"
+    },
+    {
+      "key": "wnba/wsh",
+      "file": "wnba/wsh.png",
+      "sport": "Basketball",
+      "league": "WNBA",
+      "name": "Washington Mystics",
+      "abbr": "WSH",
+      "aliases": [
+        "Washington Mystics",
+        "Mystics",
+        "WSH"
+      ],
+      "external_id": "espn:wnba:16"
+    }
+  ]
+}

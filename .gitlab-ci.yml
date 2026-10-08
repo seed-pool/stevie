@@ -1,0 +1,37 @@
+stages:
+  - lint
+  - test
+  - build
+
+variables:
+  GOPATH: $CI_PROJECT_DIR/.go
+
+server:vet:
+  stage: lint
+  image: golang:1.24-bookworm
+  variables:
+    GOTOOLCHAIN: auto
+  script:
+    - cd apps/server
+    - go vet ./...
+
+server:test:
+  stage: test
+  image: golang:1.24-bookworm
+  variables:
+    GOTOOLCHAIN: auto
+  script:
+    - cd apps/server
+    - go test ./...
+
+web:build:
+  stage: build
+  image: node:20-bookworm
+  script:
+    - cd apps/web
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - apps/web/dist
+    expire_in: 1 week

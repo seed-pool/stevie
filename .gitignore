@@ -1,0 +1,39 @@
+# Secrets / local env
+.env
+.env.*
+!.env.example
+
+# Dependencies & build output
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# Compiled / host-built binaries
+*.bin
+apps/server/stevie
+stevie-server.bin
+
+# Local media / playlist dumps (bind-mounted via LIVE_SOURCES_PATH)
+*.m3u
+*.m3u8
+
+# Editor / IDE
+*.code-workspace
+.vscode/
+.idea/
+
+# Cursor chat exports / scratch
+cursor_*.md
+
+# Deploy local overrides & TLS material
+*.bak
+*.bak.*
+deploy/docker-compose.yml.bak
+deploy/media/movies/**
+deploy/media/tv/**
+!deploy/media/movies/.gitkeep
+!deploy/media/tv/.gitkeep
+deploy/certs/tls.crt
+deploy/certs/tls.key
+deploy/certs/*.pem

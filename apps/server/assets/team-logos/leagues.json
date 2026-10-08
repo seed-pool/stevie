@@ -1,0 +1,243 @@
+{
+  "version": 1,
+  "generated_at": "2026-10-08T03:08:30.432396+00:00",
+  "leagues": [
+    {
+      "key": "leagues/boxing",
+      "file": "leagues/boxing.png",
+      "name": "Boxing",
+      "sport": "Fighting",
+      "aliases": [
+        "boxing",
+        "boks",
+        "prizefighting"
+      ]
+    },
+    {
+      "key": "leagues/cfl",
+      "file": "leagues/cfl.png",
+      "name": "CFL",
+      "sport": "American Football",
+      "aliases": [
+        "Canadian Football League",
+        "cfl",
+        "CFL"
+      ]
+    },
+    {
+      "key": "leagues/eng.1",
+      "file": "leagues/eng.1.png",
+      "name": "English Premier League",
+      "sport": "Football",
+      "aliases": [
+        "Premier League",
+        "EPL",
+        "eng.1"
+      ]
+    },
+    {
+      "key": "leagues/esp.1",
+      "file": "leagues/esp.1.png",
+      "name": "Spanish La Liga",
+      "sport": "Football",
+      "aliases": [
+        "La Liga",
+        "LaLiga",
+        "esp.1"
+      ]
+    },
+    {
+      "key": "leagues/european_tour",
+      "file": "leagues/european_tour.png",
+      "name": "DP World Tour",
+      "sport": "Golf",
+      "aliases": [
+        "European Tour",
+        "DP World Tour",
+        "dp world",
+        "eur"
+      ]
+    },
+    {
+      "key": "leagues/f1",
+      "file": "leagues/f1.png",
+      "name": "Formula 1",
+      "sport": "MotorSport",
+      "aliases": [
+        "F1",
+        "Formula One",
+        "Formel 1",
+        "formula 1",
+        "formel 1"
+      ]
+    },
+    {
+      "key": "leagues/fra.1",
+      "file": "leagues/fra.1.png",
+      "name": "French Ligue 1",
+      "sport": "Football",
+      "aliases": [
+        "Ligue 1",
+        "fra.1"
+      ]
+    },
+    {
+      "key": "leagues/ger.1",
+      "file": "leagues/ger.1.png",
+      "name": "German Bundesliga",
+      "sport": "Football",
+      "aliases": [
+        "Bundesliga",
+        "ger.1"
+      ]
+    },
+    {
+      "key": "leagues/ita.1",
+      "file": "leagues/ita.1.png",
+      "name": "Italian Serie A",
+      "sport": "Football",
+      "aliases": [
+        "Serie A",
+        "ita.1"
+      ]
+    },
+    {
+      "key": "leagues/lpga",
+      "file": "leagues/lpga.png",
+      "name": "LPGA",
+      "sport": "Golf",
+      "aliases": [
+        "Ladies Professional Golf Association",
+        "LPGA Tour",
+        "lpga",
+        "LPGA"
+      ]
+    },
+    {
+      "key": "leagues/mlb",
+      "file": "leagues/mlb.png",
+      "name": "MLB",
+      "sport": "Baseball",
+      "aliases": [
+        "Major League Baseball",
+        "mlb"
+      ]
+    },
+    {
+      "key": "leagues/mls",
+      "file": "leagues/mls.png",
+      "name": "MLS",
+      "sport": "Football",
+      "aliases": [
+        "Major League Soccer",
+        "mls",
+        "usa.1"
+      ]
+    },
+    {
+      "key": "leagues/nascar",
+      "file": "leagues/nascar.png",
+      "name": "NASCAR",
+      "sport": "MotorSport",
+      "aliases": [
+        "NASCAR Cup Series",
+        "nascar cup",
+        "nascar"
+      ]
+    },
+    {
+      "key": "leagues/nba",
+      "file": "leagues/nba.png",
+      "name": "NBA",
+      "sport": "Basketball",
+      "aliases": [
+        "National Basketball Association",
+        "nba"
+      ]
+    },
+    {
+      "key": "leagues/nfl",
+      "file": "leagues/nfl.png",
+      "name": "NFL",
+      "sport": "American Football",
+      "aliases": [
+        "National Football League",
+        "nfl"
+      ]
+    },
+    {
+      "key": "leagues/nhl",
+      "file": "leagues/nhl.png",
+      "name": "NHL",
+      "sport": "Ice Hockey",
+      "aliases": [
+        "National Hockey League",
+        "nhl"
+      ]
+    },
+    {
+      "key": "leagues/pfl",
+      "file": "leagues/pfl.png",
+      "name": "PFL",
+      "sport": "Fighting",
+      "aliases": [
+        "Professional Fighters League",
+        "pfl"
+      ]
+    },
+    {
+      "key": "leagues/pga_champions_tour",
+      "file": "leagues/pga_champions_tour.png",
+      "name": "PGA Tour Champions",
+      "sport": "Golf",
+      "aliases": [
+        "Champions Tour",
+        "PGA Champions",
+        "pga tour champions"
+      ]
+    },
+    {
+      "key": "leagues/pgatour",
+      "file": "leagues/pgatour.png",
+      "name": "PGA Tour",
+      "sport": "Golf",
+      "aliases": [
+        "PGA",
+        "PGA Tour",
+        "pgatour",
+        "pga tour"
+      ]
+    },
+    {
+      "key": "leagues/uefa.champions",
+      "file": "leagues/uefa.champions.png",
+      "name": "UEFA Champions League",
+      "sport": "Football",
+      "aliases": [
+        "Champions League",
+        "UCL"
+      ]
+    },
+    {
+      "key": "leagues/ufc",
+      "file": "leagues/ufc.png",
+      "name": "UFC",
+      "sport": "Fighting",
+      "aliases": [
+        "Ultimate Fighting Championship",
+        "ufc",
+        "UFC Fight Night"
+      ]
+    },
+    {
+      "key": "leagues/wnba",
+      "file": "leagues/wnba.png",
+      "name": "WNBA",
+      "sport": "Basketball",
+      "aliases": [
+        "Women's National Basketball Association",
+        "wnba"
+      ]
+    }
+  ]
+}

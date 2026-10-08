@@ -1,0 +1,139 @@
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --font-sans: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  --radius: 2px;
+  --radius-sm: 1px;
+  --radius-md: 3px;
+  --bg: #05070a;
+  --bg-elev: #0b1016;
+  --bg-soft: #121821;
+  --text: #d7e0ea;
+  --muted: #7d8b9a;
+  --line: rgba(168, 184, 200, 0.1);
+  --line-strong: rgba(168, 184, 200, 0.22);
+  --accent: #8fa3b5;
+  --accent-2: #7d93a8;
+  --danger: #c97a7a;
+  --ok: #7a9e8e;
+  --shadow: 0 0 0 1px rgba(168, 184, 200, 0.05), 0 18px 48px rgba(0, 0, 0, 0.55);
+  --hero-overlay-top: rgba(5, 7, 10, 0.4);
+  --hero-overlay-bottom: rgba(5, 7, 10, 0.94);
+  --panel: linear-gradient(180deg, rgba(12, 16, 22, 0.96), rgba(8, 11, 16, 0.94));
+  --panel-solid: rgba(11, 16, 22, 0.92);
+  --chip-active-bg: rgba(168, 184, 200, 0.08);
+  --chip-active-border: rgba(168, 184, 200, 0.28);
+  --chip-active-text: #c5d0db;
+  --topbar: rgba(5, 7, 10, 0.88);
+  --wash-a: rgba(125, 147, 168, 0.05);
+  --wash-b: rgba(143, 163, 181, 0.04);
+  --input-bg: #040608;
+  --btn-bg: #1c2430;
+  --btn-bg-hover: #263142;
+  --btn-fg: #d7e0ea;
+  --path-bg: rgba(0, 0, 0, 0.35);
+  --stream-bg: rgba(168, 184, 200, 0.04);
+  --grid-line: rgba(168, 184, 200, 0.03);
+}
+
+:root[data-theme='less-dark'] {
+  color-scheme: dark;
+  --bg: #1a1f27;
+  --bg-elev: #232933;
+  --bg-soft: #2c3340;
+  --text: #e6edf5;
+  --muted: #9aa7b6;
+  --line: rgba(168, 184, 200, 0.12);
+  --line-strong: rgba(168, 184, 200, 0.26);
+  --accent: #9aadc0;
+  --accent-2: #879db2;
+  --danger: #c97a7a;
+  --ok: #7a9e8e;
+  --shadow: 0 0 0 1px rgba(168, 184, 200, 0.06), 0 16px 40px rgba(0, 0, 0, 0.35);
+  --hero-overlay-top: rgba(26, 31, 39, 0.35);
+  --hero-overlay-bottom: rgba(26, 31, 39, 0.94);
+  --panel: linear-gradient(180deg, rgba(35, 41, 51, 0.97), rgba(26, 31, 39, 0.95));
+  --panel-solid: rgba(35, 41, 51, 0.94);
+  --chip-active-bg: rgba(168, 184, 200, 0.1);
+  --chip-active-border: rgba(168, 184, 200, 0.3);
+  --chip-active-text: #d0dae4;
+  --topbar: rgba(26, 31, 39, 0.92);
+  --wash-a: rgba(125, 147, 168, 0.05);
+  --wash-b: rgba(143, 163, 181, 0.04);
+  --input-bg: #141920;
+  --btn-bg: #2a3340;
+  --btn-bg-hover: #354354;
+  --btn-fg: #e6edf5;
+  --path-bg: rgba(0, 0, 0, 0.22);
+  --stream-bg: rgba(168, 184, 200, 0.05);
+  --grid-line: rgba(168, 184, 200, 0.04);
+}
+
+:root {
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  letter-spacing: 0.01em;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  min-height: 100dvh;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: contain;
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    radial-gradient(900px 480px at 8% -8%, var(--wash-a), transparent 55%),
+    radial-gradient(700px 420px at 96% 0%, var(--wash-b), transparent 50%);
+  background-size:
+    48px 48px,
+    48px 48px,
+    auto,
+    auto;
+  background-attachment: fixed;
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+code,
+.mono,
+kbd {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+  color: var(--text);
+}

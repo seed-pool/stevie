@@ -1,0 +1,14 @@
+{
+  "name": "stevie-streamed-relay",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node src/server.mjs",
+    "postinstall": "node scripts/fetch-vendor.mjs"
+  },
+  "dependencies": {
+    "happy-dom": "^20.0.0",
+    "impit": "^0.14.5"
+  }
+}
