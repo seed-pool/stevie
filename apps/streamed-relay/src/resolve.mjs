@@ -1,6 +1,8 @@
 import { readFileSync } from 'node:fs'
+import { resolve as absPath } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { Window } from 'happy-dom'
+import { mapGolfToIngest } from './golf.mjs'
 
 const embedOrigin = (process.env.STEVIE_STREAMED_EMBED_URL || 'https://embed.st').replace(/\/$/, '')
 const wasmBytes = readFileSync(new URL('../vendor/lock.wasm', import.meta.url))
@@ -188,6 +190,11 @@ function patchImports(imports, goat, body, onM3u8) {
 }
 
 export async function resolveM3U8(source, id, stream = '1') {
+  const mapped = await mapGolfToIngest(source, id, stream, embedOrigin)
+  source = mapped.source
+  id = mapped.id
+  stream = mapped.stream
+
   const { body, goat, path } = await postFetch(source, id, stream)
   let m3u8 = null
   const onM3u8 = (url) => {
@@ -232,7 +239,16 @@ export async function resolveM3U8(source, id, stream = '1') {
   return { m3u8: url, referer: `${embedOrigin}/` }
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+const isCli = (() => {
+  try {
+    if (!process.argv[1]) return false
+    return import.meta.url === pathToFileURL(absPath(process.argv[1])).href
+  } catch {
+    return false
+  }
+})()
+
+if (isCli) {
   const args = process.argv.slice(2).filter((a) => a !== '--json')
   const jsonOnly = process.argv.includes('--json') || process.env.STREAMED_RESOLVE_JSON === '1'
   const [source, id, stream = '1'] = args
