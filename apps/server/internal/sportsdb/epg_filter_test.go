@@ -56,6 +56,22 @@ func TestPlausibleSportsMatchup(t *testing.T) {
 	if !IsPlausibleSportsMatchup("Football", "Manchester United", "Real Madrid", "Manchester United vs Real Madrid") {
 		t.Fatal("real club matchup must remain plausible")
 	}
+	// "St. Louis" / "N.Y." abbreviations must not look like prose sentence ends.
+	if isProseEPGTitle("San Jose Sharks @ St. Louis Blues") {
+		t.Fatal("St. Louis team title must not be treated as prose")
+	}
+	if isProseEPGTitle("N.Y. Rangers @ Washington Capitals") {
+		t.Fatal("N.Y. team title must not be treated as prose")
+	}
+	if !IsPlausibleSportsMatchup("Ice Hockey", "St. Louis Blues", "San Jose Sharks", "San Jose Sharks @ St. Louis Blues") {
+		t.Fatal("NHL St. Louis Blues matchup must remain plausible")
+	}
+	if !IsPlausibleSportsMatchup("Baseball", "St. Louis Cardinals", "Chicago Cubs", "Chicago Cubs @ St. Louis Cardinals") {
+		t.Fatal("MLB St. Louis Cardinals matchup must remain plausible")
+	}
+	if !isProseEPGTitle("Tonight tip-off delayed. Coverage continues shortly") {
+		t.Fatal("real prose blurb with sentence end must still be rejected")
+	}
 }
 
 func TestRejectMovieCinemaChannels(t *testing.T) {

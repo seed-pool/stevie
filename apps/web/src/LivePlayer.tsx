@@ -292,7 +292,12 @@ export function LivePlayer({
         hlsRef.current = hls
         hls.on(Hls.Events.ERROR, (_e, data) => {
           if (cancelled || !data.fatal) return
-          setError(data.details || 'HLS playback error')
+          // streamed.pk offline/expired tokens surface as manifestLoadError — not a concurrent-login issue.
+          if (streamedFeed) {
+            setError('Stream Offline')
+          } else {
+            setError(data.details || 'HLS playback error')
+          }
           setStatus('')
         })
         hls.on(Hls.Events.LEVEL_SWITCHED, () => {
@@ -561,19 +566,27 @@ export function LivePlayer({
           {error && (
             <div className="player-status error">
               <p>{error}</p>
-              <p className="muted" style={{ marginTop: '0.5rem' }}>
-                Close other IPTV apps first (this account allows 1 connection), then retry.
-              </p>
-              <button
-                type="button"
-                className="ghost"
-                style={{ marginTop: '0.75rem' }}
-                onClick={() => {
-                  window.open(`/api/live/channels/${channelId}/external.m3u`, '_blank', 'noopener,noreferrer')
-                }}
-              >
-                <Icon icon={icons.external} /> Open in VLC
-              </button>
+              {!streamedFeed && (
+                <>
+                  <p className="muted" style={{ marginTop: '0.5rem' }}>
+                    Close other IPTV apps first (this account allows 1 connection), then retry.
+                  </p>
+                  <button
+                    type="button"
+                    className="ghost"
+                    style={{ marginTop: '0.75rem' }}
+                    onClick={() => {
+                      window.open(
+                        `/api/live/channels/${channelId}/external.m3u`,
+                        '_blank',
+                        'noopener,noreferrer',
+                      )
+                    }}
+                  >
+                    <Icon icon={icons.external} /> Open in VLC
+                  </button>
+                </>
+              )}
             </div>
           )}
           <video

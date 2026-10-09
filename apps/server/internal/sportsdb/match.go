@@ -821,7 +821,8 @@ func isProseEPGTitle(title string) bool {
 	if len(t) > 90 {
 		return true
 	}
-	if strings.Count(t, ". ") >= 1 || strings.Count(t, ",") >= 3 {
+	// ". " usually means a sentence blurb — but team names use St./N.Y./etc.
+	if proseSentencePeriodCount(t) >= 1 || strings.Count(t, ",") >= 3 {
 		return true
 	}
 	// Long descriptive blurbs used as XMLTV titles.
@@ -840,6 +841,34 @@ func isProseEPGTitle(title string) bool {
 		}
 	}
 	return false
+}
+
+// proseSentencePeriodCount counts ". " separators that look like sentence ends,
+// ignoring common title abbreviations (St. Louis, N.Y. Rangers, vs. …).
+func proseSentencePeriodCount(s string) int {
+	n := 0
+	lower := strings.ToLower(s)
+	for i := 0; i+1 < len(lower); i++ {
+		if lower[i] != '.' || lower[i+1] != ' ' {
+			continue
+		}
+		j := i - 1
+		for j >= 0 && lower[j] >= 'a' && lower[j] <= 'z' {
+			j--
+		}
+		tok := lower[j+1 : i]
+		switch tok {
+		case "st", "mt", "ft", "pt", "jr", "sr", "vs", "fc", "sc", "ac",
+			"dr", "mr", "mrs", "ms", "u", "s", "n", "y", "e", "w", "d", "c":
+			// St. Louis, N.Y., U.S., D.C., vs., etc.
+			continue
+		}
+		if tok == "" {
+			continue
+		}
+		n++
+	}
+	return n
 }
 
 func sideHasNonASCIILetter(s string) bool {
@@ -870,6 +899,11 @@ func looksSportsClubby(s string) bool {
 		" fc", "fc ", " united", " city", " cf", " sc ", " ac ", " afc", " club",
 		"ers", "ics", "sox", "jays", "mets", "nicks", "lakers", "celtics",
 		"rangers", "bruins", "leafs", "canadiens", "oilers", "flames",
+		"blues", "sharks", "kings", "ducks", "jets", "wild", "knights",
+		"predators", "hurricanes", "avalanche", "sabres", "senators",
+		"flyers", "penguins", "islanders", "capitals", "devils", "panthers",
+		"lightning", "blackhawks", "red wings", "maple leafs", "blue jackets",
+		"cardinals", "yankees", "dodgers", "cubs", "giants", "padres",
 	} {
 		if strings.Contains(lower, tok) {
 			return true
