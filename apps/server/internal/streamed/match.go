@@ -28,18 +28,35 @@ func sportCategory(sport string) string {
 		return "motor-sports"
 	case "golf":
 		return "golf"
+	case "tennis":
+		return "tennis"
 	default:
 		return ""
 	}
 }
 
-// FindMatch locates a streamed.pk row for a Stevie sports event.
-func FindMatch(matches []Match, sport, home, away string, startsAt time.Time) *Match {
-	return findMatch(matches, sport, home, away, startsAt)
+func isEventSport(sport string) bool {
+	switch sportCategory(sport) {
+	case "motor-sports", "golf", "fight", "tennis":
+		return true
+	default:
+		return false
+	}
 }
 
-func findMatch(matches []Match, sport, home, away string, startsAt time.Time) *Match {
+// FindMatch locates a streamed.pk row for a Stevie sports event.
+func FindMatch(matches []Match, sport, home, away, title string, startsAt time.Time) *Match {
+	return findMatch(matches, sport, home, away, title, startsAt)
+}
+
+func findMatch(matches []Match, sport, home, away, title string, startsAt time.Time) *Match {
 	wantCat := sportCategory(sport)
+	// F1 / golf / fight cards are event titles, not club matchups. Never fall back to
+	// last-word team tokens ("Sprint Race" → "race") — that false-matches other GPs.
+	if isEventSport(sport) {
+		return findEventMatch(matches, wantCat, home, away, title, startsAt)
+	}
+
 	homeTok := teamToken(home)
 	awayTok := teamToken(away)
 	if homeTok == "" || awayTok == "" {
@@ -81,6 +98,157 @@ func findMatch(matches []Match, sport, home, away string, startsAt time.Time) *M
 		}
 	}
 	return best
+}
+
+// findEventMatch matches F1 / golf / fight cards by shared title tokens + time
+// (these are not home/away club matchups).
+func findEventMatch(matches []Match, wantCat, home, away, title string, startsAt time.Time) *Match {
+	eventToks := eventTokens(title, home, away)
+	if len(eventToks) == 0 {
+		return nil
+	}
+	eventSession := sessionKind(title + " " + home + " " + away)
+
+	var best *Match
+	bestScore := -1.0
+	for i := range matches {
+		m := &matches[i]
+		if wantCat != "" && !strings.EqualFold(m.Category, wantCat) {
+			continue
+		}
+		if strings.TrimSpace(m.Title) == "" {
+			continue
+		}
+		mToks := eventTokens(m.Title, "", "")
+		shared := intersectTokens(eventToks, mToks)
+		if len(shared) < 2 {
+			// One strong venue/event token + close tip-off can still match.
+			if len(shared) < 1 {
+				continue
+			}
+		}
+		mSession := sessionKind(m.Title)
+		if eventSession != "" && mSession != "" && eventSession != mSession {
+			continue
+		}
+		score := float64(len(shared))
+		if eventSession != "" && eventSession == mSession {
+			score += 1.5
+		}
+		if !startsAt.IsZero() && m.Date > 0 {
+			diff := absDuration(startsAt.Sub(time.UnixMilli(m.Date)))
+			if diff > 6*time.Hour {
+				continue
+			}
+			score += 1.0 - float64(diff)/float64(6*time.Hour)
+		} else if m.Date == 0 {
+			// Always-on stubs (Rally TV) — only if many tokens overlap.
+			if len(shared) < 3 {
+				continue
+			}
+		}
+		// Require at least one distinctive (non-generic) shared token.
+		if !hasDistinctiveToken(shared) && len(shared) < 3 {
+			continue
+		}
+		if score > bestScore {
+			bestScore = score
+			best = m
+		}
+	}
+	return best
+}
+
+func eventTokens(parts ...string) []string {
+	blob := fold(strings.Join(parts, " "))
+	// Localize common GP spellings before tokenization.
+	blob = strings.NewReplacer(
+		"singapur", "singapore",
+		"formel", "formula",
+		"grande premio", "grand prix",
+		"gran premio", "grand prix",
+	).Replace(blob)
+	fields := strings.Fields(blob)
+	seen := map[string]struct{}{}
+	var out []string
+	for _, f := range fields {
+		tok := normalizeKey(f)
+		if !keepEventToken(tok) {
+			continue
+		}
+		if _, ok := seen[tok]; ok {
+			continue
+		}
+		seen[tok] = struct{}{}
+		out = append(out, tok)
+	}
+	return out
+}
+
+func keepEventToken(tok string) bool {
+	if tok == "" {
+		return false
+	}
+	switch tok {
+	case "vs", "at", "the", "and", "for", "with", "from", "live", "race",
+		"round", "hours", "free", "tv", "gp", "prix", "grand", "series",
+		"championship", "cup", "airlines", "mundial", "codigo", "code":
+		return false
+	}
+	// Keep short sport codes (f1, f2, f3, ufc) and longer words.
+	if len(tok) <= 2 {
+		return tok == "f1" || tok == "f2" || tok == "f3"
+	}
+	return true
+}
+
+func hasDistinctiveToken(toks []string) bool {
+	for _, t := range toks {
+		switch t {
+		case "sprint", "qualifying", "quali", "practice", "warmup", "formula",
+			"nascar", "motogp", "moto3", "moto2", "indycar", "supercars",
+			"dtm", "wec", "imsa":
+			continue
+		default:
+			// Venue / event name (singapore, bahrain, bathurst…).
+			if len(t) >= 5 {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func intersectTokens(a, b []string) []string {
+	set := map[string]struct{}{}
+	for _, t := range b {
+		set[t] = struct{}{}
+	}
+	var out []string
+	for _, t := range a {
+		if _, ok := set[t]; ok {
+			out = append(out, t)
+		}
+	}
+	return out
+}
+
+func sessionKind(s string) string {
+	t := normalizeKey(fold(s))
+	switch {
+	case strings.Contains(t, "sprint"):
+		return "sprint"
+	case strings.Contains(t, "qualifying"), strings.Contains(t, "quali"), strings.Contains(t, "superpole"):
+		return "qualifying"
+	case strings.Contains(t, "practice"), strings.Contains(t, "fp1"), strings.Contains(t, "fp2"), strings.Contains(t, "fp3"):
+		return "practice"
+	case strings.Contains(t, "warmup"), strings.Contains(t, "warm"):
+		return "warmup"
+	case strings.Contains(t, "race"):
+		return "race"
+	default:
+		return ""
+	}
 }
 
 func matchTeams(m *Match) (home, away string) {

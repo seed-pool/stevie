@@ -210,7 +210,8 @@ func (c *Client) streamsFor(ctx context.Context, source, id string) ([]Stream, e
 
 // ChannelsForMatchup returns embed-backed channels for a Stevie sports event.
 // Empty when streamed.pk has no matching match or streams.
-func (c *Client) ChannelsForMatchup(ctx context.Context, sport, home, away string, startsAt time.Time) ([]Channel, error) {
+// title helps event sports (F1, golf, fight) that are not home/away club matchups.
+func (c *Client) ChannelsForMatchup(ctx context.Context, sport, home, away, title string, startsAt time.Time) ([]Channel, error) {
 	if c == nil {
 		return nil, nil
 	}
@@ -218,7 +219,7 @@ func (c *Client) ChannelsForMatchup(ctx context.Context, sport, home, away strin
 	if err != nil {
 		return nil, err
 	}
-	m := findMatch(matches, sport, home, away, startsAt)
+	m := findMatch(matches, sport, home, away, title, startsAt)
 	if m == nil || len(m.Sources) == 0 {
 		return nil, nil
 	}

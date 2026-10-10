@@ -232,7 +232,7 @@ func scoreHotEvent(ev sportsEventDTO, matches []streamed.Match, liveIDs map[stri
 	}
 
 	if len(matches) > 0 {
-		m := streamed.FindMatch(matches, ev.Sport, ev.Home.Name, ev.Away.Name, starts)
+		m := streamed.FindMatch(matches, ev.Sport, ev.Home.Name, ev.Away.Name, ev.Title, starts)
 		if m != nil {
 			if liveIDs != nil {
 				if _, ok := liveIDs[m.ID]; ok {

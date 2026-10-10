@@ -407,7 +407,7 @@ func (s *Server) enrichStreamedChannels(ctx context.Context, events []sportsEven
 	}
 	for _, j := range jobs {
 		ev := &events[j.i]
-		chs, err := s.streamed.ChannelsForMatchup(ctx, ev.Sport, ev.Home.Name, ev.Away.Name, j.startsAt)
+		chs, err := s.streamed.ChannelsForMatchup(ctx, ev.Sport, ev.Home.Name, ev.Away.Name, ev.Title, j.startsAt)
 		if err != nil || len(chs) == 0 {
 			continue
 		}
