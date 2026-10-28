@@ -4,29 +4,23 @@ import { fileURLToPath } from 'node:url'
 import { Impit } from 'impit'
 
 const PORT = Number(process.env.PORT || 8091)
-const EMBED = (process.env.STEVIE_STREAMED_EMBED_URL || 'https://embed.st').replace(/\/$/, '')
+const FALLBACK_EMBED = (process.env.STEVIE_STREAMED_EMBED_URL || 'https://taifood-blog.asia').replace(
+  /\/$/,
+  '',
+)
 const UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
 const RESOLVE_SCRIPT = fileURLToPath(new URL('./resolve.mjs', import.meta.url))
 const CACHE_TTL_MS = 55_000
 
 const client = new Impit({ browser: 'chrome' })
-let warmed = false
 
-/** @type {Map<string, { m3u8: string, referer: string, cachedAt: number }>} */
+/** @type {Map<string, { m3u8: string, referer: string, embedOrigin: string, embedPath: string, cachedAt: number }>} */
 const resolveCache = new Map()
-/** Serialize unlock subprocesses — lock.wasm cannot safely re-enter one Node process. */
+/** @type {Map<string, { referer: string, embedOrigin: string }>} */
+const hlsRefererByHost = new Map()
+/** Serialize unlock subprocesses — gasm.wasm cannot safely re-enter one Node process. */
 let resolveChain = Promise.resolve()
-
-async function warm() {
-  if (warmed) return
-  try {
-    await client.fetch(`${EMBED}/`, { headers: { 'User-Agent': UA } })
-    warmed = true
-  } catch {
-    /* ignore */
-  }
-}
 
 function json(res, status, body) {
   const data = JSON.stringify(body)
@@ -52,7 +46,7 @@ function readJSON(req) {
   })
 }
 
-/** Fresh process per unlock — happy-dom + lock.wasm pollute globalThis. */
+/** Fresh process per unlock — happy-dom + gasm.wasm pollute globalThis. */
 function resolveInSubprocess(source, id, stream) {
   return new Promise((resolve, reject) => {
     const child = spawn(
@@ -93,7 +87,12 @@ function resolveInSubprocess(source, id, stream) {
           .find((l) => l.startsWith('{'))
         const out = JSON.parse(line || '{}')
         if (!out.m3u8) throw new Error(out.error || 'no m3u8')
-        resolve({ m3u8: out.m3u8, referer: out.referer || `${EMBED}/` })
+        resolve({
+          m3u8: out.m3u8,
+          referer: out.referer || `${out.embedOrigin || FALLBACK_EMBED}/`,
+          embedOrigin: out.embedOrigin || FALLBACK_EMBED,
+          embedPath: out.embedPath || '',
+        })
       } catch (err) {
         reject(err instanceof Error ? err : new Error(String(err)))
       }
@@ -101,11 +100,25 @@ function resolveInSubprocess(source, id, stream) {
   })
 }
 
+function rememberHlsReferer(m3u8, referer, embedOrigin) {
+  try {
+    const host = new URL(m3u8).host
+    hlsRefererByHost.set(host, { referer, embedOrigin })
+  } catch {
+    /* ignore */
+  }
+}
+
 function enqueueResolve(source, id, stream) {
   const key = `${source}|${id}|${stream}`
   const hit = resolveCache.get(key)
   if (hit && Date.now() - hit.cachedAt < CACHE_TTL_MS) {
-    return Promise.resolve({ m3u8: hit.m3u8, referer: hit.referer })
+    return Promise.resolve({
+      m3u8: hit.m3u8,
+      referer: hit.referer,
+      embedOrigin: hit.embedOrigin,
+      embedPath: hit.embedPath,
+    })
   }
   const job = resolveChain.then(() => resolveInSubprocess(source, id, stream))
   resolveChain = job.then(
@@ -114,6 +127,7 @@ function enqueueResolve(source, id, stream) {
   )
   return job.then((out) => {
     resolveCache.set(key, { ...out, cachedAt: Date.now() })
+    rememberHlsReferer(out.m3u8, out.referer, out.embedOrigin)
     return out
   })
 }
@@ -133,15 +147,31 @@ function absolutizePlaylist(text, baseUrl) {
     .join('\n')
 }
 
-async function proxyHLS(_req, res, url) {
-  await warm()
+function headersFor(url, embedOrigin, referer) {
+  let origin = embedOrigin || FALLBACK_EMBED
+  let ref = referer || `${origin}/`
+  if (!embedOrigin) {
+    try {
+      const remembered = hlsRefererByHost.get(new URL(url).host)
+      if (remembered) {
+        origin = remembered.embedOrigin || origin
+        ref = remembered.referer || ref
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+  return {
+    Referer: ref,
+    Origin: origin,
+    Accept: '*/*',
+    'User-Agent': UA,
+  }
+}
+
+async function proxyHLS(_req, res, url, embedOrigin, referer) {
   const upstream = await client.fetch(url, {
-    headers: {
-      Referer: `${EMBED}/`,
-      Origin: EMBED,
-      Accept: '*/*',
-      'User-Agent': UA,
-    },
+    headers: headersFor(url, embedOrigin, referer),
   })
   const ct = upstream.headers.get('content-type') || ''
   const buf = Buffer.from(await upstream.arrayBuffer())
@@ -151,9 +181,7 @@ async function proxyHLS(_req, res, url) {
     return
   }
   const isPlaylist =
-    ct.includes('mpegurl') ||
-    url.includes('.m3u8') ||
-    buf.slice(0, 7).toString() === '#EXTM3U'
+    ct.includes('mpegurl') || url.includes('.m3u8') || buf.slice(0, 7).toString() === '#EXTM3U'
   if (isPlaylist) {
     const text = absolutizePlaylist(buf.toString('utf8'), url)
     res.writeHead(200, {
@@ -182,7 +210,7 @@ const server = http.createServer(async (req, res) => {
     if (req.method === 'POST' && u.pathname === '/resolve') {
       const body = await readJSON(req)
       const source = String(body.source || '').trim()
-      const id = String(body.id || '').trim()
+      const id = String(body.id || body.uri || '').trim()
       const stream = String(body.stream || body.streamNo || '1')
       if (!source || !id) {
         json(res, 400, { ok: false, error: 'source and id required' })
@@ -198,7 +226,13 @@ const server = http.createServer(async (req, res) => {
         json(res, 400, { ok: false, error: 'url required' })
         return
       }
-      await proxyHLS(req, res, target)
+      await proxyHLS(
+        req,
+        res,
+        target,
+        u.searchParams.get('embedOrigin') || '',
+        u.searchParams.get('referer') || '',
+      )
       return
     }
     json(res, 404, { ok: false, error: 'not found' })

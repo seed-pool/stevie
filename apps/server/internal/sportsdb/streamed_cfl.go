@@ -12,7 +12,7 @@ import (
 )
 
 // ESPN abandoned CFL after ~2023 (scoreboards only return the 2022 Grey Cup).
-// streamed.pk still carries the live slate — import those matchups as American Football / CFL.
+// ppv.st still carries the live slate — import those matchups as American Football / CFL.
 
 func (s *SyncService) SetStreamed(client *streamed.Client) {
 	if s == nil {
@@ -75,7 +75,7 @@ func (s *SyncService) findAFTeamID(ctx context.Context, name string) *uuid.UUID 
 	return &id
 }
 
-// fillFromStreamedCFL upserts CFL games from streamed.pk american-football.
+// fillFromStreamedCFL upserts CFL games from ppv.st american-football.
 func (s *SyncService) fillFromStreamedCFL(ctx context.Context) int {
 	if s == nil || s.streamed == nil || s.store == nil {
 		return 0

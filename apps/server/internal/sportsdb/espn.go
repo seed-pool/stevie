@@ -22,6 +22,7 @@ type ESPNLeague struct {
 var ESPNBig4 = []ESPNLeague{
 	{SportPath: "baseball", LeaguePath: "mlb", SportName: "Baseball"},
 	{SportPath: "basketball", LeaguePath: "nba", SportName: "Basketball"},
+	{SportPath: "basketball", LeaguePath: "wnba", SportName: "Basketball"},
 	{SportPath: "hockey", LeaguePath: "nhl", SportName: "Ice Hockey"},
 	{SportPath: "football", LeaguePath: "nfl", SportName: "American Football"},
 	{SportPath: "football", LeaguePath: "cfl", SportName: "American Football"},

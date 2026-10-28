@@ -24,7 +24,7 @@ type hotScored struct {
 }
 
 // pickHotEvents ranks currently live cards for the Sports "Hot" strip.
-// streamed.pk has no viewer counts — we use live membership, source count,
+// ppv.st viewer counts are best-effort — we still weight live membership, source count,
 // popular flag, channel demand, major leagues, and an explicit UFC/PPV boost.
 func (s *Server) pickHotEvents(ctx context.Context, events []sportsEventDTO, sportFilter string) []sportsEventDTO {
 	var matches []streamed.Match
@@ -421,7 +421,7 @@ func (s *Server) streamedFightToDTO(ctx context.Context, m streamed.Match, liveI
 	}
 	for _, ch := range streamed.ChannelsForMatch(m) {
 		dto.Channels = append(dto.Channels, sportsChannelDTO{
-			BroadcastLabel: "streamed.pk",
+			BroadcastLabel: "ppv.st",
 			Name:           ch.Name,
 			Playable:       ch.SourceID != "",
 			Source:         "streamed",

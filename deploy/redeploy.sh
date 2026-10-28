@@ -97,7 +97,7 @@ EXPOSE 80
 EOF
 podman build -t stevie_web -f /tmp/stevie-web-ctx/Dockerfile /tmp/stevie-web-ctx
 
-echo "Preparing streamed.pk relay…"
+echo "Preparing ppv.st relay…"
 (
   cd "$ROOT/apps/streamed-relay"
   # Ensure vendor lock.wasm / lock.js exist (from CDN).
@@ -110,11 +110,27 @@ sleep 1
 podman rm -f stevie_server_1 stevie_web_1 stevie_streamed_1
 sleep 1
 
+# Server --requires redis/postgres; an exited redis often makes podman fail with
+# "container … already exists" when starting dependencies. Bring infra up first.
+for dep in stevie_postgres_1 stevie_redis_1; do
+  if podman container exists "$dep" 2>/dev/null; then
+    podman start "$dep" >/dev/null 2>&1 || true
+  fi
+done
+# Wait briefly for redis to accept connections inside the pod.
+for _ in 1 2 3 4 5 6 7 8 9 10; do
+  if podman exec stevie_redis_1 redis-cli ping 2>/dev/null | grep -q PONG; then
+    break
+  fi
+  sleep 1
+done
+
 podman run --replace --name=stevie_streamed_1 -d --pod=stevie \
   --label io.podman.compose.project=stevie \
   --label com.docker.compose.service=streamed \
   -e PORT=8091 \
-  -e STEVIE_STREAMED_EMBED_URL="${STEVIE_STREAMED_EMBED_URL:-https://embed.st}" \
+  -e STEVIE_STREAMED_BASE_URL="${STEVIE_STREAMED_BASE_URL:-https://api.ppv.st}" \
+  -e STEVIE_STREAMED_EMBED_URL="${STEVIE_STREAMED_EMBED_URL:-https://taifood-blog.asia}" \
   -v "${ROOT}/apps/streamed-relay:/app" \
   -w /app \
   --restart unless-stopped \
@@ -142,8 +158,8 @@ podman run --replace --name=stevie_server_1 -d --pod=stevie \
   -e STEVIE_RECORDINGS_PATH="${RECS}" \
   -e STEVIE_RECORDINGS_MOUNT=/recordings \
   -e STEVIE_STREAMED_RELAY_URL="http://127.0.0.1:8091" \
-  -e STEVIE_STREAMED_BASE_URL="${STEVIE_STREAMED_BASE_URL:-https://streamed.pk}" \
-  -e STEVIE_STREAMED_EMBED_URL="${STEVIE_STREAMED_EMBED_URL:-https://embed.st}" \
+  -e STEVIE_STREAMED_BASE_URL="${STEVIE_STREAMED_BASE_URL:-https://api.ppv.st}" \
+  -e STEVIE_STREAMED_EMBED_URL="${STEVIE_STREAMED_EMBED_URL:-https://taifood-blog.asia}" \
   -e XTREAM_URL="${XTREAM_URL:-}" \
   -e XTREAM_USER="${XTREAM_USER:-}" \
   -e XTREAM_PASSWORD="${XTREAM_PASSWORD:-}" \

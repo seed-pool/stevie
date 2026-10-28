@@ -1,242 +1,320 @@
-import { readFileSync } from 'node:fs'
+import fs from 'node:fs'
 import { resolve as absPath } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { Window } from 'happy-dom'
-import { mapGolfToIngest } from './golf.mjs'
 
-const embedOrigin = (process.env.STEVIE_STREAMED_EMBED_URL || 'https://embed.st').replace(/\/$/, '')
-const wasmBytes = readFileSync(new URL('../vendor/lock.wasm', import.meta.url))
+const UA =
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36'
+const API_BASE = (process.env.STEVIE_STREAMED_BASE_URL || 'https://api.ppv.st').replace(/\/$/, '')
+const WASM_DIR = fileURLToPath(new URL('../vendor', import.meta.url))
+const WASM_JS = pathToFileURL(`${WASM_DIR}/gasm.js`).href
+const WASM_BIN = `${WASM_DIR}/gasm.wasm`
 const nativeFetch = globalThis.fetch.bind(globalThis)
 
-function varint(n) {
-  const bytes = []
-  let v = n >>> 0
-  while (v > 0x7f) {
-    bytes.push((v & 0x7f) | 0x80)
-    v >>>= 7
-  }
-  bytes.push(v)
-  return Uint8Array.from(bytes)
-}
-function fieldStr(field, value) {
-  const body = new TextEncoder().encode(value)
-  const tag = Uint8Array.of((field << 3) | 2)
-  const len = varint(body.length)
-  const out = new Uint8Array(tag.length + len.length + body.length)
-  out.set(tag, 0)
-  out.set(len, tag.length)
-  out.set(body, tag.length + len.length)
-  return out
-}
-function encodeFetchBody(source, id, stream) {
-  const parts = [fieldStr(1, source), fieldStr(2, id), fieldStr(3, String(stream))]
-  const total = parts.reduce((n, p) => n + p.length, 0)
-  const out = new Uint8Array(total)
-  let o = 0
-  for (const part of parts) {
-    out.set(part, o)
-    o += part.length
-  }
-  return out
-}
-function asBody(data) {
-  return new Uint8Array(data.buffer, data.byteOffset, data.byteLength)
+let wasmLoadGeneration = 0
+
+async function loadWasmModule() {
+  wasmLoadGeneration += 1
+  return import(`${WASM_JS}?${wasmLoadGeneration}`)
 }
 
-async function postFetch(source, id, stream) {
-  const path = `${source}/${id}/${stream}`
-  const res = await nativeFetch(`${embedOrigin}/fetch`, {
+function encodeFetchBody(path) {
+  const bytes = Buffer.from(path, 'utf8')
+  return Buffer.concat([Buffer.from([0x0a, bytes.length]), bytes])
+}
+
+function embedFromIframe(iframe) {
+  const url = new URL(String(iframe || '').trim())
+  const marker = '/embed/'
+  const idx = url.pathname.indexOf(marker)
+  if (idx < 0) throw new Error('embed source missing /embed/ path')
+  const path = url.pathname.slice(idx + marker.length).replace(/^\/+/, '')
+  if (!path) throw new Error('embed source path empty')
+  return { origin: url.origin, path }
+}
+
+function looksLikeHost(source) {
+  const s = String(source || '').trim().toLowerCase()
+  return s.includes('.') && !s.includes('/') && !s.includes(' ')
+}
+
+function apiRoot(base) {
+  const raw = String(base || '').replace(/\/$/, '')
+  try {
+    const u = new URL(raw)
+    // Hostname may be api.ppv.st — only treat path /api as already rooted.
+    if (u.pathname === '/api' || u.pathname.startsWith('/api/')) return `${u.origin}/api`
+    return `${u.origin}/api`
+  } catch {
+    return raw.endsWith('/api') ? raw : `${raw}/api`
+  }
+}
+
+async function lookupIframe(uri) {
+  const bases = []
+  bases.push(apiRoot(API_BASE))
+  for (const d of ['ppv.st', 'ppv.tj', 'ppvs.pk', 'ppv.rw', 'ppv.ms']) {
+    const b = `https://api.${d}/api`
+    if (!bases.includes(b)) bases.push(b)
+  }
+  let lastErr = 'api lookup failed'
+  for (const base of bases) {
+    try {
+      const res = await nativeFetch(`${base}/streams/${uri}`, {
+        headers: { Accept: 'application/json', 'User-Agent': UA },
+      })
+      if (!res.ok) {
+        lastErr = `upstream ${res.status}`
+        continue
+      }
+      const json = await res.json()
+      if (!json?.success || !json?.data) {
+        lastErr = json?.error || 'empty stream payload'
+        continue
+      }
+      const source = (json.data.sources || []).find((s) => s.default) || (json.data.sources || [])[0]
+      if (!source?.data) {
+        lastErr = 'no embed source in api response'
+        continue
+      }
+      return String(source.data)
+    } catch (err) {
+      lastErr = err instanceof Error ? err.message : String(err)
+    }
+  }
+  throw new Error(lastErr)
+}
+
+/**
+ * Normalize play params into an embed {origin,path}.
+ * New ppv.st shape: source=embed-host, id=embed-path (may contain slashes).
+ * Also accepts full iframe URL via id when it starts with https://.
+ */
+export async function resolveEmbedTarget(source, id, stream = '1') {
+  const src = String(source || '').trim()
+  const rawId = String(id || '').trim()
+  if (!rawId) throw new Error('id required')
+
+  if (/^https?:\/\//i.test(rawId)) {
+    return embedFromIframe(rawId)
+  }
+  if (/^https?:\/\//i.test(src)) {
+    return embedFromIframe(src.includes('/embed/') ? src : `${src.replace(/\/$/, '')}/embed/${rawId}`)
+  }
+  if (looksLikeHost(src)) {
+    return { origin: `https://${src.replace(/^https?:\/\//i, '')}`, path: rawId.replace(/^\/+/, '') }
+  }
+  // source=ppv (or legacy) → resolve iframe from catalog by uri=id
+  const iframe = await lookupIframe(rawId)
+  return embedFromIframe(iframe)
+}
+
+async function postEmbedFetch(embed) {
+  const res = await nativeFetch(`${embed.origin}/fetch`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/octet-stream',
-      Origin: embedOrigin,
-      Referer: `${embedOrigin}/embed/${path}`,
-      'User-Agent':
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      Origin: embed.origin,
+      Referer: `${embed.origin}/embed/${embed.path}`,
+      'User-Agent': UA,
     },
-    body: encodeFetchBody(source, id, stream),
+    body: encodeFetchBody(embed.path),
   })
-  if (!res.ok) throw new Error(`embed /fetch ${res.status}`)
-  const goat = res.headers.get('goat')
-  if (!goat) throw new Error('missing goat header')
-  return { body: Buffer.from(await res.arrayBuffer()), goat, path }
+  if (!res.ok) throw new Error(`embed fetch ${res.status}`)
+  const island = res.headers.get('island')
+  if (!island) throw new Error('missing island header')
+  return { island, body: Buffer.from(await res.arrayBuffer()) }
 }
 
-function mountDom(path) {
-  const window = new Window({ url: `${embedOrigin}/embed/${path}` })
-  const doc = window.document
-  doc.body.innerHTML = '<div id="player"></div>'
-  const jwCfg = { file: null }
-  const jwBase = {
-    getContainer: () => doc.getElementById('player'),
-    getState: () => 'idle',
-    load: (cfg) => {
-      if (cfg?.file) jwCfg.file = cfg.file
-    },
-    setConfig: (cfg) => {
-      if (cfg?.file) jwCfg.file = cfg.file
-    },
-    getConfig: () => jwCfg,
-    setup() {},
-    on() {},
-    play() {},
-    getPlaylistItem: () => jwCfg,
-    getPlaylist: () => (jwCfg.file ? [{ file: jwCfg.file }] : []),
+function readVarint(buf, offset) {
+  let value = 0
+  let shift = 0
+  let i = offset
+  while (i < buf.length) {
+    const byte = buf[i++]
+    value |= (byte & 0x7f) << shift
+    if (!(byte & 0x80)) return { value, next: i }
+    shift += 7
   }
-  const proxy = new Proxy(jwBase, {
-    get(target, prop, receiver) {
-      if (Reflect.has(target, prop)) return Reflect.get(target, prop, receiver)
-      if (prop === Symbol.toStringTag) return 'Object'
-      return () => null
-    },
-  })
-  Object.assign(window, { __wasm_jw_player: proxy, jwplayer: () => proxy })
-  Object.assign(globalThis, {
-    window,
-    document: doc,
-    location: window.location,
-    self: window,
-    atob: (s) => Buffer.from(s, 'base64').toString('binary'),
-    btoa: (s) => Buffer.from(s, 'binary').toString('base64'),
-  })
-  const NativeRequest = globalThis.Request
-  const NativeUrl = globalThis.URL
-  Object.defineProperty(globalThis, 'URL', {
-    configurable: true,
-    writable: true,
-    value: class extends NativeUrl {
-      constructor(input, base) {
-        super(input === '/fetch' ? `${embedOrigin}/fetch` : input, base ?? `${embedOrigin}/`)
-      }
-    },
-  })
-  Object.defineProperty(globalThis, 'Request', {
-    configurable: true,
-    writable: true,
-    value: class extends NativeRequest {
-      constructor(input, init) {
-        super(input === '/fetch' ? `${embedOrigin}/fetch` : input, init)
-      }
-    },
-  })
-  Object.assign(window, {
-    URL: globalThis.URL,
+  return { value, next: i }
+}
+
+function slugFromFetchBody(body) {
+  const buf = Buffer.from(body)
+  let i = 0
+  while (i < buf.length) {
+    const tag = buf[i++]
+    const field = tag >> 3
+    const wire = tag & 7
+    if (wire !== 2) break
+    const { value: len, next } = readVarint(buf, i)
+    i = next
+    if (i + len > buf.length) break
+    const value = buf.subarray(i, i + len).toString('utf8')
+    i += len
+    if (field === 2 && value && !value.startsWith('{')) return value
+  }
+  return null
+}
+
+function extractUrl(memory, slug) {
+  const buf = Buffer.from(memory.buffer)
+  const text = buf.toString('latin1')
+  const re = /https:\/\/[a-z0-9.-]+\/secure\/[^\x00-\x1f\s"']+?index\.m3u8/g
+  const matches = []
+  let match = null
+  while ((match = re.exec(text)) !== null) matches.push(match[0])
+  if (slug) return matches.find((url) => url.includes(`/${slug}/`)) || null
+  return matches.at(-1) || null
+}
+
+async function decryptStreamUrl(island, body, embed, slug) {
+  const saved = {
+    fetch: globalThis.fetch,
     Request: globalThis.Request,
     Response: globalThis.Response,
-    Headers: globalThis.Headers,
+    window: globalThis.window,
+    Window: globalThis.Window,
+    document: globalThis.document,
+    location: globalThis.location,
+    self: globalThis.self,
+    jwplayer: globalThis.jwplayer,
+  }
+
+  const jwEngine = { destroy() {} }
+  const jwPlayer = {
+    remove() {
+      return jwEngine
+    },
+    setup() {},
+    on() {},
+    load() {},
+    getPlaylistItem: () => ({}),
+    getState: () => 'idle',
+  }
+  Object.defineProperty(jwPlayer, '__wasm_jw_player', { value: jwPlayer, enumerable: false })
+  Object.defineProperty(jwEngine, '__wasm_jw_engine', { value: jwEngine, enumerable: false })
+
+  const window = new Window({
+    url: `${embed.origin}/embed/${embed.path}`,
+    settings: { disableJavaScriptFileLoading: true, disableJavaScriptEvaluation: false },
   })
-  return jwCfg
-}
 
-function mockFetch(goat, body, onM3u8) {
-  return async (input) => {
-    const href =
-      typeof input === 'string' ? input : input instanceof URL ? input.href : String(input.url)
-    if (href.includes('lock.wasm')) {
-      return new Response(asBody(wasmBytes), {
-        status: 200,
-        headers: { 'Content-Type': 'application/wasm' },
-      })
-    }
-    if (href.includes('/fetch')) {
-      return new Response(asBody(body), {
-        status: 200,
-        headers: { goat, 'Content-Type': 'application/octet-stream' },
-      })
-    }
-    if (href.includes('.m3u8')) {
-      onM3u8(href)
-      return new Response('#EXTM3U\n#EXT-X-VERSION:3\n', {
-        status: 200,
-        headers: { 'Content-Type': 'application/vnd.apple.mpegurl' },
-      })
-    }
-    return new Response('', { status: 404 })
-  }
-}
+  window.eval = () => undefined
+  window.jwplayer = () => jwPlayer
+  window.__wasm_jw_player = jwPlayer
+  window.__wasm_jw_engine = jwEngine
+  window.__wasm_player = { core: { mediaControl: { volume: 0 } } }
+  window.__wasm_p2p_config = {}
+  window.P2PEngineHls = class {}
 
-function patchImports(imports, goat, body, onM3u8) {
-  const bg = imports?.['./locked_bg.js']
-  if (!bg) return
-  for (const key of Object.keys(bg)) {
-    if (!key.includes('instanceof')) continue
-    const orig = bg[key]
-    if (typeof orig !== 'function') continue
-    bg[key] = (...args) => (orig(...args) ? 1 : 1)
+  const resolveEmbedUrl = (url) => (typeof url === 'string' && url.startsWith('/') ? `${embed.origin}${url}` : url)
+
+  const embedFetch = async () =>
+    new window.Response(body, {
+      status: 200,
+      headers: { 'content-type': 'application/octet-stream', island },
+    })
+
+  const BaseRequest = saved.Request
+  globalThis.Request = class extends BaseRequest {
+    constructor(input, init) {
+      if (typeof input === 'string') {
+        super(resolveEmbedUrl(input), init)
+        return
+      }
+      super(input, init)
+    }
   }
-  const fetchKey = Object.keys(bg).find((k) => k.includes('fetch_e6e8e0'))
-  if (!fetchKey || typeof bg[fetchKey] !== 'function') return
-  bg[fetchKey] = (_win, req) => {
-    const href = req?.url ?? ''
-    if (href.includes('/fetch')) {
-      return Promise.resolve(
-        new Response(asBody(body), {
-          status: 200,
-          headers: { goat, 'Content-Type': 'application/octet-stream' },
-        }),
-      )
+
+  globalThis.fetch = embedFetch
+  window.fetch = embedFetch
+  window.Request = globalThis.Request
+  globalThis.Response = window.Response
+
+  Object.assign(globalThis, {
+    window,
+    Window,
+    document: window.document,
+    location: window.location,
+    self: window,
+    jwplayer: window.jwplayer,
+  })
+
+  try {
+    const mod = await loadWasmModule()
+    const wasm = await mod.default({ module_or_path: fs.readFileSync(WASM_BIN) })
+    try {
+      await wasm.init_wasm?.()
+    } catch {
+      /* optional on some builds */
     }
-    if (href.includes('.m3u8')) {
-      onM3u8(href)
-      return Promise.resolve(
-        new Response('#EXTM3U\n#EXT-X-VERSION:3\n', {
-          status: 200,
-          headers: { 'Content-Type': 'application/vnd.apple.mpegurl' },
-        }),
-      )
+
+    // Runtime flags used by current gasm builds (same offsets as upstream resolvers).
+    const u8 = new Uint8Array(wasm.memory.buffer)
+    const dv = new DataView(wasm.memory.buffer)
+    if (u8.length > 1070513) {
+      u8[1070512] = 3
+      u8[1070513] = 1
+      u8[1070488] = 1
+      u8[1070508] = 1
+      dv.setInt32(1070476, -2147483648, true)
+      dv.setInt32(1070472, 0, true)
+      dv.setInt32(1070496, -2147483648, true)
+      dv.setInt32(1070492, 0, true)
     }
-    return Promise.reject(new Error(`unexpected wasm fetch ${href}`))
+
+    // Current ppv embeds expose set_stream(path|island, body). Older builds used set_stream_jw(island, body).
+    const payload = new Uint8Array(body)
+    const attempts = []
+    if (typeof wasm.set_stream === 'function') {
+      attempts.push(() => wasm.set_stream(island, payload))
+      attempts.push(() => wasm.set_stream(embed.path, payload))
+    }
+    if (typeof wasm.set_stream_jw === 'function') {
+      attempts.push(() => wasm.set_stream_jw(island, payload))
+      attempts.push(() => wasm.set_stream_jw(embed.path, payload))
+    }
+    let streamUrl = null
+    for (const attempt of attempts) {
+      try {
+        const result = attempt()
+        await Promise.race([
+          Promise.resolve(result),
+          new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 15_000)),
+        ]).catch(() => {})
+      } catch {
+        /* try next signature */
+      }
+      streamUrl = extractUrl(wasm.memory, slug)
+      if (streamUrl) break
+    }
+    if (!streamUrl) throw new Error('decrypt did not produce m3u8 url')
+    return streamUrl
+  } finally {
+    globalThis.fetch = saved.fetch
+    globalThis.Request = saved.Request
+    globalThis.Response = saved.Response
+    globalThis.window = saved.window
+    globalThis.Window = saved.Window
+    globalThis.document = saved.document
+    globalThis.location = saved.location
+    globalThis.self = saved.self
+    globalThis.jwplayer = saved.jwplayer
   }
 }
 
 export async function resolveM3U8(source, id, stream = '1') {
-  const mapped = await mapGolfToIngest(source, id, stream, embedOrigin)
-  source = mapped.source
-  id = mapped.id
-  stream = mapped.stream
-
-  const { body, goat, path } = await postFetch(source, id, stream)
-  let m3u8 = null
-  const onM3u8 = (url) => {
-    m3u8 = url
+  const embed = await resolveEmbedTarget(source, id, stream)
+  const { island, body } = await postEmbedFetch(embed)
+  const slug = slugFromFetchBody(body)
+  const m3u8 = await decryptStreamUrl(island, body, embed, slug)
+  return {
+    m3u8,
+    referer: `${embed.origin}/`,
+    embedOrigin: embed.origin,
+    embedPath: embed.path,
   }
-  const jwCfg = mountDom(path)
-  const fetchFn = mockFetch(goat, body, onM3u8)
-  globalThis.fetch = fetchFn
-
-  const wasm = globalThis.WebAssembly
-  const origInstantiate = wasm.instantiate.bind(wasm)
-  wasm.instantiate = async (sourceObj, imports) => {
-    patchImports(imports, goat, body, onM3u8)
-    let bytes = sourceObj
-    if (!(sourceObj instanceof ArrayBuffer) && !ArrayBuffer.isView(sourceObj)) {
-      bytes = wasmBytes.buffer.slice(wasmBytes.byteOffset, wasmBytes.byteOffset + wasmBytes.byteLength)
-    }
-    return origInstantiate(bytes, imports)
-  }
-  wasm.instantiateStreaming = async (_resp, imports) => wasm.instantiate(wasmBytes, imports)
-
-  try {
-    const mod = await import(pathToFileURL(fileURLToPath(new URL('../vendor/lock.js', import.meta.url))).href)
-    const factory = mod.default || mod
-    const api = await factory({
-      module_or_path: `${embedOrigin}/js/wasm/lock.wasm`,
-      fetch: fetchFn,
-    })
-    await api.init_wasm?.()
-    try {
-      await api.set_stream_jw(source, id, String(stream))
-    } catch (err) {
-      if (!m3u8 && !jwCfg.file) throw err
-    }
-  } finally {
-    wasm.instantiate = origInstantiate
-    delete wasm.instantiateStreaming
-    globalThis.fetch = nativeFetch
-  }
-  const url = m3u8 || jwCfg.file
-  if (!url) throw new Error('lock did not yield m3u8')
-  return { m3u8: url, referer: `${embedOrigin}/` }
 }
 
 const isCli = (() => {
@@ -265,9 +343,8 @@ if (isCli) {
     const r = await nativeFetch(out.m3u8, {
       headers: {
         Referer: out.referer,
-        Origin: embedOrigin,
-        'User-Agent':
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        Origin: out.embedOrigin,
+        'User-Agent': UA,
       },
     })
     const text = await r.text()

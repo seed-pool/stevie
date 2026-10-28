@@ -44,7 +44,7 @@ func isEventSport(sport string) bool {
 	}
 }
 
-// FindMatch locates a streamed.pk row for a Stevie sports event.
+// FindMatch locates a ppv.st row for a Stevie sports event.
 func FindMatch(matches []Match, sport, home, away, title string, startsAt time.Time) *Match {
 	return findMatch(matches, sport, home, away, title, startsAt)
 }
@@ -310,72 +310,109 @@ func absDuration(d time.Duration) time.Duration {
 	return d
 }
 
-// Prefer reliable iframe sources first; admin works in-browser but is last resort.
+// orderSources keeps catalog order (default source first, then substreams).
 func orderSources(in []MatchSource) []MatchSource {
+	return append([]MatchSource(nil), in...)
+}
+
+func sourceRank(source string) int {
+	// Legacy phonetic ranks retained for older embed.st test fixtures.
 	rank := map[string]int{
-		"delta": 1, "hotel": 2, "golf": 3, "bravo": 4, "charlie": 5,
+		"delta": 1, "golf": 2, "hotel": 3, "bravo": 4, "charlie": 5,
 		"echo": 6, "foxtrot": 7, "alpha": 8, "intel": 9, "admin": 10,
 	}
-	out := append([]MatchSource(nil), in...)
-	sort.SliceStable(out, func(i, j int) bool {
-		ri, rj := rank[strings.ToLower(out[i].Source)], rank[strings.ToLower(out[j].Source)]
-		if ri == 0 {
-			ri = 50
-		}
-		if rj == 0 {
-			rj = 50
-		}
-		return ri < rj
-	})
-	return out
+	r := rank[strings.ToLower(strings.TrimSpace(source))]
+	if r == 0 {
+		return 50
+	}
+	return r
+}
+
+type streamRow struct {
+	stream   Stream
+	source   string
+	sourceID string
+	streamNo int
+	embed    string
 }
 
 func streamsToChannels(streams []Stream, limit int) []Channel {
 	if limit <= 0 {
-		limit = 3
+		limit = 8
 	}
-	sort.SliceStable(streams, func(i, j int) bool {
-		if streams[i].HD != streams[j].HD {
-			return streams[i].HD
-		}
-		return streams[i].StreamNo < streams[j].StreamNo
-	})
-	out := make([]Channel, 0, limit)
-	seen := map[string]struct{}{}
+	rows := make([]streamRow, 0, len(streams))
 	for _, s := range streams {
 		embed := strings.TrimSpace(s.EmbedURL)
 		if embed == "" || !strings.HasPrefix(embed, "https://") {
 			continue
 		}
-		lang := strings.TrimSpace(s.Language)
-		if lang == "" {
-			lang = "Stream"
-		}
-		label := lang
-		if s.HD {
-			label += " HD"
-		}
-		name := "Streamed · " + label
-		key := strings.ToLower(name + "|" + embed)
-		if _, ok := seen[key]; ok {
-			continue
-		}
-		seen[key] = struct{}{}
 		src, sid, sno := parseEmbedSlot(embed, s.Source, s.StreamNo)
-		out = append(out, Channel{
-			Name:     name,
-			EmbedURL: embed,
-			Language: lang,
-			HD:       s.HD,
-			Source:   src,
-			SourceID: sid,
-			StreamNo: sno,
-		})
-		if len(out) >= limit {
+		rows = append(rows, streamRow{stream: s, source: src, sourceID: sid, streamNo: sno, embed: embed})
+	}
+	if len(rows) == 0 {
+		return nil
+	}
+	sort.SliceStable(rows, func(i, j int) bool {
+		ri, rj := sourceRank(rows[i].source), sourceRank(rows[j].source)
+		if ri != rj {
+			return ri < rj
+		}
+		if rows[i].stream.HD != rows[j].stream.HD {
+			return rows[i].stream.HD
+		}
+		return rows[i].streamNo < rows[j].streamNo
+	})
+
+	// Round-robin across sources so one dead hotel slot cannot crowd out golf/admin.
+	bySrc := map[string][]streamRow{}
+	var srcOrder []string
+	for _, r := range rows {
+		k := strings.ToLower(r.source)
+		if _, ok := bySrc[k]; !ok {
+			srcOrder = append(srcOrder, k)
+		}
+		bySrc[k] = append(bySrc[k], r)
+	}
+
+	out := make([]Channel, 0, limit)
+	seen := map[string]struct{}{}
+	for len(out) < limit {
+		progress := false
+		for _, src := range srcOrder {
+			queue := bySrc[src]
+			if len(queue) == 0 || len(out) >= limit {
+				continue
+			}
+			r := queue[0]
+			bySrc[src] = queue[1:]
+			if _, ok := seen[r.embed]; ok {
+				continue
+			}
+			seen[r.embed] = struct{}{}
+			lang := strings.TrimSpace(r.stream.Language)
+			if lang == "" {
+				lang = "Stream"
+			}
+			label := lang
+			if r.stream.HD {
+				label += " HD"
+			}
+			out = append(out, Channel{
+				Name:     "ppv.st · " + label,
+				EmbedURL: r.embed,
+				Language: lang,
+				HD:       r.stream.HD,
+				Source:   r.source,
+				SourceID: r.sourceID,
+				StreamNo: r.streamNo,
+			})
+			progress = true
+		}
+		if !progress {
 			break
 		}
 	}
-	if len(out) > 1 {
+	if len(srcOrder) > 1 || len(out) > 1 {
 		for i := range out {
 			if out[i].Source != "" {
 				out[i].Name = fmt.Sprintf("%s · %s", out[i].Name, out[i].Source)
@@ -385,8 +422,9 @@ func streamsToChannels(streams []Stream, limit int) []Channel {
 	return out
 }
 
-// parseEmbedSlot extracts source/id/streamNo from
-// https://embed.st/embed/{source}/{id}/{streamNo}
+// parseEmbedSlot extracts play params from an embed URL.
+// New ppv.st: https://{host}/embed/{path...} → source=host, id=path, streamNo=1
+// Legacy streamed.pk: https://embed.st/embed/{source}/{id}/{streamNo}
 func parseEmbedSlot(embed, fallbackSource string, fallbackNo int) (source, id string, streamNo int) {
 	source = strings.TrimSpace(fallbackSource)
 	streamNo = fallbackNo
@@ -398,15 +436,25 @@ func parseEmbedSlot(embed, fallbackSource string, fallbackNo int) (source, id st
 		return source, id, streamNo
 	}
 	parts := strings.Split(strings.Trim(u.Path, "/"), "/")
-	// embed / {source} / {id} / {stream}
-	if len(parts) >= 4 && parts[0] == "embed" {
-		if parts[1] != "" {
-			source = parts[1]
-		}
-		id = parts[2]
+	if len(parts) == 0 || parts[0] != "embed" {
+		return source, id, streamNo
+	}
+	// Legacy streamed.pk: /embed/{source}/{id}/{streamNo}
+	if len(parts) == 4 {
 		if n, err := strconv.Atoi(parts[3]); err == nil && n > 0 {
+			if parts[1] != "" {
+				source = parts[1]
+			}
+			id = parts[2]
 			streamNo = n
+			return source, id, streamNo
 		}
+	}
+	// ppv.st: /embed/{uri_path...} with hostname as source.
+	if u.Host != "" && len(parts) >= 2 {
+		source = u.Host
+		id = strings.Join(parts[1:], "/")
+		return source, id, 1
 	}
 	return source, id, streamNo
 }

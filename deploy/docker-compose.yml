@@ -35,7 +35,8 @@ services:
     restart: unless-stopped
     environment:
       PORT: "8091"
-      STEVIE_STREAMED_EMBED_URL: ${STEVIE_STREAMED_EMBED_URL:-https://embed.st}
+      STEVIE_STREAMED_BASE_URL: ${STEVIE_STREAMED_BASE_URL:-https://api.ppv.st}
+      STEVIE_STREAMED_EMBED_URL: ${STEVIE_STREAMED_EMBED_URL:-https://taifood-blog.asia}
 
   server:
     build:
@@ -68,8 +69,8 @@ services:
       STEVIE_RECORDINGS_PATH: ${STEVIE_RECORDINGS_PATH:-/data/stevie/recordings}
       STEVIE_RECORDINGS_MOUNT: /recordings
       STEVIE_STREAMED_RELAY_URL: ${STEVIE_STREAMED_RELAY_URL:-http://streamed:8091}
-      STEVIE_STREAMED_BASE_URL: ${STEVIE_STREAMED_BASE_URL:-https://streamed.pk}
-      STEVIE_STREAMED_EMBED_URL: ${STEVIE_STREAMED_EMBED_URL:-https://embed.st}
+      STEVIE_STREAMED_BASE_URL: ${STEVIE_STREAMED_BASE_URL:-https://api.ppv.st}
+      STEVIE_STREAMED_EMBED_URL: ${STEVIE_STREAMED_EMBED_URL:-https://taifood-blog.asia}
       XTREAM_URL: ${XTREAM_URL:-}
       XTREAM_USER: ${XTREAM_USER:-}
       XTREAM_PASSWORD: ${XTREAM_PASSWORD:-}

@@ -191,7 +191,7 @@ func (s *SyncService) syncOnce(ctx context.Context) (int, error) {
 	// 2b) CFL/NFL event channels encoded in IPTV titles (common when EPG is sparse).
 	chN := s.fillFromEventChannels(ctx)
 	epgN += chN
-	// 2c) CFL from streamed.pk — ESPN's CFL board is stale (stuck on 2022).
+	// 2c) CFL from ppv.st — ESPN's CFL board is stale (stuck on 2022).
 	epgN += s.fillFromStreamedCFL(ctx)
 	// 2d) Sky/DAZN F1 feeds onto MotorSport cards (EPG matchups are often beIN-only).
 	_ = s.fillMotorSportFeeds(ctx)

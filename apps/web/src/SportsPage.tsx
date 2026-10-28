@@ -29,7 +29,7 @@ type ChannelMenu = {
 /** Pregame window — matches server Live detection (broadcast before tip-off). */
 const PREGAME_MS = 30 * 60 * 1000
 
-const EXTERNAL_SPORT = 'External (streamed.pk)'
+const EXTERNAL_SPORT = 'External (ppv.st)'
 const SPORT_SELECTION_KEY = 'stevie.sports.selectedSport'
 
 function readStoredSport(): string {
@@ -165,7 +165,7 @@ function groupBySport(events: SportsEvent[]) {
   return keys.map((sport) => ({ sport, events: map.get(sport) ?? [] }))
 }
 
-/** Within External (streamed.pk), group by upstream category (football, fight, …). */
+/** Within External (ppv.st), group by upstream category (football, fight, …). */
 function groupByStreamedCategory(events: SportsEvent[]) {
   const map = new Map<string, SportsEvent[]>()
   for (const ev of events) {
@@ -357,7 +357,7 @@ export function SportsPage() {
     return hotEvents.filter((e) => eventTiming(e).live).slice(0, 8)
   }, [hotEvents, isExternal, isFavorites])
 
-  /** Home / favorites: group by sport. External: by streamed.pk category. Else Live / Upcoming. */
+  /** Home / favorites: group by sport. External: by ppv.st category. Else Live / Upcoming. */
   const bySport = useMemo(
     () => (isMultiSport ? groupBySport(visibleEvents) : []),
     [visibleEvents, isMultiSport],
@@ -652,7 +652,7 @@ export function SportsPage() {
                       ) : null}
                     </div>
                     {isStreamed ? (
-                      <div className="muted sports-channel-sub">streamed.pk</div>
+                      <div className="muted sports-channel-sub">ppv.st</div>
                     ) : ch.name && ch.broadcast_label && ch.name !== ch.broadcast_label ? (
                       <div className="muted sports-channel-sub">{ch.broadcast_label}</div>
                     ) : null}
@@ -703,7 +703,7 @@ export function SportsPage() {
                     title={
                       isStreamed
                         ? menu.event.upcoming
-                          ? 'Scheduling not available for streamed.pk yet'
+                          ? 'Scheduling not available for ppv.st yet'
                           : 'Start recording (stop from the player)'
                         : menu.event.upcoming
                           ? 'Schedule recording'

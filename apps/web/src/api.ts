@@ -741,7 +741,7 @@ export type SportsChannel = {
   playable: boolean
   /** True when ESPN/MLB listed this network for the game. */
   confirmed?: boolean
-  /** "streamed" for streamed.pk rows. */
+  /** "streamed" for ppv.st rows. */
   source?: string
   embed_url?: string
   streamed_source?: string
@@ -762,7 +762,7 @@ export type SportsEvent = {
   upcoming: boolean
   score?: SportsScore | null
   channels: SportsChannel[]
-  /** streamed.pk category label when sport is External (streamed.pk). */
+  /** ppv.st category label when sport is External (ppv.st). */
   streamed_category?: string
   /** League label (NHL, English Premier League, …). */
   league?: string

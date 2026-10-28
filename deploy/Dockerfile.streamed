@@ -2,7 +2,7 @@ FROM docker.io/library/node:22-bookworm-slim
 WORKDIR /app
 COPY apps/streamed-relay/package.json apps/streamed-relay/package-lock.json ./
 COPY apps/streamed-relay/scripts ./scripts
-# postinstall fetches vendor/lock.wasm + lock.js from CDN
+# postinstall fetches vendor/gasm.wasm + gasm.js from the embed origin
 RUN npm install --omit=dev
 COPY apps/streamed-relay/src ./src
 ENV PORT=8091

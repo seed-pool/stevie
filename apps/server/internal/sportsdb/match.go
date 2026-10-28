@@ -961,6 +961,8 @@ func isPlausibleSportsMatchup(sport, home, away, title string) bool {
 		"alarm im cockpit", "una gran familia",
 		"hokej vs", "hokej:", "liga mistrzów vs", "liga prvakov",
 		"jerry maguire", "hátraarc", "hatraarc",
+		// EPG venue prose: "Detroit Pistons's home field … vs is played"
+		"home field", "is played", "little caesars arena vs",
 	} {
 		if strings.Contains(blob, bad) {
 			return false
@@ -976,7 +978,7 @@ func isPlausibleSportsMatchup(sport, home, away, title string) bool {
 			strings.HasPrefix(sl, "nba liga") || strings.HasPrefix(sl, "basketball:") ||
 			strings.HasPrefix(sl, "hokej:") || strings.HasPrefix(sl, "live basketball:") ||
 			sl == "basketball" || sl == "football" || sl == "baseball" || sl == "hockey" ||
-			sl == "hokej" || sl == "košarka" || sl == "kosarka" {
+			sl == "hokej" || sl == "košarka" || sl == "kosarka" || sl == "is played" {
 			return false
 		}
 		// Trailing junk after a dash often means a bad split ("Indiana - Pre- Season NBA - 2026").

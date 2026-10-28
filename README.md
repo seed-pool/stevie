@@ -1,6 +1,6 @@
 # Stevie
 
-Self-hosted media app for **Xtream VOD** (movies & TV), **Live TV** (M3U / Xtream + EPG), **Sports** (scores, guide matchups, streamed.pk), and **recordings**. Runs on localhost with no domain, or with TLS on a hostname via Caddy.
+Self-hosted media app for **Xtream VOD** (movies & TV), **Live TV** (M3U / Xtream + EPG), **Sports** (scores, guide matchups, ppv.st), and **recordings**. Runs on localhost with no domain, or with TLS on a hostname via Caddy.
 
 ## Features
 
@@ -20,10 +20,10 @@ Self-hosted media app for **Xtream VOD** (movies & TV), **Live TV** (M3U / Xtrea
 - Provider EPG sync + manual refresh from Settings
 
 ### Sports
-- Live / upcoming events from TheSportsDB, ESPN scoreboards, EPG harvest, and streamed.pk
+- Live / upcoming events from TheSportsDB, ESPN scoreboards, EPG harvest, and ppv.st
 - **Hot** strip of currently live high-interest games
 - Favorite sports categories; selected sport remembered across tab switches
-- Play IPTV channels matched to a game, or streamed.pk embeds via the unlock relay
+- Play IPTV channels matched to a game, or ppv.st embeds via the unlock relay
 - Record / schedule from a game’s channel menu (IPTV or streamed when live)
 
 ### Recordings
@@ -45,7 +45,7 @@ Self-hosted media app for **Xtream VOD** (movies & TV), **Live TV** (M3U / Xtrea
 |---|---|
 | `apps/server` | Go API, playback, sync jobs (`ffmpeg` / `ffprobe` / `mediainfo` in the image) |
 | `apps/web` | React + Vite UI (nginx) |
-| `apps/streamed-relay` | Node unlock + HLS relay for streamed.pk / embed.st |
+| `apps/streamed-relay` | Node unlock + HLS relay for ppv.st / embed host |
 | PostgreSQL 16 | Library, live, sports, sessions |
 | Redis 7 | TMDB cache, scan/sync progress |
 | Caddy | Front door (local HTTP or TLS) |
@@ -54,7 +54,7 @@ Self-hosted media app for **Xtream VOD** (movies & TV), **Live TV** (M3U / Xtrea
 
 - Docker Engine + Compose **or** Podman (`deploy/start-podman.sh`, `deploy/redeploy.sh`)
 - Host folders for recordings and (usually) live sources; media path can be a placeholder dir
-- Outbound HTTPS for Xtream, TMDB (optional), TheSportsDB, ESPN, streamed.pk
+- Outbound HTTPS for Xtream, TMDB (optional), TheSportsDB, ESPN, ppv.st
 
 ## Quick start (Docker Compose)
 
@@ -109,7 +109,7 @@ docker compose --env-file ../.env up -d --build
    - Set M3U URL or path (e.g. `/live-sources/playlist.m3u`) and optional XMLTV override → Save / refresh EPG.
    - If `XTREAM_*` is set in `.env`, use **Refresh Xtream** to import live categories.
 3. **Settings → Movies & TV (Xtream VOD)** → **Import VOD categories** (movies and series tabs).
-4. Open **Live**, **Movies**, **TV**, or **Sports** as needed. Sports syncs in the background (TheSportsDB / ESPN / EPG / streamed.pk).
+4. Open **Live**, **Movies**, **TV**, or **Sports** as needed. Sports syncs in the background (TheSportsDB / ESPN / EPG / ppv.st).
 
 ## Configuration
 
@@ -132,8 +132,8 @@ See `.env.example` for the full list. Important variables:
 | `XTREAM_URL` / `XTREAM_USER` / `XTREAM_PASSWORD` | Xtream panel (not editable in the UI) |
 | `THESPORTSDB_API_KEY` | SportsDB key (`123` = free demo) |
 | `THESPORTSDB_COUNTRIES` | Country filters for SportsDB schedules |
-| `STEVIE_STREAMED_BASE_URL` | streamed.pk API origin |
-| `STEVIE_STREAMED_EMBED_URL` | embed.st origin for unlock |
+| `STEVIE_STREAMED_BASE_URL` | ppv.st API origin |
+| `STEVIE_STREAMED_EMBED_URL` | embed host origin for unlock |
 | `STEVIE_STREAMED_RELAY_URL` | Unlock relay (`http://streamed:8091` in Compose) |
 
 ## Sports sync (background)
@@ -144,14 +144,14 @@ Approximate cadence inside the server:
 - ESPN scoreboards ~ every **15 seconds**
 - SportsDB livescores (when available) ~ every **2 minutes**
 - EPG harvest for airing matchups ~ every **5 minutes**
-- streamed.pk catalog cached ~ **2 minutes** on demand (Sports / Hot)
+- ppv.st catalog cached ~ **2 minutes** on demand (Sports / Hot)
 
 ## Project layout
 
 ```
 apps/server/           Go API, migrations, team-logo assets + fetch scripts
 apps/web/              React UI
-apps/streamed-relay/   streamed.pk unlock relay
+apps/streamed-relay/   ppv.st unlock relay
 deploy/                docker-compose, Dockerfiles, Caddy entrypoint, Podman scripts
 .env.example           Documented environment template
 ```

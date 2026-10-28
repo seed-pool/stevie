@@ -39,9 +39,9 @@ type Config struct {
 	XtreamPassword     string
 	TheSportsDBAPIKey    string
 	TheSportsDBCountries []string
-	StreamedRelayURL     string // Node unlock+HLS relay for streamed.pk (ad-free)
-	StreamedBaseURL      string // streamed.pk API origin
-	StreamedEmbedURL     string // embed.st origin used by unlock relay
+	StreamedRelayURL     string // Node unlock+HLS relay for ppv.st (ad-free)
+	StreamedBaseURL      string // ppv.st API origin (https://api.ppv.st)
+	StreamedEmbedURL     string // default embed origin for unlock/vendor fetch
 	TeamLogosDir         string // bundled team crests (Docker image /app/team-logos)
 }
 
@@ -77,8 +77,8 @@ func Load() (Config, error) {
 		TheSportsDBAPIKey:    getenv("THESPORTSDB_API_KEY", "123"),
 		TheSportsDBCountries: splitCSVPreserve(getenv("THESPORTSDB_COUNTRIES", "Canada,United_States")),
 		StreamedRelayURL:     getenv("STEVIE_STREAMED_RELAY_URL", "http://127.0.0.1:8091"),
-		StreamedBaseURL:      strings.TrimRight(getenv("STEVIE_STREAMED_BASE_URL", "https://streamed.pk"), "/"),
-		StreamedEmbedURL:     strings.TrimRight(getenv("STEVIE_STREAMED_EMBED_URL", "https://embed.st"), "/"),
+		StreamedBaseURL:      strings.TrimRight(getenv("STEVIE_STREAMED_BASE_URL", "https://api.ppv.st"), "/"),
+		StreamedEmbedURL:     strings.TrimRight(getenv("STEVIE_STREAMED_EMBED_URL", "https://taifood-blog.asia"), "/"),
 		TeamLogosDir:         getenv("STEVIE_TEAM_LOGOS_DIR", "/app/team-logos"),
 	}
 	if cfg.RecordingsMount == "" {

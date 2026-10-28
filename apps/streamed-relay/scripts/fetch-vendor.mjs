@@ -1,17 +1,30 @@
-import { mkdirSync, writeFileSync, existsSync } from 'node:fs'
+import { mkdirSync, writeFileSync, existsSync, unlinkSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const dir = join(dirname(fileURLToPath(import.meta.url)), '..', 'vendor')
 mkdirSync(dir, { recursive: true })
+
+// Drop legacy streamed.pk / embed.st unlock binaries if present.
+for (const stale of ['lock.wasm', 'lock.js']) {
+  const p = join(dir, stale)
+  if (existsSync(p)) {
+    try {
+      unlinkSync(p)
+    } catch {
+      /* ignore */
+    }
+  }
+}
+
+const embed = (process.env.STEVIE_STREAMED_EMBED_URL || 'https://taifood-blog.asia').replace(/\/$/, '')
 const assets = [
-  ['lock.wasm', 'https://strmd.b-cdn.net/js/wasm/lock.wasm'],
-  ['lock.js', 'https://strmd.b-cdn.net/js/wasm/lock.js'],
+  ['gasm.wasm', `${embed}/js/wasm/gasm.wasm`],
+  ['gasm.js', `${embed}/js/wasm/gasm.js`],
 ]
 for (const [name, url] of assets) {
   const dest = join(dir, name)
-  if (existsSync(dest)) continue
-  const embed = (process.env.STEVIE_STREAMED_EMBED_URL || 'https://embed.st').replace(/\/$/, '')
+  if (existsSync(dest) && process.env.STEVIE_STREAMED_FORCE_VENDOR !== '1') continue
   const res = await fetch(url, {
     headers: { Referer: `${embed}/`, 'User-Agent': 'StevieSports/1.0' },
   })

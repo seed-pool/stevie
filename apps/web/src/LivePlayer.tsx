@@ -292,7 +292,7 @@ export function LivePlayer({
         hlsRef.current = hls
         hls.on(Hls.Events.ERROR, (_e, data) => {
           if (cancelled || !data.fatal) return
-          // streamed.pk offline/expired tokens surface as manifestLoadError — not a concurrent-login issue.
+          // ppv.st offline/expired tokens surface as manifestLoadError — not a concurrent-login issue.
           if (streamedFeed) {
             setError('Stream Offline')
           } else {

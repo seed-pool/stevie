@@ -56,7 +56,7 @@ type PlayerContextValue = {
   play: (session: PlayerSession | { media: MediaFile; title?: string }) => void
   playLive: (channelId: string, title?: string) => void
   playEmbed: (embedUrl: string, title?: string, channelName?: string) => void
-  /** Ad-free streamed.pk HLS via Stevie relay (source/id/streamNo). */
+  /** Ad-free ppv.st HLS via Stevie relay (embed host / path). */
   playStreamed: (
     opts: { source: string; id: string; stream?: number },
     title?: string,

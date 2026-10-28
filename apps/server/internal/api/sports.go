@@ -34,7 +34,7 @@ type sportsChannelDTO struct {
 	Playable       bool   `json:"playable"`
 	// Confirmed when ESPN/MLB listed this network for the game.
 	Confirmed bool `json:"confirmed,omitempty"`
-	// Source is "streamed" for streamed.pk rows; empty means IPTV library.
+	// Source is "streamed" for ppv.st rows; empty means IPTV library.
 	Source string `json:"source,omitempty"`
 	// EmbedURL is a fallback (ad-heavy); prefer streamed_source/id via /sports/streamed/play.
 	EmbedURL       string `json:"embed_url,omitempty"`
@@ -73,7 +73,7 @@ func (s *Server) handleSportsMeta(w http.ResponseWriter, r *http.Request) {
 	if meta == nil {
 		meta = []store.SportsSportMeta{}
 	}
-	// Always surface the full streamed.pk catalog as its own Sports category.
+	// Always surface the full ppv.st catalog as its own Sports category.
 	extCount := 0
 	if s.streamed != nil {
 		if matches, err := s.streamed.AllMatches(r.Context()); err == nil {
@@ -270,7 +270,7 @@ func (s *Server) handleSportsEvents(w http.ResponseWriter, r *http.Request) {
 		}
 		out = append(out, dto)
 	}
-	// Supplement with streamed.pk embeds (appended after IPTV rows per event).
+	// Supplement with ppv.st embeds (appended after IPTV rows per event).
 	s.enrichStreamedChannels(r.Context(), out)
 	hot := s.pickHotEvents(r.Context(), out, sport)
 	if externalPinned {
@@ -357,7 +357,7 @@ func (s *Server) streamedExternalEvents(ctx context.Context) []sportsEventDTO {
 		}
 		for _, ch := range streamed.ChannelsForMatch(m) {
 			dto.Channels = append(dto.Channels, sportsChannelDTO{
-				BroadcastLabel: "streamed.pk",
+				BroadcastLabel: "ppv.st",
 				Name:           ch.Name,
 				Playable:       ch.SourceID != "",
 				Source:         "streamed",
@@ -388,6 +388,7 @@ func (s *Server) enrichStreamedChannels(ctx context.Context, events []sportsEven
 	type job struct {
 		i        int
 		startsAt time.Time
+		live     bool
 	}
 	var jobs []job
 	for i := range events {
@@ -396,24 +397,39 @@ func (s *Server) enrichStreamedChannels(ctx context.Context, events []sportsEven
 			continue
 		}
 		starts, _ := time.Parse(time.RFC3339, events[i].StartsAt)
-		jobs = append(jobs, job{i: i, startsAt: starts})
+		jobs = append(jobs, job{i: i, startsAt: starts, live: events[i].Live})
 	}
 	if len(jobs) == 0 {
 		return
 	}
-	// Cap work per request; matches cache is shared.
-	if len(jobs) > 40 {
-		jobs = jobs[:40]
-	}
+	// Live first, then soonest tip-off. The old hard cap of 40 events dropped
+	// live NBA cards (e.g. Celtics @ Pistons at index 42) on the All-sports view.
+	sort.SliceStable(jobs, func(a, b int) bool {
+		if jobs[a].live != jobs[b].live {
+			return jobs[a].live
+		}
+		if !jobs[a].startsAt.Equal(jobs[b].startsAt) {
+			return jobs[a].startsAt.Before(jobs[b].startsAt)
+		}
+		return jobs[a].i < jobs[b].i
+	})
+
+	// Match lookup is cheap against the shared catalog cache; only successful
+	// attaches trigger /api/stream fetches (also cached). Bound attaches, not scans.
+	const maxAttaches = 80
+	attached := 0
 	for _, j := range jobs {
 		ev := &events[j.i]
+		if strings.TrimSpace(ev.Home.Name) == "" || strings.TrimSpace(ev.Away.Name) == "" {
+			continue
+		}
 		chs, err := s.streamed.ChannelsForMatchup(ctx, ev.Sport, ev.Home.Name, ev.Away.Name, ev.Title, j.startsAt)
 		if err != nil || len(chs) == 0 {
 			continue
 		}
 		for _, ch := range chs {
 			ev.Channels = append(ev.Channels, sportsChannelDTO{
-				BroadcastLabel: "streamed.pk",
+				BroadcastLabel: "ppv.st",
 				Name:           ch.Name,
 				Playable:       ch.SourceID != "",
 				Source:         "streamed",
@@ -422,6 +438,10 @@ func (s *Server) enrichStreamedChannels(ctx context.Context, events []sportsEven
 				StreamedID:     ch.SourceID,
 				StreamedNo:     ch.StreamNo,
 			})
+		}
+		attached++
+		if attached >= maxAttaches {
+			break
 		}
 	}
 }

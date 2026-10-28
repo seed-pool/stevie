@@ -11,7 +11,7 @@ import (
 	"github.com/stevie-media/stevie/apps/server/internal/playback"
 )
 
-// Stable namespace so the same streamed.pk source/id/stream maps to one recorder key.
+// Stable namespace so the same ppv.st source/id/stream maps to one recorder key.
 var streamedRecordingNS = uuid.MustParse("6ba7b810-9dad-11d1-80b4-00c04fd430c8")
 
 func streamedRecordingID(source, id, stream string) uuid.UUID {
@@ -63,13 +63,13 @@ func (s *Server) handleStartStreamedRecording(w http.ResponseWriter, r *http.Req
 
 	name := strings.TrimSpace(req.ChannelName)
 	if name == "" {
-		name = "streamed.pk · " + source
+		name = "ppv.st · " + source
 	}
 	opt := playback.StartOpts{
 		ChannelID:    recID,
 		ChannelName:  name,
 		StreamURL:    internal,
-		Network:      "streamed.pk",
+		Network:      "ppv.st",
 		Category:     "Sports",
 		Date:         time.Now(),
 		WindowStart:  time.Now(),

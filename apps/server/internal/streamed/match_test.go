@@ -78,12 +78,52 @@ func TestFindMatchMotorSportByTitle(t *testing.T) {
 	}
 }
 
+func TestParseEmbedSlotPPV(t *testing.T) {
+	src, id, no := parseEmbedSlot("https://taifood-blog.asia/embed/mlb/2026-10-27/mil-tb", "", 0)
+	if src != "taifood-blog.asia" || id != "mlb/2026-10-27/mil-tb" || no != 1 {
+		t.Fatalf("ppv slot: got %q %q %d", src, id, no)
+	}
+	src, id, no = parseEmbedSlot("https://embed.st/embed/golf/2172/1", "golf", 1)
+	if src != "golf" || id != "2172" || no != 1 {
+		t.Fatalf("legacy slot: got %q %q %d", src, id, no)
+	}
+}
+
 func TestStreamsToChannelsPrefersHD(t *testing.T) {
 	ch := streamsToChannels([]Stream{
-		{Language: "English", HD: false, EmbedURL: "https://embed.st/a/2", StreamNo: 2, Source: "delta"},
-		{Language: "English", HD: true, EmbedURL: "https://embed.st/a/1", StreamNo: 1, Source: "delta"},
+		{Language: "English", HD: false, EmbedURL: "https://embed.st/delta/x/2", StreamNo: 2, Source: "delta"},
+		{Language: "English", HD: true, EmbedURL: "https://embed.st/delta/x/1", StreamNo: 1, Source: "delta"},
 	}, 1)
 	if len(ch) != 1 || !strings.Contains(ch[0].Name, "HD") {
 		t.Fatalf("expected HD first, got %#v", ch)
+	}
+}
+
+func TestStreamsToChannelsMultiSource(t *testing.T) {
+	ch := streamsToChannels([]Stream{
+		{Language: "Main", HD: true, EmbedURL: "https://embed.st/embed/hotel/dead/1", StreamNo: 1, Source: "hotel"},
+		{Language: "English", HD: true, EmbedURL: "https://embed.st/embed/golf/2172/1", StreamNo: 1, Source: "golf"},
+		{Language: "English", HD: false, EmbedURL: "https://embed.st/embed/golf/2172/2", StreamNo: 2, Source: "golf"},
+		{Language: "English - TBS", HD: true, EmbedURL: "https://embed.st/embed/admin/ppv/1", StreamNo: 1, Source: "admin"},
+		{Language: "English - TBS", HD: false, EmbedURL: "https://embed.st/embed/admin/ppv/2", StreamNo: 2, Source: "admin"},
+	}, 8)
+	if len(ch) < 4 {
+		t.Fatalf("expected streams from all sources, got %d %#v", len(ch), ch)
+	}
+	sources := map[string]bool{}
+	for _, c := range ch {
+		sources[c.Source] = true
+		if !strings.Contains(c.Name, c.Source) {
+			t.Fatalf("multi-source rows should name the source: %#v", c)
+		}
+	}
+	for _, want := range []string{"golf", "hotel", "admin"} {
+		if !sources[want] {
+			t.Fatalf("missing source %s in %#v", want, ch)
+		}
+	}
+	// Round-robin: first picks should diversify (golf before second hotel).
+	if ch[0].Source != "golf" {
+		t.Fatalf("expected golf first (ranked ahead of hotel), got %#v", ch[0])
 	}
 }

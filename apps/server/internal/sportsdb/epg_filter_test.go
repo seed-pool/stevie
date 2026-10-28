@@ -72,6 +72,10 @@ func TestPlausibleSportsMatchup(t *testing.T) {
 	if !isProseEPGTitle("Tonight tip-off delayed. Coverage continues shortly") {
 		t.Fatal("real prose blurb with sentence end must still be rejected")
 	}
+	if IsPlausibleSportsMatchup("Basketball", "Detroit Pistons's home field Little Caesars Arena", "is played",
+		"Detroit Pistons's home field Little Caesars Arena vs is played") {
+		t.Fatal("venue prose EPG stub must be rejected")
+	}
 }
 
 func TestRejectMovieCinemaChannels(t *testing.T) {
