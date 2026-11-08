@@ -201,6 +201,8 @@ func (s *SyncService) syncOnce(ctx context.Context) (int, error) {
 	s.dedupeSportsEvents(ctx)
 	// Re-link broadcasts onto real channels (skip ### category headers).
 	s.rematchSportsChannels(ctx)
+	// NBA Pass PPV + NBA TEAM| feeds (titles encode the matchup; rematch skips event slots).
+	_ = s.fillNBAEventFeeds(ctx)
 
 	now := time.Now().UTC()
 	// Include yesterday so late-evening NA games still import after UTC midnight.

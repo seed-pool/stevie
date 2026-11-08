@@ -94,9 +94,13 @@ func originalBroadcastLabels(chs []store.SportsEventChannel) []string {
 		if ch.ChannelName != "" && strings.EqualFold(label, ch.ChannelName) {
 			continue
 		}
-		// Heuristic: library channel titles are long / colon-prefixed.
-		if strings.Count(label, ":") >= 1 && len(label) > 22 {
-			continue
+		// Skip library channel titles ("US| ESPN HD", "AF: NBA TV", …) — only keep
+		// provider broadcast labels ("ESPN", "Fox", "NBA TV").
+		if i := strings.IndexAny(label, ":|"); i > 0 && i <= 16 {
+			pkg := strings.TrimSpace(label[:i])
+			if isPackagePrefix(pkg) {
+				continue
+			}
 		}
 		if strings.Contains(label, " | ") || strings.Contains(strings.ToUpper(label), "FLSP") {
 			continue

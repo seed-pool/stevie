@@ -5,12 +5,17 @@ import (
 	"crypto/sha1"
 	"encoding/hex"
 	"log/slog"
+	"regexp"
+	"strconv"
 	"strings"
 	"time"
 
 	"github.com/google/uuid"
 	"github.com/stevie-media/stevie/apps/server/internal/store"
 )
+
+// Cytavision / EU guides stamp tape dates onto titles: "SAN ANTONIO - OKLAHOMA CITY 21/10/26".
+var epgEmbeddedDateRe = regexp.MustCompile(`\b(\d{1,2})[./](\d{1,2})[./](\d{2,4})\b`)
 
 type epgMatch struct {
 	sport, home, away, title string
@@ -104,6 +109,9 @@ func (s *SyncService) fillFromEPG(ctx context.Context) (int, error) {
 			title = away + " @ " + home
 		}
 		if !isPlausibleSportsMatchup(sport, home, away, h.Title) {
+			continue
+		}
+		if isBareNBACityCard(sport, home, away) {
 			continue
 		}
 		key := matchKey(sport, home, away, h.StartTime)
@@ -346,6 +354,11 @@ func (s *SyncService) pruneJunkEPGEvents(ctx context.Context) {
 		if !drop && !isPlausibleSportsMatchup(ev.Sport, ev.HomeTeam, ev.AwayTeam, ev.Title) {
 			drop = true
 		}
+		// EU tape guides often land as bare cities ("SAN ANTONIO vs OKLAHOMA CITY") after the
+		// "21/10/26" stamp is stripped from the stored title — ESPN owns named NBA cards.
+		if !drop && isBareNBACityCard(ev.Sport, ev.HomeTeam, ev.AwayTeam) {
+			drop = true
+		}
 		if !drop {
 			continue
 		}
@@ -404,7 +417,97 @@ func isReplayOrFillerEPG(title, desc string) bool {
 			return true
 		}
 	}
+	// Dated archive titles airing tonight (Cytavision NBA tape: "... 21/10/26").
+	if d, ok := parseEmbeddedEPGDate(title); ok {
+		if absDuration(time.Now().UTC().Sub(d)) > 36*time.Hour {
+			return true
+		}
+	}
 	return false
+}
+
+func parseEmbeddedEPGDate(title string) (time.Time, bool) {
+	m := epgEmbeddedDateRe.FindStringSubmatch(title)
+	if len(m) < 4 {
+		return time.Time{}, false
+	}
+	a, err1 := strconv.Atoi(m[1])
+	b, err2 := strconv.Atoi(m[2])
+	y, err3 := strconv.Atoi(m[3])
+	if err1 != nil || err2 != nil || err3 != nil {
+		return time.Time{}, false
+	}
+	if y < 100 {
+		y += 2000
+	}
+	if y < 2000 || y > 2100 {
+		return time.Time{}, false
+	}
+	day, month := a, b
+	// Prefer DD/MM when unambiguous; fall back to MM/DD for US-style stamps.
+	switch {
+	case a > 12 && b >= 1 && b <= 12:
+		day, month = a, b
+	case b > 12 && a >= 1 && a <= 12:
+		day, month = b, a
+	case a >= 1 && a <= 12 && b >= 1 && b <= 12:
+		// International IPTV guides dominate — DD/MM.
+		day, month = a, b
+	default:
+		return time.Time{}, false
+	}
+	if day < 1 || day > 31 || month < 1 || month > 12 {
+		return time.Time{}, false
+	}
+	d := time.Date(y, time.Month(month), day, 12, 0, 0, 0, time.UTC)
+	if d.Month() != time.Month(month) || d.Day() != day {
+		return time.Time{}, false
+	}
+	return d, true
+}
+
+func absDuration(d time.Duration) time.Duration {
+	if d < 0 {
+		return -d
+	}
+	return d
+}
+
+// isBareNBACityCard reports EPG city-vs-city NBA stubs without club nicknames
+// (San Antonio Spurs → "SAN ANTONIO", Oklahoma City Thunder → "OKLAHOMA CITY").
+func isBareNBACityCard(sport, home, away string) bool {
+	if !strings.EqualFold(strings.TrimSpace(sport), "Basketball") {
+		return false
+	}
+	return isNBAMarketCityLabel(home) && isNBAMarketCityLabel(away)
+}
+
+func isNBAMarketCityLabel(name string) bool {
+	n := strings.ToLower(strings.TrimSpace(name))
+	if n == "" || strings.Contains(n, " ") && len(strings.Fields(n)) > 3 {
+		return false
+	}
+	// Full club names include the nickname — keep those.
+	tok := teamToken(name)
+	switch tok {
+	case "spurs", "thunder", "lakers", "clippers", "warriors", "nets", "knicks",
+		"celtics", "heat", "bulls", "sixers", "76ers", "bucks", "raptors", "cavaliers",
+		"hawks", "hornets", "magic", "wizards", "pistons", "pacers", "blazers",
+		"kings", "suns", "nuggets", "timberwolves", "pelicans", "grizzlies",
+		"mavericks", "rockets", "jazz", "nba":
+		return false
+	}
+	switch n {
+	case "san antonio", "oklahoma city", "golden state", "los angeles", "new york",
+		"new orleans", "oklahoma", "portland", "minnesota", "indiana", "cleveland",
+		"milwaukee", "philadelphia", "brooklyn", "boston", "miami", "chicago",
+		"atlanta", "charlotte", "orlando", "washington", "detroit", "sacramento",
+		"phoenix", "denver", "memphis", "dallas", "houston", "utah", "toronto":
+		return true
+	}
+	// Two-word market labels without a known nickname token.
+	fields := strings.Fields(n)
+	return len(fields) == 2 && len(tok) >= 4
 }
 
 func cleanGenericTitle(title, desc string) string {

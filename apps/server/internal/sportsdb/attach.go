@@ -40,6 +40,7 @@ func (s *SyncService) attachLabelChannels(ctx context.Context, eventID uuid.UUID
 		}
 	}
 	matches = filterMatchesForSport(sport, matches)
+	matches = preferHomeRegionMatches(matches)
 	if len(matches) == 0 {
 		score := 0.0
 		if confirmed {
@@ -162,6 +163,32 @@ func filterMatchesForSport(sport string, matches []ChannelMatch) []ChannelMatch 
 	return out
 }
 
+// preferHomeRegionMatches keeps US/CA package feeds when present, plus unprefixed
+// RSNs (NESN, MSG). Drops foreign twins (TH|, BR|, PRIME|) that clutter cards.
+func preferHomeRegionMatches(matches []ChannelMatch) []ChannelMatch {
+	if len(matches) < 2 {
+		return matches
+	}
+	var home, unprefixed []ChannelMatch
+	for _, m := range matches {
+		upper := strings.ToUpper(strings.TrimSpace(m.Name))
+		switch {
+		case strings.HasPrefix(upper, "US:"), strings.HasPrefix(upper, "US|"),
+			strings.HasPrefix(upper, "CA:"), strings.HasPrefix(upper, "CA|"),
+			strings.HasPrefix(upper, "CA EN:"), strings.HasPrefix(upper, "CA EN|"):
+			home = append(home, m)
+		default:
+			if i := strings.IndexAny(m.Name, ":|"); i <= 0 || i > 16 {
+				unprefixed = append(unprefixed, m)
+			}
+		}
+	}
+	if len(home) == 0 {
+		return matches
+	}
+	return append(home, unprefixed...)
+}
+
 // isProviderBroadcastLabel is true for ESPN/MLB network names ("FS1", "TBS"),
 // not resolved library titles ("US: FOX SPORTS 1") or team feeds.
 func isProviderBroadcastLabel(label string) bool {
@@ -171,6 +198,13 @@ func isProviderBroadcastLabel(label string) bool {
 	}
 	if i := strings.Index(label, ": "); i > 0 && i <= 8 {
 		pkg := label[:i]
+		if len(pkg) <= 6 && !strings.Contains(pkg, " ") {
+			return false
+		}
+	}
+	// "US| ESPN HD" style library titles (newer Xtream panels).
+	if i := strings.Index(label, "|"); i > 0 && i <= 8 {
+		pkg := strings.TrimSpace(label[:i])
 		if len(pkg) <= 6 && !strings.Contains(pkg, " ") {
 			return false
 		}

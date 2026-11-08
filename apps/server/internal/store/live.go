@@ -297,8 +297,23 @@ func (s *Store) UpsertXtreamChannels(ctx context.Context, channels []livetv.Chan
 		keepSet[id] = struct{}{}
 	}
 
-	// Drop Xtream channels whose category is no longer imported.
-	if len(keepCategoryExtIDs) == 0 {
+	// Channels this sync will keep (selected categories only).
+	incomingExt := make([]string, 0, len(channels))
+	for _, ch := range channels {
+		if len(keepSet) > 0 {
+			if _, ok := keepSet[ch.CategoryExternalID]; !ok {
+				continue
+			}
+		}
+		ext := strings.TrimSpace(ch.ExternalID)
+		if ext != "" {
+			incomingExt = append(incomingExt, ext)
+		}
+	}
+
+	// Replace semantics: drop every Xtream row not in this sync.
+	// Category-only deletes left stale streams when category IDs overlapped across providers.
+	if len(incomingExt) == 0 {
 		if _, err := tx.Exec(ctx, `DELETE FROM live_channels WHERE source = $1`, livetv.SourceXtream); err != nil {
 			return 0, err
 		}
@@ -306,14 +321,8 @@ func (s *Store) UpsertXtreamChannels(ctx context.Context, channels []livetv.Chan
 		if _, err := tx.Exec(ctx, `
 			DELETE FROM live_channels
 			WHERE source = $1
-			  AND (
-				category_id IS NULL
-				OR category_id NOT IN (
-					SELECT id FROM live_categories
-					WHERE source = $1 AND external_id = ANY($2)
-				)
-			)
-		`, livetv.SourceXtream, keepCategoryExtIDs); err != nil {
+			  AND external_id <> ALL($2::text[])
+		`, livetv.SourceXtream, incomingExt); err != nil {
 			return 0, err
 		}
 	}

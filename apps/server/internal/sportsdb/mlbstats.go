@@ -205,10 +205,23 @@ func expandBroadcastLabels(raw string) []string {
 		add("TruTV")
 	case strings.Contains(lower, "nba tv"):
 		add("NBA TV")
-	case strings.Contains(lower, "nhl network"):
+	case strings.Contains(lower, "nhl network") || strings.Contains(lower, "nhl net"):
 		add("NHL Network")
+		add("NHL Net")
 	case strings.Contains(lower, "mlb network"):
 		add("MLB Network")
+	case strings.Contains(lower, "tsn 1") || strings.Contains(lower, "tsn1"):
+		add("TSN1")
+		add("TSN 1")
+	case strings.Contains(lower, "tsn 2") || strings.Contains(lower, "tsn2"):
+		add("TSN2")
+		add("TSN 2")
+	case strings.Contains(lower, "tsn"):
+		add("TSN")
+		add("TSN1")
+	case strings.Contains(lower, "sportsnet") || lower == "sn" || strings.HasPrefix(lower, "sn "):
+		add("Sportsnet")
+		add("SN")
 	}
 	return out
 }

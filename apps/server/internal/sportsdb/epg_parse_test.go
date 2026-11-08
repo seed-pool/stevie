@@ -37,6 +37,33 @@ func TestReplayEPGFiltered(t *testing.T) {
 	if isReplayOrFillerEPG("Estonia vs Iceland - UEFA Nations League", "UEFA Nations League") {
 		t.Fatal("live nations league should not be filtered")
 	}
+	if !isReplayOrFillerEPG("SAN ANTONIO - OKLAHOMA CITY 21/10/26", "NBA 2026-27.") {
+		t.Fatal("dated Cytavision NBA tape should be filtered")
+	}
+	if !isBareNBACityCard("Basketball", "SAN ANTONIO", "OKLAHOMA CITY") {
+		t.Fatal("bare city NBA card should be pruned")
+	}
+	if isBareNBACityCard("Basketball", "San Antonio Spurs", "Oklahoma City Thunder") {
+		t.Fatal("named NBA clubs must not be treated as bare cities")
+	}
+}
+
+func TestNBAPassMatch(t *testing.T) {
+	home := nbaTeamNeedles("Portland Trail Blazers")
+	away := nbaTeamNeedles("San Antonio Spurs")
+	name := "NEXT | POR - TRAIL BLAZERS VS SAS - SPURS | Sat 07 Nov 21:00 EST (US) | 8K EXCLUSIVE | US: NBA PASS PPV 7"
+	if !nbaPassMatchesPair(name, home, away) {
+		t.Fatalf("expected NBA Pass match for Blazers/Spurs, needles home=%v away=%v", home, away)
+	}
+	if !isNBATeamFeedChannel("NBA TEAM| PORTLAND TRAIL BLAZERS") {
+		t.Fatal("NBA TEAM feed")
+	}
+	if !nbaTeamFeedMatchesSide("NBA TEAM| SAN ANTONIO SPURS", away) {
+		t.Fatal("Spurs team feed should match")
+	}
+	if isNBAPassPPVChannel("ENDED | POR - TRAIL BLAZERS VS SAS - SPURS | 8K EXCLUSIVE | US: NBA PASS PPV 7") {
+		t.Fatal("ENDED NBA Pass slots must be ignored")
+	}
 }
 
 func TestGenericLiveBlocks(t *testing.T) {

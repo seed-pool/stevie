@@ -271,12 +271,24 @@ func broadcastKeyAliases(want string) []string {
 		return []string{"nbanbatv"}
 	case "spectrumsports":
 		return []string{"spectrumsportsnet"}
-	case "nhltv", "nhlnetwork":
+	case "nhltv", "nhlnetwork", "nhlnet":
 		return []string{"nhlnetwork", "nhlnet"}
-	case "mlbn", "mlbnetwork":
+	case "mlbn", "mlbnetwork", "mlbnet":
 		return []string{"mlbnetwork", "mlbnet"}
-	case "nfln", "nflnetwork":
+	case "nfln", "nflnetwork", "nflnet":
 		return []string{"nflnetwork", "nflnet"}
+	case "sn", "sportsnet":
+		return []string{"sportsnet", "sportsnetone", "sportsnetontario", "sportsneteast", "sportsnetwest", "sportsnetpacific", "sportsnet360", "sportsnetworld"}
+	case "tsn":
+		return []string{"tsn1", "tsn2", "tsn3", "tsn4", "tsn5"}
+	case "fox":
+		return []string{"fox", "foxeast", "foxwest"}
+	case "cbs":
+		return []string{"cbs", "cbseast", "cbswest"}
+	case "nbc":
+		return []string{"nbc", "nbceast", "nbcwest"}
+	case "abc":
+		return []string{"abc", "abceast", "abcwest"}
 	default:
 		return nil
 	}
@@ -287,14 +299,21 @@ func regionBias(name, wantKey string) float64 {
 	upper := strings.ToUpper(strings.TrimSpace(name))
 	bias := 1.0
 	switch {
-	case strings.HasPrefix(upper, "US:"):
+	case strings.HasPrefix(upper, "US:"), strings.HasPrefix(upper, "US|"):
 		bias = 1.2
-	case strings.HasPrefix(upper, "CA:"):
+	case strings.HasPrefix(upper, "CA:"), strings.HasPrefix(upper, "CA|"),
+		strings.HasPrefix(upper, "CA EN:"), strings.HasPrefix(upper, "CA EN|"):
 		bias = 1.1
-	case strings.HasPrefix(upper, "ARG:"), strings.HasPrefix(upper, "VO:"),
-		strings.HasPrefix(upper, "CO:"), strings.HasPrefix(upper, "MX:"),
-		strings.HasPrefix(upper, "AT&T:"):
+	case strings.HasPrefix(upper, "ARG:"), strings.HasPrefix(upper, "ARG|"),
+		strings.HasPrefix(upper, "VO:"), strings.HasPrefix(upper, "VO|"),
+		strings.HasPrefix(upper, "CO:"), strings.HasPrefix(upper, "CO|"),
+		strings.HasPrefix(upper, "MX:"), strings.HasPrefix(upper, "MX|"),
+		strings.HasPrefix(upper, "AT&T:"), strings.HasPrefix(upper, "AT&T|"):
 		bias = 0.75
+	default:
+		if strings.ContainsAny(upper, ":|") && !strings.Contains(upper, " | ") {
+			bias = 0.9
+		}
 	}
 	if strings.Contains(upper, "PPV") && !strings.Contains(wantKey, "ppv") {
 		bias *= 0.45
@@ -320,13 +339,24 @@ func BuildCandidates(channels []store.LiveChannel) []channelCandidate {
 	return out
 }
 
-// splitPackageBrand parses "US: ESPN HD" → ("US", "espn"), "NBA TV" → ("", "nbatv").
+// splitPackageBrand parses "US: ESPN HD" / "US| ESPN HD" → ("US", "espn"),
+// "NBA TV" → ("", "nbatv"). Newer Xtream panels often use "|" instead of ":".
 func splitPackageBrand(name string) (pkg, brand string) {
 	raw := strings.TrimSpace(name)
 	brandSrc := raw
+	sep := -1
+	sepLen := 1
 	if i := strings.Index(raw, ":"); i > 0 && i <= 16 {
-		left := strings.TrimSpace(raw[:i])
-		right := strings.TrimSpace(raw[i+1:])
+		sep, sepLen = i, 1
+	}
+	// Prefer a short country/package pipe when present ("CA| TSN 1 HD").
+	// Ignore longer "CA (TSN+ 042) | Event title" event-slot rows.
+	if i := strings.Index(raw, "|"); i > 0 && i <= 16 && (sep < 0 || i < sep) {
+		sep, sepLen = i, 1
+	}
+	if sep > 0 {
+		left := strings.TrimSpace(raw[:sep])
+		right := strings.TrimSpace(raw[sep+sepLen:])
 		if right != "" && isPackagePrefix(left) {
 			pkg = left
 			brandSrc = right
@@ -646,7 +676,9 @@ func isSoftBrandSuffix(rest string) bool {
 	}
 	// Explicit region crumbs only (nbatvca) — never treat arbitrary 1–2 letter tails as soft.
 	switch rest {
-	case "ca", "uk", "us", "mx", "br", "nz", "th", "af", "au", "nl", "ph":
+	case "ca", "uk", "us", "mx", "br", "nz", "th", "af", "au", "nl", "ph",
+		// Sportsnet regional feeds: "CA| SPORTSNET ONTARIO HD"
+		"one", "ontario", "east", "west", "pacific", "world", "360", "ontariohd", "easthd", "westhd", "pacifichd":
 		return true
 	}
 	return false
